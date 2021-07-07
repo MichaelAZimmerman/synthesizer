@@ -1,15 +1,11 @@
 import React from "react";
 import * as Tone from "tone";
+import playNote from "../shared/playNote";
 
 export default function Keyboard() {
-  const synth = new Tone.Synth().toDestination();
-
-  function playNote(note) {
-    synth.triggerAttackRelease(`${note}4`, "8n");
-  }
   return (
     <div>
-      <div className="note-wrapper">
+      <div className="note-container">
         <div className="note-halfspace"></div>
         <button className="note-blk" onClick={() => playNote("C#")}>
           C#
@@ -29,7 +25,7 @@ export default function Keyboard() {
         </button>
         <div className="note-halfspace"></div>
       </div>
-      <div className="note-wrapper">
+      <div className="note-container">
         <button className="note" onClick={() => playNote("C")}>
           C
         </button>
