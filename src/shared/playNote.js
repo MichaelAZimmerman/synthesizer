@@ -5,7 +5,7 @@ export default function playNote(note) {
   const bitCrush = 16;
   const distAmt = 1;
   const tremAmt = 0;
-  const pingPongRate = "4n";
+  const pingPongRate = null;
   const pingPongDepth = 0;
   const pingPong = new Tone.PingPongDelay(
     pingPongRate,
@@ -19,7 +19,7 @@ export default function playNote(note) {
     .connect(crusher)
     .connect(tremolo)
     .connect(pingPong);
-  const oscType = "triangle";
+  const oscType = "fatsawtooth";
   const octave = "4";
   const noteType = "8n";
   synth.oscillator.type = oscType;
