@@ -1,6 +1,6 @@
-import react, { useState, createContext } from "react";
+import React, { useState, createContext } from "react";
 
-export const UserContext = createContext(null);
+export const SynthContext = createContext(null);
 
 export function SynthProvider(props) {
   const [octave, setOctave] = useState(4);
