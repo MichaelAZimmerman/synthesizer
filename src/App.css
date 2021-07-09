@@ -1,3 +1,28 @@
+body {
+  background-color: rgb(50, 62, 71);
+  color: white;
+}
+header {
+  height: 50px;
+}
+
+.link {
+  flex-basis: calc(100% / 3 - 10px);
+  background-color: darkolivegreen;
+  text-decoration: none;
+  padding: 5px;
+  flex-grow: 1;
+  color: white;
+}
+.active {
+  background-color: rgb(105, 126, 69);
+}
+
+.link:not(.active):hover {
+  background-color: burlywood;
+  color: black;
+}
+
 .text-center {
   text-align: center;
 }
