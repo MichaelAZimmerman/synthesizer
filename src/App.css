@@ -4,6 +4,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: lightslategray;
+  margin: auto;
+}
+.justify-center {
+  width: 100%;
+  background-color: lightsteelblue;
 }
 .note-halfspace {
   height: 80px;

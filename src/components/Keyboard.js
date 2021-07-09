@@ -5,7 +5,7 @@ import playNote from "../shared/playNote";
 export default function Keyboard() {
   const synthesizer = useContext(SynthContext);
   return (
-    <div>
+    <div className="justify-center">
       <div className="note-container">
         <div className="note-halfspace"></div>
         <button
