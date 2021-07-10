@@ -41,7 +41,7 @@ export default function Keyboard() {
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Waveform Selector`}
+            title={`Waveform: ${synthesizer.oscType}`}
             variant="secondary"
             size="sm"
           >
@@ -72,6 +72,41 @@ export default function Keyboard() {
               onSelect={() => synthesizer.setOscType("fatsawtooth")}
             >
               Fat Sawtooth
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
+        {/* This DropdownButton 
+               selects an octave */}
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Octave: ${synthesizer.octave}`}
+            variant="secondary"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(1)}>
+              1 - Lowest Pitch
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(2)}>
+              2
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(3)}>
+              3
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(4)}>
+              4
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(5)}>
+              5
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(6)}>
+              6
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(7)}>
+              7
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctave(8)}>
+              8 - Highest Pitch
             </Dropdown.Item>
           </DropdownButton>
         </div>
