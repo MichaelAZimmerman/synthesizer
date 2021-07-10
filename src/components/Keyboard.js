@@ -12,61 +12,69 @@ export default function Keyboard() {
       <div className="control-container">
         {/* This DropdownButton 
                selects a note-length */}
-        <DropdownButton
-          id="dropdown-basic-button"
-          title={`Note Type/Length: ${synthesizer.noteType}`}
-          variant="secondary"
-          size="sm"
-        >
-          <Dropdown.Item onSelect={() => synthesizer.setNoteType("1n")}>
-            Whole Note
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setNoteType("4n")}>
-            Quarter Note
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setNoteType("8n")}>
-            8th Note
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setNoteType("16n")}>
-            16th Note
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
-            32nd Note
-          </Dropdown.Item>
-        </DropdownButton>
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Note Type/Length: ${synthesizer.noteType}`}
+            variant="secondary"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setNoteType("1n")}>
+              Whole Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setNoteType("4n")}>
+              Quarter Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setNoteType("8n")}>
+              8th Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setNoteType("16n")}>
+              16th Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
+              32nd Note
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
         {/* This DropdownButton 
                selects a wave-form */}
-        <DropdownButton
-          id="dropdown-basic-button"
-          title={`Waveform Selector`}
-          variant="secondary"
-          size="sm"
-        >
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
-            Triangle
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("square")}>
-            Square
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("sine")}>
-            Sine
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
-            Sawtooth
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("fattriangle")}>
-            Fat Triangle
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsquare")}>
-            Fat Square
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsine")}>
-            Fat Sine
-          </Dropdown.Item>
-          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsawtooth")}>
-            Fat Sawtooth
-          </Dropdown.Item>
-        </DropdownButton>
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Waveform Selector`}
+            variant="secondary"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
+              Triangle
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("square")}>
+              Square
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("sine")}>
+              Sine
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
+              Sawtooth
+            </Dropdown.Item>
+            <Dropdown.Item
+              onSelect={() => synthesizer.setOscType("fattriangle")}
+            >
+              Fat Triangle
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsquare")}>
+              Fat Square
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsine")}>
+              Fat Sine
+            </Dropdown.Item>
+            <Dropdown.Item
+              onSelect={() => synthesizer.setOscType("fatsawtooth")}
+            >
+              Fat Sawtooth
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
       </div>
       <div className="note-container">
         <div className="note-halfspace"></div>

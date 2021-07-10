@@ -5,6 +5,13 @@ body {
 header {
   height: 50px;
 }
+.drop-down {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 308px;
+  padding: 5px;
+}
 
 .link {
   flex-basis: calc(100% / 4 - 10px);
@@ -35,9 +42,8 @@ header {
 .control-container {
   width: 308px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: lightslategray;
+  flex-direction: column;
+  background-color: rgb(39, 62, 83);
   margin: auto;
 }
 .note-container {
