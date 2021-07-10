@@ -142,6 +142,21 @@ export default function Keyboard() {
             valueLabelDisplay="auto"
           />
         </div>
+        {/* This Slider 
+               selects a distortion amount */}
+        <div className="drop-down">
+          <Typography id="discrete-slider-small-steps">Tremelo</Typography>
+          <Slider
+            value={synthesizer.tremAmt}
+            onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
+            aria-labelledby="discrete-slider-small-steps"
+            step={50}
+            marks
+            min={1}
+            max={2500}
+            valueLabelDisplay="auto"
+          />
+        </div>
       </div>
       <div className="note-container">
         <div className="note-halfspace"></div>
