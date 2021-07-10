@@ -32,7 +32,14 @@ header {
   flex-wrap: wrap;
   justify-content: center;
 }
-
+.control-container {
+  width: 308px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightslategray;
+  margin: auto;
+}
 .note-container {
   height: 84px;
   width: 308px;

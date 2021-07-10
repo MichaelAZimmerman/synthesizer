@@ -26,24 +26,23 @@ function App() {
       </header>
       <nav className="flex-wrap">
         {!username && (
-          <>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/login"
-            >
-              Login
-            </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/about"
-            >
-              About
-            </NavLink>
-          </>
+          <NavLink
+            activeClassName="active"
+            className="link text-center"
+            to="/login"
+          >
+            Login
+          </NavLink>
         )}
-        {!username && (
+        <NavLink
+          activeClassName="active"
+          className="link text-center"
+          to="/about"
+        >
+          About
+        </NavLink>
+
+        {username && (
           <>
             <NavLink
               activeClassName="active"
@@ -70,7 +69,7 @@ function App() {
           <ProtectedRoute path="/login" reqUser={false}>
             <Login />
           </ProtectedRoute>
-          <ProtectedRoute path="/keyboard" reqUser={false}>
+          <ProtectedRoute path="/keyboard" reqUser={true}>
             <Keyboard />
           </ProtectedRoute>
           <ProtectedRoute path="/about" reqUser={false}>
