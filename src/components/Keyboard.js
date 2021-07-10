@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -10,9 +10,11 @@ export default function Keyboard() {
   return (
     <div className="keyboard">
       <div className="control-container">
+        {/* This DropdownButton 
+               selects a note-length */}
         <DropdownButton
           id="dropdown-basic-button"
-          title={`Note Type: ${synthesizer.noteType}`}
+          title={`Note Type/Length: ${synthesizer.noteType}`}
           variant="secondary"
           size="sm"
         >
@@ -30,6 +32,39 @@ export default function Keyboard() {
           </Dropdown.Item>
           <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
             32nd Note
+          </Dropdown.Item>
+        </DropdownButton>
+        {/* This DropdownButton 
+               selects a wave-form */}
+        <DropdownButton
+          id="dropdown-basic-button"
+          title={`Waveform Selector`}
+          variant="secondary"
+          size="sm"
+        >
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
+            Triangle
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("square")}>
+            Square
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("sine")}>
+            Sine
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
+            Sawtooth
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("fattriangle")}>
+            Fat Triangle
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsquare")}>
+            Fat Square
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsine")}>
+            Fat Sine
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsawtooth")}>
+            Fat Sawtooth
           </Dropdown.Item>
         </DropdownButton>
       </div>
