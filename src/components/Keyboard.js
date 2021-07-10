@@ -3,6 +3,8 @@ import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 
 export default function Keyboard() {
   const synthesizer = useContext(SynthContext);
@@ -109,6 +111,22 @@ export default function Keyboard() {
               8 - Highest Pitch
             </Dropdown.Item>
           </DropdownButton>
+        </div>
+        <div className="drop-down">
+          <Typography id="discrete-slider-small-steps">Bit Crusher</Typography>
+          <Slider
+            defaultValue={16}
+            value={synthesizer.bitCrush}
+            onChange={(e, newValue) => synthesizer.setBitCrush(newValue)}
+            aria-labelledby="discrete-slider-small-steps"
+            step={1}
+            marks
+            min={1}
+            max={16}
+            track="inverted"
+            value={synthesizer.bitCrush}
+            valueLabelDisplay="auto"
+          />
         </div>
       </div>
       <div className="note-container">

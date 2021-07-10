@@ -6,6 +6,7 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
+import "@fontsource/roboto";
 import "./App.css";
 import Keyboard from "./components/Keyboard";
 import Login from "./components/Login";
