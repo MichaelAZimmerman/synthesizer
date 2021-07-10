@@ -7,10 +7,10 @@ import {
   Switch,
 } from "react-router-dom";
 import "./App.css";
-import KeyBoard from "./components/Keyboard";
+import Keyboard from "./components/Keyboard";
 import Login from "./components/Login";
 import About from "./components/About";
-import { UserContext } from "./context/UserContext";
+import { UserContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
 
 function App() {
@@ -28,14 +28,14 @@ function App() {
         {!username && (
           <>
             <NavLink
-              activeClassName=""
+              activeClassName="active"
               className="link text-center"
               to="/login"
             >
               Login
             </NavLink>
             <NavLink
-              activeClassName=""
+              activeClassName="active"
               className="link text-center"
               to="/about"
             >
@@ -43,7 +43,7 @@ function App() {
             </NavLink>
           </>
         )}
-        {username && (
+        {!username && (
           <>
             <NavLink
               activeClassName="active"
@@ -54,7 +54,7 @@ function App() {
             </NavLink>
             <NavLink
               activeClassName="active"
-              className="text-center"
+              className="link text-center"
               to="/login"
               onClick={() => {
                 logout();
@@ -67,12 +67,11 @@ function App() {
       </nav>
       <main className="text-center">
         <Switch>
-          {/* <Route path="/about"><About /></Route> */}
           <ProtectedRoute path="/login" reqUser={false}>
             <Login />
           </ProtectedRoute>
-          <ProtectedRoute path="/keyboard" reqUser={true}>
-            <KeyBoard />
+          <ProtectedRoute path="/keyboard" reqUser={false}>
+            <Keyboard />
           </ProtectedRoute>
           <ProtectedRoute path="/about" reqUser={false}>
             <About />

@@ -7,7 +7,7 @@ header {
 }
 
 .link {
-  flex-basis: calc(100% / 3 - 10px);
+  flex-basis: calc(100% / 4 - 10px);
   background-color: darkolivegreen;
   text-decoration: none;
   padding: 5px;

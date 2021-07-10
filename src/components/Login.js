@@ -8,8 +8,8 @@ const Login = () => {
   return (
     <>
       <h2>Login</h2>
-      <form className="form">
-        <div className="form-field flex-wrap">
+      <form className="">
+        <div className="">
           <label htmlFor="username">Username</label>
           <input
             id="username"
@@ -17,7 +17,7 @@ const Login = () => {
             value={username}
           />
         </div>
-        <div className="form-field flex-wrap">
+        <div className="">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -28,12 +28,11 @@ const Login = () => {
         </div>
 
         <button
-          className="btn"
+          className=""
           onClick={(e) => {
             e.preventDefault();
-            if (username.length > 4 && password.length > 4) {
+            if (username.length > 3 && password.length > 3) {
               login(username);
-              // history.push("/search");
             }
           }}
         >
