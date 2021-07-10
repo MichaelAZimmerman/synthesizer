@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -6,18 +6,30 @@ import Dropdown from "react-bootstrap/Dropdown";
 
 export default function Keyboard() {
   const synthesizer = useContext(SynthContext);
+
   return (
     <div className="keyboard">
       <div className="control-container">
-        <DropdownButton id="dropdown-basic-button" title="Select Waveform">
-          <Dropdown.Item onChange={synthesizer.setNoteType("4n")}>
+        <DropdownButton
+          id="dropdown-basic-button"
+          title={`Note Type: ${synthesizer.noteType}`}
+          variant="secondary"
+          size="sm"
+        >
+          <Dropdown.Item onSelect={() => synthesizer.setNoteType("1n")}>
+            Whole Note
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setNoteType("4n")}>
             Quarter Note
           </Dropdown.Item>
-          <Dropdown.Item onChange={synthesizer.setNoteType("8n")}>
-            Eighth Note
+          <Dropdown.Item onSelect={() => synthesizer.setNoteType("8n")}>
+            8th Note
           </Dropdown.Item>
-          <Dropdown.Item onChange={synthesizer.setNoteType("16n")}>
-            Sixteeth Note
+          <Dropdown.Item onSelect={() => synthesizer.setNoteType("16n")}>
+            16th Note
+          </Dropdown.Item>
+          <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
+            32nd Note
           </Dropdown.Item>
         </DropdownButton>
       </div>
