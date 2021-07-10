@@ -9,8 +9,12 @@ header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 308px;
+  border-radius: 5px;
+  width: 280px;
+  margin: auto;
+  margin-top: 5px;
   padding: 5px;
+  background-color: rgb(19, 33, 44);
 }
 
 .link {
@@ -44,6 +48,7 @@ header {
   display: flex;
   flex-direction: column;
   background-color: rgb(39, 62, 83);
+  padding: 5px;
   margin: auto;
 }
 .note-container {
