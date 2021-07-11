@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import {
-  BrowserRouter as Router,
   NavLink,
   Redirect,
   Route,
   Switch,
+  useLocation,
 } from "react-router-dom";
 import "@fontsource/roboto";
 import "./App.css";
@@ -13,11 +13,14 @@ import Login from "./components/Login";
 import About from "./components/About";
 import { UserContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
+  const location = useLocation();
   const { username, logout } = useContext(UserContext);
+
   return (
-    <Router>
+    <>
       <header>
         {username ? (
           <h2 className="text-center">Welcome {username}</h2>
@@ -35,13 +38,6 @@ function App() {
             Login
           </NavLink>
         )}
-        <NavLink
-          activeClassName="active"
-          className="link text-center"
-          to="/about"
-        >
-          About
-        </NavLink>
 
         {username && (
           <>
@@ -51,6 +47,13 @@ function App() {
               to="/keyboard"
             >
               Keyboard
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              className="link text-center"
+              to="/about"
+            >
+              About
             </NavLink>
             <NavLink
               activeClassName="active"
@@ -66,22 +69,26 @@ function App() {
         )}
       </nav>
       <main className="text-center">
-        <Switch>
-          <ProtectedRoute path="/login" reqUser={false}>
-            <Login />
-          </ProtectedRoute>
-          <ProtectedRoute path="/keyboard" reqUser={true}>
-            <Keyboard />
-          </ProtectedRoute>
-          <ProtectedRoute path="/about" reqUser={false}>
-            <About />
-          </ProtectedRoute>
-          <Route path="*">
-            <Redirect to="/login" />
-          </Route>
-        </Switch>
+        <TransitionGroup>
+          <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+            <Switch location={location}>
+              <ProtectedRoute path="/login" reqUser={false}>
+                <Login />
+              </ProtectedRoute>
+              <ProtectedRoute path="/keyboard" reqUser={true}>
+                <Keyboard />
+              </ProtectedRoute>
+              <ProtectedRoute path="/about" reqUser={true}>
+                <About />
+              </ProtectedRoute>
+              <Route path="*">
+                <Redirect to="/login" />
+              </Route>
+            </Switch>
+          </CSSTransition>
+        </TransitionGroup>
       </main>
-    </Router>
+    </>
   );
 }
 

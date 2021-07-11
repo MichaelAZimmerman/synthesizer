@@ -5,13 +5,16 @@ import "./index.css";
 import App from "./App";
 import { UserProvider, SynthProvider } from "./context";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
-  <SynthProvider>
-    <UserProvider>
-      <App />
-    </UserProvider>
-  </SynthProvider>,
+  <Router>
+    <SynthProvider>
+      <UserProvider>
+        <App />
+      </UserProvider>
+    </SynthProvider>
+  </Router>,
   document.getElementById("root")
 );
 
