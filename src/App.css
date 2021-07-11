@@ -10,7 +10,7 @@ header {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  width: 300px;
+  width: 340px;
   margin: auto;
   margin-top: 5px;
   padding: 5px;
@@ -44,7 +44,7 @@ header {
   justify-content: center;
 }
 .control-container {
-  width: 308px;
+  width: 350px;
   display: flex;
   flex-direction: column;
   background-color: rgb(39, 62, 83);
@@ -53,7 +53,7 @@ header {
 }
 .note-container {
   height: 84px;
-  width: 308px;
+  width: 350px;
   display: flex;
   align-items: center;
   justify-content: center;
