@@ -8,7 +8,7 @@ export function SynthProvider(props) {
   const [oscType, setOscType] = useState("triangle");
   const [distAmt, setDistAmt] = useState(0);
   const [tremAmt, setTremAmt] = useState(0);
-  const [pingPongRate, setPingPongRate] = useState("");
+  const [pingPongRate, setPingPongRate] = useState(0);
   const [pingPongDepth, setPingPongDepth] = useState(0);
   return (
     <SynthContext.Provider

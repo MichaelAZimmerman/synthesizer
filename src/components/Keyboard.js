@@ -130,7 +130,7 @@ export default function Keyboard() {
         {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">Tremelo</Typography>
+          <Typography id="discrete-slider-small-steps">Ring Mod</Typography>
           <Slider
             value={synthesizer.tremAmt}
             onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
@@ -147,7 +147,7 @@ export default function Keyboard() {
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Ping-Pong Rate: ${synthesizer.pingPongRate}`}
+            title={`Delay Rate: ${synthesizer.pingPongRate}`}
             variant="secondary"
             size="sm"
           >
@@ -170,6 +170,17 @@ export default function Keyboard() {
               32nd Note
             </Dropdown.Item>
           </DropdownButton>
+          <Typography id="discrete-slider-small-steps">Delay Depth</Typography>
+          <Slider
+            value={synthesizer.pingPongDepth}
+            onChange={(e, newValue) => synthesizer.setPingPongDepth(newValue)}
+            aria-labelledby="discrete-slider-small-steps"
+            step={0.1}
+            marks
+            min={0.1}
+            max={0.9}
+            valueLabelDisplay="auto"
+          />
         </div>
       </div>
       <div className="note-container">
