@@ -113,21 +113,6 @@ export default function Keyboard() {
           </DropdownButton>
         </div>
         {/* This Slider 
-               selects a bit-rate */}
-        <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">Bit Crusher</Typography>
-          <Slider
-            value={synthesizer.bitCrush}
-            onChange={(e, newValue) => synthesizer.setBitCrush(newValue)}
-            aria-labelledby="discrete-slider-small-steps"
-            step={1}
-            marks
-            min={1}
-            max={16}
-            valueLabelDisplay="auto"
-          />
-        </div>
-        {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
           <Typography id="discrete-slider-small-steps">Distortion</Typography>
