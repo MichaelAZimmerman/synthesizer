@@ -142,6 +142,35 @@ export default function Keyboard() {
             valueLabelDisplay="auto"
           />
         </div>
+        {/* This DropdownButton 
+               sets ping pong rate */}
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Ping-Pong Rate: ${synthesizer.pingPongRate}`}
+            variant="secondary"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate(0)}>
+              Ping-Pong Delay Off
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate("1n")}>
+              Whole Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate("4n")}>
+              Quarter Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate("8n")}>
+              8th Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate("16n")}>
+              16th Note
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setPingPongRate("32n")}>
+              32nd Note
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
       </div>
       <div className="note-container">
         <div className="note-halfspace"></div>
