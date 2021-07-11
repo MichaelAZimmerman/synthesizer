@@ -5,6 +5,11 @@ body {
 header {
   height: 50px;
 }
+.slider-sm {
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .drop-down {
   display: flex;
   align-items: center;

@@ -116,31 +116,35 @@ export default function Keyboard() {
                selects a distortion amount */}
         <div className="drop-down">
           <Typography id="discrete-slider-small-steps">Distortion</Typography>
-          <Slider
-            value={synthesizer.distAmt}
-            onChange={(e, newValue) => synthesizer.setDistAmt(newValue)}
-            aria-labelledby="discrete-slider-small-steps"
-            step={1}
-            marks
-            min={1}
-            max={10}
-            valueLabelDisplay="auto"
-          />
+          <div className="slider-sm">
+            <Slider
+              value={synthesizer.distAmt}
+              onChange={(e, newValue) => synthesizer.setDistAmt(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={1}
+              marks
+              min={1}
+              max={10}
+              valueLabelDisplay="auto"
+            />
+          </div>
         </div>
         {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
           <Typography id="discrete-slider-small-steps">Ring Mod</Typography>
-          <Slider
-            value={synthesizer.tremAmt}
-            onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
-            aria-labelledby="discrete-slider-small-steps"
-            step={50}
-            marks
-            min={1}
-            max={2500}
-            valueLabelDisplay="auto"
-          />
+          <div className="slider-sm">
+            <Slider
+              value={synthesizer.tremAmt}
+              onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={50}
+              marks
+              min={1}
+              max={2500}
+              valueLabelDisplay="auto"
+            />
+          </div>
         </div>
         {/* This DropdownButton 
                sets ping pong rate */}
@@ -170,17 +174,21 @@ export default function Keyboard() {
               32nd Note
             </Dropdown.Item>
           </DropdownButton>
-          <Typography id="discrete-slider-small-steps">Delay Depth</Typography>
-          <Slider
-            value={synthesizer.pingPongDepth}
-            onChange={(e, newValue) => synthesizer.setPingPongDepth(newValue)}
-            aria-labelledby="discrete-slider-small-steps"
-            step={0.1}
-            marks
-            min={0.1}
-            max={0.9}
-            valueLabelDisplay="auto"
-          />
+          <div className="slider-sm">
+            <Typography id="discrete-slider-small-steps">
+              Delay Depth
+            </Typography>
+            <Slider
+              value={synthesizer.pingPongDepth}
+              onChange={(e, newValue) => synthesizer.setPingPongDepth(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={0.1}
+              marks
+              min={0.1}
+              max={0.9}
+              valueLabelDisplay="auto"
+            />
+          </div>
         </div>
       </div>
       <div className="note-container">
