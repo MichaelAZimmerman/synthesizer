@@ -11,12 +11,12 @@ export default function playNote(note, synthesizer) {
     .start();
   const dist = new Tone.Distortion(synthesizer.distAmt).toDestination();
   const env = new Tone.Envelope({
-    attack: 0.1,
-    decay: 0.2,
-    sustain: 0.5,
-    release: 0.8,
+    attack: synthesizer.attack,
+    decay: synthesizer.decay,
+    sustain: synthesizer.sustain,
+    release: synthesizer.release,
   }).toDestination();
-  const synth = new Tone.Synth()
+  const synth = new Tone.Synth(env)
     .connect(dist)
     .connect(tremolo)
     .connect(pingPong);
@@ -25,5 +25,5 @@ export default function playNote(note, synthesizer) {
     `${note}${synthesizer.octave}`,
     synthesizer.noteType
   );
-  env.triggerAttackRelease(0.5);
+  env.triggerAttackRelease(1);
 }

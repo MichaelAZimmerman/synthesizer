@@ -190,6 +190,57 @@ export default function Keyboard() {
             />
           </div>
         </div>
+        <div className="drop-down">
+          <Typography id="discrete-slider-small-steps">
+            ADSR Envelope:
+          </Typography>
+          <div className="slider-short">
+            <Slider
+              orientation="vertical"
+              value={synthesizer.attack}
+              onChange={(e, newValue) => synthesizer.setAttack(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={0.1}
+              marks
+              min={0.1}
+              max={1}
+              valueLabelDisplay="auto"
+            />
+            <Slider
+              orientation="vertical"
+              value={synthesizer.decay}
+              onChange={(e, newValue) => synthesizer.setDecay(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={0.1}
+              marks
+              min={0.1}
+              max={1}
+              valueLabelDisplay="auto"
+            />
+            <Slider
+              orientation="vertical"
+              value={synthesizer.sustain}
+              onChange={(e, newValue) => synthesizer.setSustain(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={0.1}
+              marks
+              min={0.1}
+              max={1}
+              valueLabelDisplay="auto"
+            />
+            <Slider
+              orientation="vertical"
+              value={synthesizer.release}
+              onChange={(e, newValue) => synthesizer.setRelease(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={0.1}
+              marks
+              min={0.1}
+              max={1}
+              valueLabelDisplay="auto"
+            />
+          </div>
+        </div>
       </div>
       <div className="note-container">
         <div className="note-halfspace"></div>

@@ -10,6 +10,11 @@ header {
   margin-left: 10px;
   margin-right: 10px;
 }
+.slider-short {
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
 .drop-down {
   display: flex;
   align-items: center;
