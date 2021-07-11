@@ -25,5 +25,5 @@ export default function playNote(note, synthesizer) {
     `${note}${synthesizer.octave}`,
     synthesizer.noteType
   );
-  env.triggerAttackRelease(1);
+  env.triggerAttackRelease(synthesizer.noteType);
 }
