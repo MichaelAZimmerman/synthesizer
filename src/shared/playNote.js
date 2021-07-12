@@ -18,10 +18,8 @@ export default function playNote(note, synthesizer) {
   }).toDestination();
   const comp = new Tone.Compressor(-30, 3);
   const synth = new Tone.Synth(env)
-    .connect(dist)
-    .connect(tremolo)
-    .connect(pingPong)
-    .connect(comp);
+    .chain(dist, tremolo, pingPong, comp)
+    .toDestination();
   synth.oscillator.type = synthesizer.oscType;
   synth.triggerAttackRelease(
     `${note}${synthesizer.octave}`,
