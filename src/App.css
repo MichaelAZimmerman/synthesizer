@@ -5,6 +5,12 @@ body {
 header {
   height: 50px;
 }
+.about {
+  display: flex;
+  padding: 10px;
+  margin: auto;
+  flex-basis: calc(100% / 3);
+}
 .slider-sm {
   width: 200px;
   margin-left: 10px;
