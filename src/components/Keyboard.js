@@ -149,7 +149,7 @@ export default function Keyboard() {
                   label: "",
                 },
               ]}
-              max="32"
+              max={32}
               valueLabelDisplay="auto"
             />
           </div>
