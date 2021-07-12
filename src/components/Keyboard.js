@@ -121,10 +121,10 @@ export default function Keyboard() {
               value={synthesizer.distAmt}
               onChange={(e, newValue) => synthesizer.setDistAmt(newValue)}
               aria-labelledby="discrete-slider-small-steps"
-              step={1}
+              step={0.1}
               marks
-              min={1}
-              max={10}
+              min={0}
+              max={1}
               valueLabelDisplay="auto"
             />
           </div>
