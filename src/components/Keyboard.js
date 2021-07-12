@@ -132,16 +132,40 @@ export default function Keyboard() {
         {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">Ring Mod</Typography>
+          <Typography id="discrete-slider-small-steps">Tremelo Rate</Typography>
           <div className="slider-sm">
             <Slider
               value={synthesizer.tremAmt}
               onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
               aria-labelledby="discrete-slider-small-steps"
-              step={50}
-              marks
-              min={1}
-              max={2500}
+              step={null}
+              marks={[
+                {
+                  value: 0,
+                  label: "",
+                },
+                {
+                  value: 1,
+                  label: "",
+                },
+                {
+                  value: 4,
+                  label: "",
+                },
+                {
+                  value: 8,
+                  label: "",
+                },
+                {
+                  value: 16,
+                  label: "",
+                },
+                {
+                  value: 32,
+                  label: "",
+                },
+              ]}
+              max="32"
               valueLabelDisplay="auto"
             />
           </div>
