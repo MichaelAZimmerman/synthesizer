@@ -16,6 +16,7 @@ export default function playNote(note, synthesizer) {
     sustain: synthesizer.sustain,
     release: synthesizer.release,
   }).toDestination();
+  const comp = new Tone.Compressor(-30, 3);
   const synth = new Tone.Synth(env)
     .connect(dist)
     .connect(tremolo)

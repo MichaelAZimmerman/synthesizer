@@ -59,22 +59,6 @@ export default function Keyboard() {
             <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
               Sawtooth
             </Dropdown.Item>
-            <Dropdown.Item
-              onSelect={() => synthesizer.setOscType("fattriangle")}
-            >
-              Fat Triangle
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsquare")}>
-              Fat Square
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("fatsine")}>
-              Fat Sine
-            </Dropdown.Item>
-            <Dropdown.Item
-              onSelect={() => synthesizer.setOscType("fatsawtooth")}
-            >
-              Fat Sawtooth
-            </Dropdown.Item>
           </DropdownButton>
         </div>
         {/* This DropdownButton 
