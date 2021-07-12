@@ -20,7 +20,8 @@ export default function playNote(note, synthesizer) {
   const synth = new Tone.Synth(env)
     .connect(dist)
     .connect(tremolo)
-    .connect(pingPong);
+    .connect(pingPong)
+    .connect(comp);
   synth.oscillator.type = synthesizer.oscType;
   synth.triggerAttackRelease(
     `${note}${synthesizer.octave}`,
