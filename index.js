@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./server/config/mysql.conf");
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,4 +17,4 @@ app.get("*", (req, res) => {
   return res.sendFile("/build/index.html", { root: __dirname + "/" });
 });
 
-app.listen(PORT, () => console.log("Well hello there!"));
+app.listen(PORT, () => console.log("You're talking to the database"));
