@@ -14,6 +14,18 @@ router.post("/signup", (req, res) => {
   });
 });
 
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+  if (validate(username, password)) {
+    return login(res, username, password);
+  }
+  return res.send({
+    success: false,
+    data: null,
+    error: "Invalid data provided by user",
+  });
+});
+
 function validate(username, password) {
   return (
     username &&
