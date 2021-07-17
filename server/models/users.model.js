@@ -44,3 +44,5 @@ async function login(res, username, password) {
     return res.send(json);
   }
 }
+
+module.exports = { signup, login };
