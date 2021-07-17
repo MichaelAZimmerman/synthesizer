@@ -24,3 +24,14 @@ async function signup(res, username, password) {
     return res.send(json);
   }
 }
+
+async function login(res, username, password) {
+    let json = {data: null, success: false, error: null};
+    try {
+        const users = await query("SELECT * FROM users WHERE username = ?", [
+            username
+        ]);
+        const user = users[0] || users[0].password;
+        const matches = await bcrypt.compare(, )
+    }
+}
