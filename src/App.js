@@ -11,13 +11,14 @@ import "./App.css";
 import Keyboard from "./components/Keyboard";
 import Login from "./components/Login";
 import About from "./components/About";
+import Signup from "./components/Signup";
 import { UserContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
   const location = useLocation();
-  const { username, logout } = useContext(UserContext);
+  const { username, logout, user_id } = useContext(UserContext);
 
   return (
     <>
@@ -30,13 +31,22 @@ function App() {
       </header>
       <nav className="flex-wrap">
         {!username && (
-          <NavLink
-            activeClassName="active"
-            className="link text-center"
-            to="/login"
-          >
-            Login
-          </NavLink>
+          <>
+            <NavLink
+              activeClassName="active"
+              className="link text-center"
+              to="/signup"
+            >
+              Sign Up
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              className="link text-center"
+              to="/login"
+            >
+              Login
+            </NavLink>
+          </>
         )}
 
         {username && (
@@ -74,6 +84,9 @@ function App() {
             <Switch location={location}>
               <ProtectedRoute path="/login" reqUser={false}>
                 <Login />
+              </ProtectedRoute>
+              <ProtectedRoute path="/signup" reqUser={false}>
+                <Signup />
               </ProtectedRoute>
               <ProtectedRoute path="/keyboard" reqUser={true}>
                 <Keyboard />
