@@ -26,12 +26,21 @@ async function signup(res, username, password) {
 }
 
 async function login(res, username, password) {
-    let json = {data: null, success: false, error: null};
-    try {
-        const users = await query("SELECT * FROM users WHERE username = ?", [
-            username
-        ]);
-        const user = users[0] || users[0].password;
-        const matches = await bcrypt.compare(, )
+  let json = { data: null, success: false, error: null };
+  try {
+    const users = await query("SELECT * FROM users WHERE username = ?", [
+      username,
+    ]);
+    const user = users[0] || { password: 123456 };
+    const matches = await bcrypt.compare(password, user.password);
+    if (matches) {
+      json = { ...json, success: matches, data: { username, id: user.id } };
+    } else {
+      json.error = "Invalid username / password";
     }
+  } catch (err) {
+    json.error = "Something went wrong.";
+  } finally {
+    return res.send(json);
+  }
 }
