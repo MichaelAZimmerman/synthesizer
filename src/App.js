@@ -18,7 +18,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
   const location = useLocation();
-  const { username, logout, user_id } = useContext(UserContext);
+  const { username, logout } = useContext(UserContext);
 
   return (
     <>

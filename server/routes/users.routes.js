@@ -4,6 +4,7 @@ const { signup, login } = require("../models/users.model");
 
 router.post("/signup", (req, res) => {
   const { username, password } = req.body;
+  console.log(req.body);
   if (validate(username, password)) {
     return signup(res, username, password);
   }
