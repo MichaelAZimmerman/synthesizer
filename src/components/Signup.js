@@ -47,8 +47,9 @@ const Signup = () => {
               });
               if (res.error) {
                 return setError(res.error);
+              } else {
+                setError("Signup was Successful! Proceed to Login page.");
               }
-              signup(res.data.username, res.data.id);
             }
           }}
         >
