@@ -8,6 +8,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const { callAPI: loginCall } = useFetch("POST");
   const [error, setError] = useState(null);
+  const [passwordValid, setPasswordValid] = useState(true);
+  const [usernameValid, setUsernameValid] = useState(true);
   return (
     <>
       <h2>Login</h2>
@@ -17,8 +19,14 @@ const Login = () => {
           <input
             id="username"
             onChange={(e) => setUsername(e.target.value)}
+            onBlur={() => {
+              setUsernameValid(username.length > 4 && username.length <= 20);
+            }}
             value={username}
           />
+        </div>
+        <div className={usernameValid ? "form-hint" : "form-error"}>
+          Username must be between 5 and 20 characters.
         </div>
         <div className="">
           <label htmlFor="password">Password</label>
@@ -26,8 +34,14 @@ const Login = () => {
             type="password"
             id="password"
             onChange={(e) => setPassword(e.target.value)}
+            onBlur={() => {
+              setPasswordValid(password.length > 4 && password.length <= 20);
+            }}
             value={password}
           />
+          <div className={passwordValid ? "form-hint" : "form-error"}>
+            Password must be between 5 and 20 characters
+          </div>
         </div>
 
         <button
@@ -49,6 +63,9 @@ const Login = () => {
                 return setError(res.error);
               }
               login(res.data.username, res.data.id);
+            } else {
+              setUsernameValid(username.length > 4 && username.length <= 20);
+              setPasswordValid(password.length > 4 && password.length <= 20);
             }
           }}
         >
