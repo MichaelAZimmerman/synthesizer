@@ -1,5 +1,3 @@
-import * as Tone from "tone";
-
 export default function playNote(note, synthesizer, synth, env, tremolo) {
   tremolo.start();
   synth.triggerAttackRelease(

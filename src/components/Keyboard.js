@@ -17,13 +17,13 @@ export default function Keyboard() {
 
   const dist = new Tone.Distortion(synthesizer.distAmt).toDestination();
   const env = new Tone.Envelope({
-    attack: synthesizer.attack,
-    decay: synthesizer.decay,
-    sustain: synthesizer.sustain,
-    release: synthesizer.release,
+    attack: 0.5,
+    decay: 0.2,
+    sustain: 0.5,
+    release: 0.8,
   }).toDestination();
   const comp = new Tone.Compressor(-30, 3);
-  const synth = new Tone.Synth(env).chain(dist, tremolo, pingPong, comp);
+  const synth = new Tone.Synth().chain(dist, tremolo, pingPong, comp);
   synth.oscillator.type = synthesizer.oscType;
 
   return (
@@ -211,57 +211,6 @@ export default function Keyboard() {
               marks
               min={0.1}
               max={0.9}
-              valueLabelDisplay="auto"
-            />
-          </div>
-        </div>
-        <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">
-            ADSR Envelope:
-          </Typography>
-          <div className="slider-short">
-            <Slider
-              orientation="vertical"
-              value={synthesizer.attack}
-              onChange={(e, newValue) => synthesizer.setAttack(newValue)}
-              aria-labelledby="discrete-slider-small-steps"
-              step={0.1}
-              marks
-              min={0.1}
-              max={1}
-              valueLabelDisplay="auto"
-            />
-            <Slider
-              orientation="vertical"
-              value={synthesizer.decay}
-              onChange={(e, newValue) => synthesizer.setDecay(newValue)}
-              aria-labelledby="discrete-slider-small-steps"
-              step={0.1}
-              marks
-              min={0.1}
-              max={1}
-              valueLabelDisplay="auto"
-            />
-            <Slider
-              orientation="vertical"
-              value={synthesizer.sustain}
-              onChange={(e, newValue) => synthesizer.setSustain(newValue)}
-              aria-labelledby="discrete-slider-small-steps"
-              step={0.1}
-              marks
-              min={0.1}
-              max={1}
-              valueLabelDisplay="auto"
-            />
-            <Slider
-              orientation="vertical"
-              value={synthesizer.release}
-              onChange={(e, newValue) => synthesizer.setRelease(newValue)}
-              aria-labelledby="discrete-slider-small-steps"
-              step={0.1}
-              marks
-              min={0.1}
-              max={1}
               valueLabelDisplay="auto"
             />
           </div>
