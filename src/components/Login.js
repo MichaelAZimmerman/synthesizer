@@ -72,7 +72,7 @@ const Login = () => {
           Login
         </button>
       </form>
-      <div>{error}</div>
+      <div className="error">{error}</div>
     </>
   );
 };
