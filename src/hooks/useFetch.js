@@ -22,6 +22,5 @@ export default function useFetch(method) {
       return { error: "Something went wrong, please try again later" };
     }
   }
-  // Exposes the data, any error, and whether or not it was loading
   return { callAPI };
 }
