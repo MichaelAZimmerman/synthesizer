@@ -24,9 +24,9 @@ function App() {
     <>
       <header>
         {username ? (
-          <h2 className="text-center">Welcome {username}</h2>
+          <h5 className="text-center">Welcome {username}</h5>
         ) : (
-          <h2 className="text-center">Please log in to access keyboard.</h2>
+          <h5 className="text-center">Please log in to access keyboard.</h5>
         )}
       </header>
       <nav className="flex-wrap">

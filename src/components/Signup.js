@@ -70,7 +70,7 @@ const Signup = () => {
           Sign Up
         </button>
       </form>
-      <div>{error}</div>
+      <div className="error">{error}</div>
     </>
   );
 };

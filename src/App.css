@@ -4,6 +4,9 @@ body {
 }
 header {
   height: 50px;
+  background-color: #ccc;
+  padding-top: 12px;
+  color: lightslategray;
 }
 .about {
   display: flex;
@@ -76,6 +79,9 @@ header {
   background-color: lightslategray;
   margin: auto;
 }
+.input-container {
+  margin: 5px;
+}
 .keyboard {
   width: 100%;
   background-color: lightsteelblue;
@@ -111,12 +117,22 @@ header {
 }
 .form-hint {
   color: rgb(50, 62, 71);
-  font-size: 10px;
+  font-size: 12px;
+  padding: 2px;
+  margin: auto;
+  border: 1px solid rgb(50, 62, 71);
+  font-weight: bold;
 }
 .form-error {
-  color: red;
-  font-size: 10px;
+  margin: auto;
+  color: rgb(255, 255, 255);
+  background-color: rgb(201, 101, 101);
+  font-size: 12px;
   font-weight: bold;
+  width: 320px;
+  padding: 2px;
+  border: 1px dashed rgb(50, 62, 71);
+  border-radius: 5px;
 }
 .error {
   font-weight: bold;

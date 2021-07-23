@@ -28,7 +28,7 @@ const Login = () => {
         <div className={usernameValid ? "form-hint" : "form-error"}>
           Username must be between 5 and 20 characters.
         </div>
-        <div className="">
+        <div className="input-container">
           <label htmlFor="password">Password</label>
           <input
             type="password"
