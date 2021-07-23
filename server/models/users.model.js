@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const query = require("../config/mysql.conf");
+const { v4: uuidv4 } = require("uuid");
 
 async function signup(res, username, password) {
   let json = { data: null, success: false, error: null };
@@ -11,9 +12,11 @@ async function signup(res, username, password) {
       json.error = "Username already taken";
     } else {
       const hashed = await bcrypt.hash(password, 10);
-      await query("INSERT INTO users (password, username) VALUES (?,?)", [
+      const uuid = uuidv4();
+      await query("INSERT INTO users (password, username) VALUES (?,?,?)", [
         hashed,
         username,
+        uuid,
       ]);
       json = { ...json, success: true };
     }
@@ -45,4 +48,23 @@ async function login(res, username, password) {
   }
 }
 
-module.exports = { signup, login };
+async function getByUserID(uuid) {
+  let json = { error: null, data: null };
+  try {
+    const users = await query(
+      "SELECT id, username, uuid FROM users WHERE uuid = ?",
+      [uuid]
+    );
+    if (users.length === 0) {
+      json.error = "No user found";
+    } else {
+      json = { ...json, data: users[0] };
+    }
+  } catch (err) {
+    json.error = "Something went wrong?";
+  } finally {
+    return json;
+  }
+}
+
+module.exports = { signup, login, getByUserID };
