@@ -62,7 +62,7 @@ const Login = () => {
               if (res.error) {
                 return setError(res.error);
               }
-              login(res.data.username, res.data.id);
+              login(res.data.username);
             } else {
               setUsernameValid(username.length > 4 && username.length <= 20);
               setPasswordValid(password.length > 4 && password.length <= 20);
