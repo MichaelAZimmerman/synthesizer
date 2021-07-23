@@ -8,6 +8,9 @@ header {
   padding-top: 12px;
   color: lightslategray;
 }
+input {
+  margin: 5px;
+}
 .about {
   display: flex;
   padding: 10px;

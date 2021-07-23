@@ -14,7 +14,7 @@ const Login = () => {
     <>
       <h2>Login</h2>
       <form className="">
-        <div className="">
+        <div className="input-container">
           <label htmlFor="username">Username</label>
           <input
             id="username"
