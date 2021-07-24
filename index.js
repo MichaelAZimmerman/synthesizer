@@ -3,14 +3,14 @@ require("./server/config/mysql.conf");
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
-const passportConf = require("./server/config/passport.conf");
+const passportConfig = require("./server/config/passport.conf");
 const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const userRoutes = require("./server/routes/users.routes");
 const settingsRoutes = require("./server/routes/settings.routes");
 
 app.use(express.json());
-passportConf(passport);
+passportConfig(passport);
 app.use(cookieParser());
 
 app.use("/api/users", userRoutes);
