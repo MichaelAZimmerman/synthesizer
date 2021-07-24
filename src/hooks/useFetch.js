@@ -6,7 +6,7 @@ export default function useFetch(method) {
         "Content-Type": "application/json",
       },
     };
-    if (method === "POST") {
+    if (body) {
       opts = { ...opts, body: JSON.stringify(body) };
     }
     try {
@@ -18,7 +18,6 @@ export default function useFetch(method) {
         throw response;
       }
     } catch (e) {
-      console.log(e);
       return { error: "Something went wrong, please try again later" };
     }
   }

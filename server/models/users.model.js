@@ -33,12 +33,12 @@ async function login(username, password) {
     const users = await query("SELECT * FROM users WHERE username = ?", [
       username,
     ]);
-    const user = users[0] || { password: "12345678910" };
-    const matches = await bcrypt.compare(password, user.password);
-    if (matches) {
+    const user = users[0] || { password: 123456 };
+    const match = await bcrypt.compare(password, user.password);
+    if (match) {
       json = { ...json, data: { username, uuid: user.uuid } };
     } else {
-      json.error = "Invalid username / password";
+      json.error = "Invalid username and/or password";
     }
   } catch (err) {
     json.error = "Something went wrong.";
@@ -47,23 +47,4 @@ async function login(username, password) {
   }
 }
 
-async function getByUserID(uuid) {
-  let json = { error: null, data: null };
-  try {
-    const users = await query(
-      "SELECT id, username, uuid FROM users WHERE uuid = ?",
-      [uuid]
-    );
-    if (users.length === 0) {
-      json.error = "No user found";
-    } else {
-      json = { ...json, data: users[0] };
-    }
-  } catch (err) {
-    json.error = "Something went wrong?";
-  } finally {
-    return json;
-  }
-}
-
-module.exports = { signup, login, getByUserID };
+module.exports = { signup, login };

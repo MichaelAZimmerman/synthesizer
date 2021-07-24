@@ -1,20 +1,34 @@
-import React, { useState, createContext, useCallback } from "react";
-
-export const UserContext = createContext("");
+import React, { useState, createContext, useCallback, useEffect } from "react";
+import useFetch from "../hooks/useFetch";
+export const UserContext = createContext(null);
 
 export function UserProvider(props) {
+  const { callAPI: logoutAPI } = useFetch("GET");
+  const { callAPI: validate } = useFetch("GET");
   const [username, setUsername] = useState(null);
-  const [user_id, setUser_id] = useState(null);
-  const login = useCallback((userN, id) => {
+  const login = useCallback((userN) => {
     setUsername(userN);
-    setUser_id(id);
   }, []);
-  const logout = useCallback(() => {
-    setUsername(null);
-    setUser_id(null);
+
+  const logout = useCallback(async () => {
+    const res = await logoutAPI(`/api/users/logout`);
+    if (res.success) {
+      setUsername(null);
+    }
   }, []);
+
+  useEffect(() => {
+    async function valid() {
+      const res = await validate("api/users/validate");
+      if (res.success) {
+        login(res.data.username);
+      }
+    }
+    valid();
+  }, []);
+
   return (
-    <UserContext.Provider value={{ username, user_id, login, logout }}>
+    <UserContext.Provider value={{ username, login, logout }}>
       {props.children}
     </UserContext.Provider>
   );

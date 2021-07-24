@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const router = express.Router();
-const { signup, login, getByUserID } = require("../models/users.model");
+const { signup, login } = require("../models/users.model");
 const auth = require("../middleware/auth.middleware");
 
 router.get("/validate", auth, (req, res) => {

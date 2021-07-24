@@ -58,13 +58,7 @@ function App() {
             >
               Keyboard
             </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/about"
-            >
-              About
-            </NavLink>
+
             <NavLink
               activeClassName="active"
               className="link text-center"
@@ -77,6 +71,13 @@ function App() {
             </NavLink>
           </>
         )}
+        <NavLink
+          activeClassName="active"
+          className="link text-center"
+          to="/about"
+        >
+          About
+        </NavLink>
       </nav>
       <main className="text-center">
         <TransitionGroup>
@@ -91,9 +92,9 @@ function App() {
               <ProtectedRoute path="/keyboard" reqUser={true}>
                 <Keyboard />
               </ProtectedRoute>
-              <ProtectedRoute path="/about" reqUser={true}>
+              <Route path="/about">
                 <About />
-              </ProtectedRoute>
+              </Route>
               <Route path="*">
                 <Redirect to="/login" />
               </Route>
