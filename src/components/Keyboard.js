@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -18,7 +18,7 @@ export default function Keyboard() {
   const dist = new Tone.Distortion(synthesizer.distAmt).toDestination();
   const env = new Tone.Envelope({
     attack: 0.5,
-    decay: 0.2,
+    decay: 0.5,
     sustain: 0.5,
     release: 0.8,
   }).toDestination();

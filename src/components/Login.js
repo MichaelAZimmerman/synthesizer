@@ -13,7 +13,7 @@ const Login = () => {
   return (
     <>
       <h2>Login</h2>
-      <form className="">
+      <form>
         <div className="input-container">
           <label htmlFor="username">Username</label>
           <input
@@ -45,7 +45,6 @@ const Login = () => {
         </div>
 
         <button
-          className=""
           onClick={async (e) => {
             e.preventDefault();
             if (

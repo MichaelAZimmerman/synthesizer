@@ -1,9 +1,7 @@
-import React, { useState, useContext } from "react";
-import { UserContext } from "../context/UserContext";
+import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 
 const Signup = () => {
-  const { signup } = useContext(UserContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const { callAPI: signupCall } = useFetch("POST");
