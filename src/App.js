@@ -12,13 +12,15 @@ import Keyboard from "./components/Keyboard";
 import Login from "./components/Login";
 import About from "./components/About";
 import Signup from "./components/Signup";
-import { UserContext } from "./context/";
+import Location from "./components/Location";
+import { UserContext, LocationContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function App() {
   const location = useLocation();
   const { username, logout } = useContext(UserContext);
+  const { clearSearch } = useContext(LocationContext);
 
   return (
     <>
@@ -58,7 +60,13 @@ function App() {
             >
               Keyboard
             </NavLink>
-
+            <NavLink
+              activeClassName="active"
+              className="link text-center"
+              to="/location"
+            >
+              Location Drone
+            </NavLink>
             <NavLink
               activeClassName="active"
               className="link text-center"
@@ -91,6 +99,9 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute path="/keyboard" reqUser={true}>
                 <Keyboard />
+              </ProtectedRoute>
+              <ProtectedRoute path="/location" reqUser={true}>
+                <Location />
               </ProtectedRoute>
               <Route path="/about">
                 <About />

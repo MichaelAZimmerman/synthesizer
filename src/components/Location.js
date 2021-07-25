@@ -13,7 +13,7 @@ const Location = () => {
     <>
       <form>
         <div>
-          <label htmlFor="search">Search by City Name:</label>
+          <label htmlFor="search">Search City Name:</label>
           <input
             id="search"
             ref={searchRef}
@@ -24,3 +24,5 @@ const Location = () => {
     </>
   );
 };
+
+export default Location;

@@ -3,16 +3,18 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 import App from "./App";
-import { UserProvider, SynthProvider } from "./context";
+import { UserProvider, SynthProvider, LocationProvider } from "./context";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 
 ReactDOM.render(
   <Router>
     <UserProvider>
-      <SynthProvider>
-        <App />
-      </SynthProvider>
+      <LocationProvider>
+        <SynthProvider>
+          <App />
+        </SynthProvider>
+      </LocationProvider>
     </UserProvider>
   </Router>,
   document.getElementById("root")
