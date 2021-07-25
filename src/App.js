@@ -73,6 +73,7 @@ function App() {
               to="/login"
               onClick={() => {
                 logout();
+                clearSearch();
               }}
             >
               Logout
@@ -88,7 +89,7 @@ function App() {
         </NavLink>
       </nav>
       <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+        <CSSTransition key={location.key} classNames="fade" timeout={500}>
           <main className="text-center">
             <Switch location={location}>
               <ProtectedRoute path="/login" reqUser={false}>

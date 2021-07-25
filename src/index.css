@@ -22,5 +22,5 @@ code {
 .fade-enter.fade-enter-active {
   opacity: 1;
   /* left: 0; */
-  transition: 950ms ease-in;
+  transition: 450ms ease-in;
 }

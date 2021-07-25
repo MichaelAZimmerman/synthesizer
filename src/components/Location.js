@@ -20,7 +20,34 @@ const Location = () => {
             placeholder="Omaha, for example."
           />
         </div>
+        <button
+          onClick={async (e) => {
+            e.preventDefault();
+            setError(null);
+            if (searchRef.current.value.length < 3) {
+              return setError("Must be at least 3 characters in search.");
+            }
+            const res = await locationCall(baseUrl + searchRef.current.value);
+            if (res.error) {
+              return setError(res.error);
+            }
+            setSearch(res);
+            console.log(res.current);
+          }}
+        >
+          Search Weather Drone
+        </button>
       </form>
+      {error && <div className="text-center">{error}</div>}
+      {search && !error && (
+        <>
+          <div>Weather drone completed for:</div>
+          <div>
+            {search.location.name} in {search.location.country}
+          </div>
+          <button>Play Drone</button>
+        </>
+      )}
     </>
   );
 };
