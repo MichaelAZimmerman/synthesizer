@@ -5,4 +5,5 @@ export default function playNote(note, synthesizer, synth, env, tremolo) {
     synthesizer.noteType
   );
   env.triggerAttackRelease(synthesizer.noteType);
+  synth.onsilence(() => {});
 }

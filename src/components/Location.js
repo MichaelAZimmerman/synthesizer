@@ -1,0 +1,23 @@
+import React, { useRef, useState, useContext } from "react";
+import GifDisplay from "./GifDisplay";
+import useFetch from "../hooks/useFetch";
+import { LocationContext } from "../context";
+const baseUrl =
+  "http://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
+
+const Location = () => {
+  const { search, setSearch } = useContext(LocationContext);
+  const searchRef = useRef(null);
+  const { callAPI: locationCall } = useFetch("GET");
+  const [error, setError] = useState(null);
+  return (
+    <>
+      <form>
+        <div>
+          <label htmlFor="search">Search</label>
+          <input id="search" ref={searchRef} placeholder="Search City Name" />
+        </div>
+      </form>
+    </>
+  );
+};
