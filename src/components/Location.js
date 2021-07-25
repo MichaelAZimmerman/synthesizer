@@ -48,13 +48,13 @@ const Location = () => {
             setDroneTrem(res.current.wind_mph);
           }}
         >
-          Search Weather Drone
+          Search Location Drone
         </button>
       </form>
       {error && <div className="text-center">{error}</div>}
       {search.location && !error && (
         <>
-          <div>Weather drone generated for:</div>
+          <div>Location drone generated for:</div>
           <div>
             {search.location.name}, {search.location.region} in{" "}
             {search.location.country}
