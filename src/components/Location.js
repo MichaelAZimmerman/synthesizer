@@ -46,8 +46,6 @@ const Location = () => {
             setOscTwoPitch(Math.floor(res.current.temp_f * 6));
             setOscThreePitch(Math.floor(res.current.humidity * 7));
             setDroneTrem(res.current.wind_mph);
-
-            console.log(res.current);
           }}
         >
           Search Weather Drone
