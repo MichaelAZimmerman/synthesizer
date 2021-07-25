@@ -1,5 +1,4 @@
 import React, { useRef, useState, useContext } from "react";
-import GifDisplay from "./GifDisplay";
 import useFetch from "../hooks/useFetch";
 import { LocationContext } from "../context";
 const baseUrl =
@@ -14,8 +13,12 @@ const Location = () => {
     <>
       <form>
         <div>
-          <label htmlFor="search">Search</label>
-          <input id="search" ref={searchRef} placeholder="Search City Name" />
+          <label htmlFor="search">Search by City Name:</label>
+          <input
+            id="search"
+            ref={searchRef}
+            placeholder="Omaha, for example."
+          />
         </div>
       </form>
     </>
