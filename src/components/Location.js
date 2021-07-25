@@ -4,7 +4,7 @@ import { LocationContext } from "../context";
 import * as Tone from "tone";
 
 const baseUrl =
-  "http://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
+  "https://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
 
 const Location = () => {
   const [droneTrem, setDroneTrem] = useState(0);
