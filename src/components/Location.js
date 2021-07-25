@@ -50,9 +50,10 @@ const Location = () => {
       {error && <div className="text-center">{error}</div>}
       {search.location && !error && (
         <>
-          <div>Weather drone completed for:</div>
+          <div>Weather drone generated for:</div>
           <div>
-            {search.location.name} in {search.location.country}
+            {search.location.name}, {search.location.region} in{" "}
+            {search.location.country}
           </div>
           <button
             onClick={() => {
