@@ -22,7 +22,7 @@ input {
   display: flex;
   padding: 10px;
   margin: auto;
-  flex-basis: calc(100% / 3);
+  max-width: 500px;
 }
 .slider-sm {
   width: 200px;
@@ -62,6 +62,8 @@ input {
 .link:hover {
   background-color: burlywood;
   color: black;
+  transform: scale(1.25);
+  transition-duration: 0.5s;
 }
 
 .text-center {
