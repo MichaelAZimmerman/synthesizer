@@ -79,9 +79,9 @@ function App() {
           About
         </NavLink>
       </nav>
-      <main className="text-center">
-        <TransitionGroup>
-          <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+      <TransitionGroup>
+        <CSSTransition key={location.key} classNames="fade" timeout={1000}>
+          <main className="text-center">
             <Switch location={location}>
               <ProtectedRoute path="/login" reqUser={false}>
                 <Login />
@@ -99,9 +99,9 @@ function App() {
                 <Redirect to="/login" />
               </Route>
             </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-      </main>
+          </main>
+        </CSSTransition>
+      </TransitionGroup>
       <footer className="text-center">
         <div>Last updated: 7/24/2021</div>
       </footer>
