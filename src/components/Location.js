@@ -45,7 +45,7 @@ const Location = () => {
           <div>
             {search.location.name} in {search.location.country}
           </div>
-          <button>Play Drone</button>
+          <button onClick={() => {}}>Play Drone</button>
         </>
       )}
     </>
