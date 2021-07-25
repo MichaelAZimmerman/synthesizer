@@ -7,11 +7,13 @@ const baseUrl =
   "http://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
 
 const Location = () => {
+  const [droneTrem, setDroneTrem] = useState(0);
   const { search, setSearch } = useContext(LocationContext);
   const { oscOnePitch, setOscOnePitch } = useContext(LocationContext);
   const { oscTwoPitch, setOscTwoPitch } = useContext(LocationContext);
   const { oscThreePitch, setOscThreePitch } = useContext(LocationContext);
-  const drone = new Tone.PolySynth(Tone.FMSynth).toDestination();
+  const tremolo = new Tone.Tremolo(droneTrem, 1).toDestination();
+  const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo);
   const searchRef = useRef(null);
   const { callAPI: locationCall } = useFetch("GET");
   const [error, setError] = useState(null);
@@ -38,9 +40,11 @@ const Location = () => {
               return setError(res.error);
             }
             setSearch(res);
-            setOscOnePitch(Math.floor(res.current.temp_c * 6));
+            setOscOnePitch(Math.floor(res.current.temp_c * 5));
             setOscTwoPitch(Math.floor(res.current.temp_f * 6));
-            setOscThreePitch(Math.floor(res.current.humidity * 6));
+            setOscThreePitch(Math.floor(res.current.humidity * 7));
+            setDroneTrem(res.current.wind_mph);
+
             console.log(res.current);
           }}
         >
@@ -57,6 +61,7 @@ const Location = () => {
           </div>
           <button
             onClick={() => {
+              tremolo.start();
               drone.triggerAttack([oscOnePitch, oscTwoPitch, oscThreePitch]);
             }}
           >
