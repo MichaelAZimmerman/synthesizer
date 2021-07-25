@@ -24,9 +24,9 @@ function App() {
     <>
       <header>
         {username ? (
-          <h5 className="text-center">Welcome {username}</h5>
+          <h6 className="text-center">Welcome {username}</h6>
         ) : (
-          <h5 className="text-center">Please log in to access keyboard.</h5>
+          <h6 className="text-center">Please log in to access keyboard.</h6>
         )}
       </header>
       <nav className="flex-wrap">
@@ -102,6 +102,9 @@ function App() {
           </CSSTransition>
         </TransitionGroup>
       </main>
+      <footer className="text-center">
+        <div>Last updated: 7/24/2021</div>
+      </footer>
     </>
   );
 }

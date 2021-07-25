@@ -216,7 +216,7 @@ export default function Keyboard() {
           </div>
         </div>
       </div>
-      <div className="note-container">
+      <div className="note-container-blk">
         <div className="note-halfspace"></div>
         <button
           className="note-blk"
@@ -251,7 +251,7 @@ export default function Keyboard() {
         </button>
         <div className="note-halfspace"></div>
       </div>
-      <div className="note-container">
+      <div className="note-container-wht">
         <button
           className="note"
           onClick={() => playNote("C", synthesizer, synth, env, tremolo)}
