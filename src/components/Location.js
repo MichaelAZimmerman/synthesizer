@@ -12,8 +12,9 @@ const Location = () => {
   const { oscOnePitch, setOscOnePitch } = useContext(LocationContext);
   const { oscTwoPitch, setOscTwoPitch } = useContext(LocationContext);
   const { oscThreePitch, setOscThreePitch } = useContext(LocationContext);
-  const tremolo = new Tone.Tremolo(droneTrem, 1).toDestination();
-  const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo);
+  const tremolo = new Tone.Tremolo(droneTrem, 0.5).toDestination();
+  const comp = new Tone.Compressor(-30, 3);
+  const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo, comp);
   const searchRef = useRef(null);
   const { callAPI: locationCall } = useFetch("GET");
   const [error, setError] = useState(null);
@@ -30,6 +31,7 @@ const Location = () => {
         </div>
         <button
           onClick={async (e) => {
+            drone.triggerRelease([oscOnePitch, oscTwoPitch, oscThreePitch]);
             e.preventDefault();
             setError(null);
             if (searchRef.current.value.length < 3) {
@@ -62,6 +64,7 @@ const Location = () => {
           <button
             onClick={() => {
               tremolo.start();
+              drone.triggerRelease([oscOnePitch, oscTwoPitch, oscThreePitch]);
               drone.triggerAttack([oscOnePitch, oscTwoPitch, oscThreePitch]);
             }}
           >
