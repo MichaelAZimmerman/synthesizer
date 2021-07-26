@@ -7,6 +7,7 @@ const baseUrl =
   "https://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
 
 const Location = () => {
+  const [toggle, setToggle] = useState(null);
   const [droneTrem, setDroneTrem] = useState(0);
   const { search, setSearch } = useContext(LocationContext);
   const { oscOnePitch, setOscOnePitch } = useContext(LocationContext);
@@ -53,6 +54,7 @@ const Location = () => {
             setOscThreePitch(Math.floor(res.current.feelslike_c * 6.2));
             setOscFourPitch(Math.floor(res.current.feelslike_f * 4));
             setDroneTrem(Math.floor(res.current.wind_mph / 2));
+            setToggle(false);
           }}
         >
           Search Location Drone
@@ -66,38 +68,42 @@ const Location = () => {
             {search.location.name}, {search.location.region} in{" "}
             {search.location.country}
           </div>
-          <button
-            onClick={() => {
-              tremolo.start();
-              drone.triggerRelease([
-                oscOnePitch,
-                oscTwoPitch,
-                oscThreePitch,
-                oscFourPitch,
-              ]);
-              drone.triggerAttack([
-                oscOnePitch,
-                oscTwoPitch,
-                oscThreePitch,
-                oscFourPitch,
-              ]);
-            }}
-          >
-            Play Drone
-          </button>
-          <button
-            onClick={() => {
-              drone.triggerRelease([
-                oscOnePitch,
-                oscTwoPitch,
-                oscThreePitch,
-                oscFourPitch,
-              ]);
-            }}
-          >
-            Stop Drone
-          </button>
         </>
+      )}
+      {search.location && (
+        <button
+          onClick={() => {
+            tremolo.start();
+            drone.triggerRelease([
+              oscOnePitch,
+              oscTwoPitch,
+              oscThreePitch,
+              oscFourPitch,
+            ]);
+            drone.triggerAttack([
+              oscOnePitch,
+              oscTwoPitch,
+              oscThreePitch,
+              oscFourPitch,
+            ]);
+          }}
+        >
+          Play Drone
+        </button>
+      )}
+      {search.location && (
+        <button
+          onClick={() => {
+            drone.triggerRelease([
+              oscOnePitch,
+              oscTwoPitch,
+              oscThreePitch,
+              oscFourPitch,
+            ]);
+          }}
+        >
+          Stop Drone
+        </button>
       )}
     </>
   );

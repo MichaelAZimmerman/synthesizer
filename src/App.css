@@ -55,6 +55,7 @@ input {
   text-decoration: none;
   padding: 5px;
   flex-grow: 1;
+  font-family: Roboto;
   color: white;
   border-left: 2px solid rgb(39, 62, 83);
   border-right: 2px solid rgb(39, 62, 83);
@@ -72,6 +73,8 @@ input {
 .link:hover {
   background-color: burlywood;
   border: 2px solid burlywood;
+  text-decoration: none;
+  font-weight: bold;
   color: black;
   transform: scale(1.24);
   transition-duration: 0.5s;
