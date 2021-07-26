@@ -7,6 +7,7 @@ export function LocationProvider(props) {
   const [oscOnePitch, setOscOnePitch] = useState(null);
   const [oscTwoPitch, setOscTwoPitch] = useState(null);
   const [oscThreePitch, setOscThreePitch] = useState(null);
+  const [oscFourPitch, setOscFourPitch] = useState(null);
   const clearSearch = useCallback(() => setSearch([]), []);
 
   return (
@@ -21,6 +22,8 @@ export function LocationProvider(props) {
         setOscTwoPitch,
         oscThreePitch,
         setOscThreePitch,
+        oscFourPitch,
+        setOscFourPitch,
       }}
     >
       {props.children}

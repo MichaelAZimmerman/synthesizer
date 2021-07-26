@@ -12,6 +12,7 @@ const Location = () => {
   const { oscOnePitch, setOscOnePitch } = useContext(LocationContext);
   const { oscTwoPitch, setOscTwoPitch } = useContext(LocationContext);
   const { oscThreePitch, setOscThreePitch } = useContext(LocationContext);
+  const { oscFourPitch, setOscFourPitch } = useContext(LocationContext);
   const tremolo = new Tone.Tremolo(droneTrem, 0.5).toDestination();
   const comp = new Tone.Compressor(-30, 3);
   const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo, comp);
@@ -31,7 +32,12 @@ const Location = () => {
         </div>
         <button
           onClick={async (e) => {
-            drone.triggerRelease([oscOnePitch, oscTwoPitch, oscThreePitch]);
+            drone.triggerRelease([
+              oscOnePitch,
+              oscTwoPitch,
+              oscThreePitch,
+              oscFourPitch,
+            ]);
             e.preventDefault();
             setError(null);
             if (searchRef.current.value.length < 3) {
@@ -42,9 +48,10 @@ const Location = () => {
               return setError(res.error);
             }
             setSearch(res);
-            setOscOnePitch(Math.floor(res.current.temp_c * 6));
+            setOscOnePitch(Math.floor(res.current.temp_c * 6.2));
             setOscTwoPitch(Math.floor(res.current.temp_f * 4));
-            setOscThreePitch(Math.floor(res.current.humidity * 4));
+            setOscThreePitch(Math.floor(res.current.feelslike_c * 6.2));
+            setOscFourPitch(Math.floor(res.current.feelslike_f * 4));
             setDroneTrem(Math.floor(res.current.wind_mph / 2));
           }}
         >
@@ -62,15 +69,30 @@ const Location = () => {
           <button
             onClick={() => {
               tremolo.start();
-              drone.triggerRelease([oscOnePitch, oscTwoPitch, oscThreePitch]);
-              drone.triggerAttack([oscOnePitch, oscTwoPitch, oscThreePitch]);
+              drone.triggerRelease([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
+              drone.triggerAttack([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
             }}
           >
             Play Drone
           </button>
           <button
             onClick={() => {
-              drone.triggerRelease([oscOnePitch, oscTwoPitch, oscThreePitch]);
+              drone.triggerRelease([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
             }}
           >
             Stop Drone

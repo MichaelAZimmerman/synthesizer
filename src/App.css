@@ -64,7 +64,10 @@ input {
 .active {
   background-color: rgb(37, 46, 53);
 }
-
+.note:hover,
+.note-blk:hover {
+  transition-duration: 0.1s;
+}
 .active:hover,
 .link:hover {
   background-color: burlywood;
