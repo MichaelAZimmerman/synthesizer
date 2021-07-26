@@ -76,8 +76,7 @@ input {
   transform: scale(1.24);
   transition-duration: 0.5s;
 }
-.note:hover,
-.note-blk:hover .text-center {
+.text-center {
   text-align: center;
 }
 
@@ -162,7 +161,9 @@ input {
 }
 .note-blk:active,
 .note:active {
+  color: rgb(47, 77, 23);
   background: rgb(106, 148, 91);
+  border: 2px dotted rgb(47, 77, 23);
 }
 .form-hint {
   color: rgb(50, 62, 71);
