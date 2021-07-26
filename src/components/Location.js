@@ -42,10 +42,10 @@ const Location = () => {
               return setError(res.error);
             }
             setSearch(res);
-            setOscOnePitch(Math.floor(res.current.temp_c * 5));
-            setOscTwoPitch(Math.floor(res.current.temp_f * 6));
-            setOscThreePitch(Math.floor(res.current.humidity * 7));
-            setDroneTrem(res.current.wind_mph);
+            setOscOnePitch(Math.floor(res.current.temp_c * 6));
+            setOscTwoPitch(Math.floor(res.current.temp_f * 4));
+            setOscThreePitch(Math.floor(res.current.humidity * 4));
+            setDroneTrem(Math.floor(res.current.wind_mph / 2));
           }}
         >
           Search Location Drone
