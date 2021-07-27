@@ -49,11 +49,11 @@ const Location = () => {
               return setError(res.error);
             }
             setSearch(res);
-            setOscOnePitch(Math.floor(res.current.temp_c * 6.2));
-            setOscTwoPitch(Math.floor(res.current.temp_f * 4));
-            setOscThreePitch(Math.floor(res.current.feelslike_c * 6.2));
-            setOscFourPitch(Math.floor(res.current.feelslike_f * 4));
-            setDroneTrem(Math.floor(res.current.wind_mph / 2));
+            setOscOnePitch(Math.floor(res.current.temp_c));
+            setOscTwoPitch(Math.floor(res.current.temp_f));
+            setOscThreePitch(Math.floor(res.current.feelslike_c));
+            setOscFourPitch(Math.floor(res.current.feelslike_f));
+            setDroneTrem(Math.floor(res.current.wind_mph));
             setToggle(false);
           }}
         >
