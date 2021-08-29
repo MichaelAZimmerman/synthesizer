@@ -13,6 +13,7 @@ import Login from "./components/Login";
 import About from "./components/About";
 import Signup from "./components/Signup";
 import Location from "./components/Location";
+import Sequencer from "./components/Sequencer";
 import { UserContext, LocationContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -63,6 +64,13 @@ function App() {
             <NavLink
               activeClassName="active"
               className="link text-center"
+              to="/sequencer"
+            >
+              Sequencer
+            </NavLink>
+            <NavLink
+              activeClassName="active"
+              className="link text-center"
               to="/location"
             >
               Location Drone
@@ -100,6 +108,9 @@ function App() {
               </ProtectedRoute>
               <ProtectedRoute path="/keyboard" reqUser={true}>
                 <Keyboard />
+              </ProtectedRoute>
+              <ProtectedRoute path="/sequencer" reqUser={true}>
+                <Sequencer />
               </ProtectedRoute>
               <ProtectedRoute path="/location" reqUser={true}>
                 <Location />
