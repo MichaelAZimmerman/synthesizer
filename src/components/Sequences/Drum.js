@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import * as Tone from "tone";
 
-function BassDrum({ notes, setNotes, synth }) {
+function Drum({ notes, setNotes, synth }) {
   const [seqOneActiveA, setSeqOneActiveA] = useState(false);
   const [seqTwoActiveA, setSeqTwoActiveA] = useState(false);
   const [seqThreeActiveA, setSeqThreeActiveA] = useState(false);
@@ -38,7 +38,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(0, 1, "C2");
             setNotes(newArr);
             setSeqOneActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -49,7 +48,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(0, 1, null);
             setNotes(newArr);
             setSeqOneActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -61,7 +59,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(1, 1, "C2");
             setNotes(newArr);
             setSeqTwoActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -72,7 +69,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(1, 1, null);
             setNotes(newArr);
             setSeqTwoActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -84,7 +80,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(2, 1, "C2");
             setNotes(newArr);
             setSeqThreeActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -95,7 +90,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(2, 1, null);
             setNotes(newArr);
             setSeqThreeActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -107,7 +101,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(3, 1, "C2");
             setNotes(newArr);
             setSeqFourActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -118,7 +111,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(3, 1, null);
             setNotes(newArr);
             setSeqFourActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -130,7 +122,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(4, 1, "C2");
             setNotes(newArr);
             setSeqFiveActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -141,7 +132,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(4, 1, null);
             setNotes(newArr);
             setSeqFiveActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -153,7 +143,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(5, 1, "C2");
             setNotes(newArr);
             setSeqSixActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -164,7 +153,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(5, 1, null);
             setNotes(newArr);
             setSeqSixActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -176,7 +164,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(6, 1, "C2");
             setNotes(newArr);
             setSeqSevenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -187,7 +174,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(6, 1, null);
             setNotes(newArr);
             setSeqSevenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -199,7 +185,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(7, 1, "C2");
             setNotes(newArr);
             setSeqEightActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -210,7 +195,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(7, 1, null);
             setNotes(newArr);
             setSeqEightActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -223,7 +207,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(8, 1, "C2");
             setNotes(newArr);
             setSeqNineActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -234,7 +217,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(8, 1, null);
             setNotes(newArr);
             setSeqNineActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -246,7 +228,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(9, 1, "C2");
             setNotes(newArr);
             setSeqTenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -257,7 +238,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(9, 1, null);
             setNotes(newArr);
             setSeqTenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -269,7 +249,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(10, 1, "C2");
             setNotes(newArr);
             setSeqElevenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -280,7 +259,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(10, 1, null);
             setNotes(newArr);
             setSeqElevenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -292,7 +270,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(11, 1, "C2");
             setNotes(newArr);
             setSeqTwelveActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -303,7 +280,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(11, 1, null);
             setNotes(newArr);
             setSeqTwelveActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -315,7 +291,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(12, 1, "C2");
             setNotes(newArr);
             setSeqThirteenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -326,7 +301,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(12, 1, null);
             setNotes(newArr);
             setSeqThirteenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -338,7 +312,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(13, 1, "C2");
             setNotes(newArr);
             setSeqFourteenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -349,7 +322,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(13, 1, null);
             setNotes(newArr);
             setSeqFourteenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -361,7 +333,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(14, 1, "C2");
             setNotes(newArr);
             setSeqFifteenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -372,7 +343,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(14, 1, null);
             setNotes(newArr);
             setSeqFifteenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -384,7 +354,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(15, 1, "C2");
             setNotes(newArr);
             setSeqSixteenActiveA(true);
-            console.log(notes);
           }}
         ></button>
       ) : (
@@ -395,7 +364,6 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(15, 1, null);
             setNotes(newArr);
             setSeqSixteenActiveA(false);
-            console.log(notes);
           }}
         ></button>
       )}
@@ -403,4 +371,4 @@ function BassDrum({ notes, setNotes, synth }) {
   );
 }
 
-export default BassDrum;
+export default Drum;
