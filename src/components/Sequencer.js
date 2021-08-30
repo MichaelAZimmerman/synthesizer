@@ -1,27 +1,29 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useState } from "react";
 import * as Tone from "tone";
-import { SequencerContext } from "../context";
 import Drum from "./Sequences/Drum";
-import {
-  Filter,
-  Frequency,
-  NoiseSynth,
-  Synth,
-  PolySynth,
-  FrequencyEnvelope,
-  Distortion,
-} from "tone";
+import { NoiseSynth, Distortion } from "tone";
 
 export default function Sequencer() {
-  const { createSequence, sequence, setSequence } =
-    useContext(SequencerContext);
-  //   create a synth
   const synth = new Tone.MembraneSynth().toDestination();
   const dist = new Distortion(1).toDestination();
   //   const lowPass = new Filter({
-  //     frequency: 1000,
+  //     frequency: 11000,
   //   }).connect(dist);
+  const hihatSynth = new NoiseSynth({
+    volume: -12,
+    noise: {
+      type: "white",
+      playbackRate: 6,
+    },
+    envelope: {
+      attack: 0.001,
+      decay: 0.13,
+      sustain: 0,
+      release: 0.03,
+    },
+  }).toDestination();
   const snareSynth = new Tone.MembraneSynth({
+    volume: 0,
     detune: 2400,
     envelope: {
       attack: 0.001,
@@ -44,7 +46,7 @@ export default function Sequencer() {
     },
   }).connect(dist);
   const noise = new NoiseSynth({
-    volume: 6,
+    volume: 10,
     noise: {
       type: "pink",
       playbackRate: 6,
@@ -56,6 +58,24 @@ export default function Sequencer() {
       release: 0.03,
     },
   }).connect(dist);
+  const [hihatNotes, setHihatNotes] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
   const [snareNotes, setSnareNotes] = useState([
     null,
     null,
@@ -94,6 +114,13 @@ export default function Sequencer() {
     null,
   ]);
   //   // create a new sequence with the synth and notes
+  const hihatPart = new Tone.Sequence(
+    function (time, note) {
+      hihatSynth.triggerAttackRelease("10hz", time);
+    },
+    hihatNotes,
+    "16n"
+  );
   const snarePart = new Tone.Sequence(
     function (time, note) {
       noise.triggerAttackRelease("10hz", time);
@@ -113,14 +140,17 @@ export default function Sequencer() {
   return (
     <div>
       <div>Bass Drum</div>
-      <Drum notes={notes} setNotes={setNotes} synth={synth} />
+      <Drum notes={notes} setNotes={setNotes} />
       {/* <br /> */}
       <div>Snare</div>
-      <Drum notes={snareNotes} setNotes={setSnareNotes} synth={snareSynth} />
+      <Drum notes={snareNotes} setNotes={setSnareNotes} />
+      <div>Hi-Hat</div>
+      <Drum notes={hihatNotes} setNotes={setHihatNotes} />
       {/* <br /> */}
       {/* start button */}
       <button
         onClick={() => {
+          hihatPart.start();
           synthPart.start();
           snarePart.start();
           Tone.Transport.start();
@@ -131,6 +161,7 @@ export default function Sequencer() {
       {/* stop button */}
       <button
         onClick={() => {
+          hihatPart.stop();
           synthPart.stop();
           snarePart.stop();
           Tone.Transport.stop();

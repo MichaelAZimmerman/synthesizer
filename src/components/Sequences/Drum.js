@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import * as Tone from "tone";
 
-function Drum({ notes, setNotes, synth }) {
+function Drum({ notes, setNotes }) {
   const [seqOneActiveA, setSeqOneActiveA] = useState(false);
   const [seqTwoActiveA, setSeqTwoActiveA] = useState(false);
   const [seqThreeActiveA, setSeqThreeActiveA] = useState(false);
