@@ -2,20 +2,6 @@ import React, { useState, useEffect } from "react";
 import * as Tone from "tone";
 
 function BassDrum({ notes, setNotes, synth }) {
-  //   // create a synth
-  //   const synth = new Tone.MembraneSynth().toDestination();
-  //   // create an array of notes to be played
-  //   const [notes, setNotes] = useState([
-  //     null,
-  //     null,
-  //     null,
-  //     null,
-  //     null,
-  //     null,
-  //     null,
-  //     null,
-  //   ]);
-  console.log(notes);
   const [seqOneActiveA, setSeqOneActiveA] = useState(false);
   const [seqTwoActiveA, setSeqTwoActiveA] = useState(false);
   const [seqThreeActiveA, setSeqThreeActiveA] = useState(false);
@@ -24,19 +10,24 @@ function BassDrum({ notes, setNotes, synth }) {
   const [seqSixActiveA, setSeqSixActiveA] = useState(false);
   const [seqSevenActiveA, setSeqSevenActiveA] = useState(false);
   const [seqEightActiveA, setSeqEightActiveA] = useState(false);
+  const [seqNineActiveA, setSeqNineActiveA] = useState(false);
+  const [seqTenActiveA, setSeqTenActiveA] = useState(false);
+  const [seqElevenActiveA, setSeqElevenActiveA] = useState(false);
+  const [seqTwelveActiveA, setSeqTwelveActiveA] = useState(false);
+  const [seqThirteenActiveA, setSeqThirteenActiveA] = useState(false);
+  const [seqFourteenActiveA, setSeqFourteenActiveA] = useState(false);
+  const [seqFifteenActiveA, setSeqFifteenActiveA] = useState(false);
+  const [seqSixteenActiveA, setSeqSixteenActiveA] = useState(false);
   // create a new sequence with the synth and notes
-  const synthPart = new Tone.Sequence(
-    function (time, note) {
-      synth.triggerAttackRelease(note, "10hz", time);
-    },
-    notes,
-    "16n"
-  );
-  //   useEffect(() => {
-  //     synthPart.stop();
-  //     synthPart.start();
-  //   }, [notes, setNotes]);
-
+  //   const synthPart = useState(
+  //     new Tone.Sequence(
+  //       function (time, note) {
+  //         synth.triggerAttackRelease(note, "10hz", time);
+  //       },
+  //       notes,
+  //       "16n"
+  //     )
+  //   );
   return (
     <div>
       {!seqOneActiveA ? (
@@ -219,6 +210,191 @@ function BassDrum({ notes, setNotes, synth }) {
             newArr.splice(7, 1, null);
             setNotes(newArr);
             setSeqEightActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {/* halfway there */}
+      {!seqNineActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(8, 1, "C2");
+            setNotes(newArr);
+            setSeqNineActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(8, 1, null);
+            setNotes(newArr);
+            setSeqNineActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqTenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(9, 1, "C2");
+            setNotes(newArr);
+            setSeqTenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(9, 1, null);
+            setNotes(newArr);
+            setSeqTenActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqElevenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(10, 1, "C2");
+            setNotes(newArr);
+            setSeqElevenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(10, 1, null);
+            setNotes(newArr);
+            setSeqElevenActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqTwelveActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(11, 1, "C2");
+            setNotes(newArr);
+            setSeqTwelveActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(11, 1, null);
+            setNotes(newArr);
+            setSeqTwelveActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqThirteenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(12, 1, "C2");
+            setNotes(newArr);
+            setSeqThirteenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(12, 1, null);
+            setNotes(newArr);
+            setSeqThirteenActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqFourteenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(13, 1, "C2");
+            setNotes(newArr);
+            setSeqFourteenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(13, 1, null);
+            setNotes(newArr);
+            setSeqFourteenActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqFifteenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(14, 1, "C2");
+            setNotes(newArr);
+            setSeqFifteenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(14, 1, null);
+            setNotes(newArr);
+            setSeqFifteenActiveA(false);
+            console.log(notes);
+          }}
+        ></button>
+      )}
+      {!seqSixteenActiveA ? (
+        <button
+          className="seq-note-off"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(15, 1, "C2");
+            setNotes(newArr);
+            setSeqSixteenActiveA(true);
+            console.log(notes);
+          }}
+        ></button>
+      ) : (
+        <button
+          className="seq-note-on"
+          onClick={() => {
+            let newArr = [...notes];
+            newArr.splice(15, 1, null);
+            setNotes(newArr);
+            setSeqSixteenActiveA(false);
             console.log(notes);
           }}
         ></button>

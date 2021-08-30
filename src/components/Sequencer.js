@@ -18,8 +18,17 @@ export default function Sequencer() {
     null,
     null,
     null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
   ]);
   //   // create a new sequence with the synth and notes
+
   const synthPart = new Tone.Sequence(
     function (time, note) {
       synth.triggerAttackRelease(note, "10hz", time);
