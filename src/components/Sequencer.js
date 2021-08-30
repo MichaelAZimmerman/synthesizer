@@ -4,6 +4,7 @@ import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion } from "tone";
 
 export default function Sequencer() {
+  const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
   const dist = new Distortion(1).toDestination();
   //   const lowPass = new Filter({
@@ -148,27 +149,33 @@ export default function Sequencer() {
       <Drum notes={hihatNotes} setNotes={setHihatNotes} />
       {/* <br /> */}
       {/* start button */}
-      <button
-        onClick={() => {
-          hihatPart.start();
-          synthPart.start();
-          snarePart.start();
-          Tone.Transport.start();
-        }}
-      >
-        start
-      </button>
-      {/* stop button */}
-      <button
-        onClick={() => {
-          hihatPart.stop();
-          synthPart.stop();
-          snarePart.stop();
-          Tone.Transport.stop();
-        }}
-      >
-        stop
-      </button>
+      {!play ? (
+        <button
+          className="start"
+          onClick={() => {
+            hihatPart.start();
+            synthPart.start();
+            snarePart.start();
+            Tone.Transport.start();
+            setPlay(true);
+          }}
+        >
+          START
+        </button>
+      ) : (
+        <button
+          className="stop"
+          onClick={() => {
+            hihatPart.stop();
+            synthPart.stop();
+            snarePart.stop();
+            Tone.Transport.stop();
+            setPlay(false);
+          }}
+        >
+          STOP
+        </button>
+      )}
     </div>
   );
 }
