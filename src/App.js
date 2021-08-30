@@ -126,7 +126,7 @@ function App() {
         </CSSTransition>
       </TransitionGroup>
       <footer className="text-center">
-        <div>Last updated: 7/24/2021</div>
+        <div>Last updated: 8/30/2021</div>
       </footer>
     </>
   );
