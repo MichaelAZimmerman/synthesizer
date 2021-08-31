@@ -1,3 +1,7 @@
+WARNING: This app has compatibility issues with phones and Safari. For best experience, use Chrome for your browser. This is due to the use of the Tone.js package.
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
