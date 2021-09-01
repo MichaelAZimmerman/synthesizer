@@ -164,7 +164,7 @@ export default function Sequencer() {
             hihatPart.start();
             synthPart.start();
             snarePart.start();
-            transport.start();
+            transport.toggle();
             setPlay(true);
           }}
         >
@@ -178,6 +178,7 @@ export default function Sequencer() {
             synthPart.stop();
             snarePart.stop();
             transport.stop();
+            transport.cancel();
 
             setPlay(false);
           }}
