@@ -99,6 +99,14 @@ input {
   padding: 5px;
   margin: auto;
 }
+.seq-note-container {
+  height: 44px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
 .note-container-blk {
   height: 100px;
   width: 350px;
@@ -147,6 +155,14 @@ input {
   height: 80px;
   width: 44px;
 }
+.seq-note-halfspace {
+  height: 40px;
+  width: 24px;
+}
+.seq-note-space {
+  height: 40px;
+  width: 44px;
+}
 .note {
   height: 160px;
   width: 40px;
@@ -170,6 +186,34 @@ input {
   top: -5px;
   z-index: 1;
 }
+.seq-note,
+.seq-note-blk,
+.seq-note-active,
+.seq-note-blk-active {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 2px;
+  background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
+  border: 2px solid rgb(25, 54, 44);
+}
+
+.seq-note-active,
+.seq-note-blk-active {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 2px;
+  background: linear-gradient(
+    180deg,
+    rgb(74, 212, 109),
+    rgb(39, 211, 148) 100%
+  );
+  border: 2px solid rgb(37, 116, 88);
+}
+
 .note-blk:active,
 .note:active {
   color: rgb(47, 77, 23);

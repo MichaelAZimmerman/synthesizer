@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Drum({ notes, setNotes }) {
+function Keys({ notes, setNotes, activeNote }) {
   const [seqOneActiveA, setSeqOneActiveA] = useState(false);
   const [seqTwoActiveA, setSeqTwoActiveA] = useState(false);
   const [seqThreeActiveA, setSeqThreeActiveA] = useState(false);
@@ -34,7 +34,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(0, 1, "C2");
+            newArr.splice(0, 1, activeNote);
             setNotes(newArr);
             setSeqOneActiveA(true);
           }}
@@ -55,7 +55,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(1, 1, "C2");
+            newArr.splice(1, 1, activeNote);
             setNotes(newArr);
             setSeqTwoActiveA(true);
           }}
@@ -76,7 +76,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(2, 1, "C2");
+            newArr.splice(2, 1, activeNote);
             setNotes(newArr);
             setSeqThreeActiveA(true);
           }}
@@ -97,7 +97,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(3, 1, "C2");
+            newArr.splice(3, 1, activeNote);
             setNotes(newArr);
             setSeqFourActiveA(true);
           }}
@@ -118,7 +118,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(4, 1, "C2");
+            newArr.splice(4, 1, activeNote);
             setNotes(newArr);
             setSeqFiveActiveA(true);
           }}
@@ -139,7 +139,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(5, 1, "C2");
+            newArr.splice(5, 1, activeNote);
             setNotes(newArr);
             setSeqSixActiveA(true);
           }}
@@ -160,7 +160,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(6, 1, "C2");
+            newArr.splice(6, 1, activeNote);
             setNotes(newArr);
             setSeqSevenActiveA(true);
           }}
@@ -181,7 +181,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(7, 1, "C2");
+            newArr.splice(7, 1, activeNote);
             setNotes(newArr);
             setSeqEightActiveA(true);
           }}
@@ -203,7 +203,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(8, 1, "C2");
+            newArr.splice(8, 1, activeNote);
             setNotes(newArr);
             setSeqNineActiveA(true);
           }}
@@ -224,7 +224,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(9, 1, "C2");
+            newArr.splice(9, 1, activeNote);
             setNotes(newArr);
             setSeqTenActiveA(true);
           }}
@@ -245,7 +245,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(10, 1, "C2");
+            newArr.splice(10, 1, activeNote);
             setNotes(newArr);
             setSeqElevenActiveA(true);
           }}
@@ -266,7 +266,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(11, 1, "C2");
+            newArr.splice(11, 1, activeNote);
             setNotes(newArr);
             setSeqTwelveActiveA(true);
           }}
@@ -287,7 +287,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(12, 1, "C2");
+            newArr.splice(12, 1, activeNote);
             setNotes(newArr);
             setSeqThirteenActiveA(true);
           }}
@@ -308,7 +308,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(13, 1, "C2");
+            newArr.splice(13, 1, activeNote);
             setNotes(newArr);
             setSeqFourteenActiveA(true);
           }}
@@ -329,7 +329,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(14, 1, "C2");
+            newArr.splice(14, 1, activeNote);
             setNotes(newArr);
             setSeqFifteenActiveA(true);
           }}
@@ -350,7 +350,7 @@ function Drum({ notes, setNotes }) {
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
-            newArr.splice(15, 1, "C2");
+            newArr.splice(15, 1, activeNote);
             setNotes(newArr);
             setSeqSixteenActiveA(true);
           }}
@@ -370,4 +370,4 @@ function Drum({ notes, setNotes }) {
   );
 }
 
-export default Drum;
+export default Keys;

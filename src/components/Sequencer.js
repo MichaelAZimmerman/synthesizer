@@ -3,17 +3,21 @@ import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion } from "tone";
 import { Modal, Button } from "react-bootstrap";
+import KeySequence from "./Sequences/KeySequence";
+import Keys from "./Sequences/Keys";
 
 export default function Sequencer() {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [activeNote, setActiveNote] = useState("C3");
   const transport = Tone.Transport;
-
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
+
   const dist = new Distortion(1).toDestination();
+  const bassSynth = new Tone.Synth().connect(dist);
+  bassSynth.oscillator.type = "sine";
   //   const lowPass = new Filter({
   //     frequency: 11000,
   //   }).connect(dist);
@@ -66,6 +70,24 @@ export default function Sequencer() {
       release: 0.03,
     },
   }).connect(dist);
+  const [bassNotes, setBassNotes] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
   const [hihatNotes, setHihatNotes] = useState([
     null,
     null,
@@ -145,11 +167,19 @@ export default function Sequencer() {
     notes,
     "16n"
   );
+  const bassPart = new Tone.Sequence(
+    function (time, note) {
+      bassSynth.triggerAttackRelease(note, "10hz", time);
+    },
+    bassNotes,
+    "16n"
+  );
   useEffect(() => {
     if (play) {
       hihatPart.stop();
       synthPart.stop();
       snarePart.stop();
+      bassPart.stop();
       transport.stop();
       transport.cancel();
       setPlay(false);
@@ -165,6 +195,9 @@ export default function Sequencer() {
       <Drum notes={snareNotes} setNotes={setSnareNotes} />
       <div>Hi-Hat</div>
       <Drum notes={hihatNotes} setNotes={setHihatNotes} />
+      <div>Bass Synth</div>
+      <KeySequence activeNote={activeNote} setActiveNote={setActiveNote} />
+      <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
       {/* <br /> */}
       {/* start button */}
       {!play ? (
@@ -174,6 +207,7 @@ export default function Sequencer() {
             hihatPart.start();
             synthPart.start();
             snarePart.start();
+            bassPart.start();
             transport.toggle();
             setPlay(true);
           }}
@@ -187,6 +221,7 @@ export default function Sequencer() {
             hihatPart.stop();
             synthPart.stop();
             snarePart.stop();
+            bassPart.stop();
             transport.stop();
             transport.cancel();
 
