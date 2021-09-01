@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
-import { NoiseSynth, Distortion } from "tone";
+import { NoiseSynth, Distortion, ToneEvent } from "tone";
+
+// useEffect(() => {
+//   synthPart.stop();
+//   return () => {
+//     cleanup;
+//   };
+// }, [notes, hihatNotes, snareNotes]);
 
 export default function Sequencer() {
+  const transport = Tone.Transport;
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
   const dist = new Distortion(1).toDestination();
@@ -156,7 +164,7 @@ export default function Sequencer() {
             hihatPart.start();
             synthPart.start();
             snarePart.start();
-            Tone.Transport.start();
+            transport.start();
             setPlay(true);
           }}
         >
@@ -169,13 +177,21 @@ export default function Sequencer() {
             hihatPart.stop();
             synthPart.stop();
             snarePart.stop();
-            Tone.Transport.stop();
+            transport.stop();
+
             setPlay(false);
           }}
         >
           STOP
         </button>
       )}
+      <button
+        onClick={() => {
+          console.log(synthPart);
+        }}
+      >
+        log
+      </button>
     </div>
   );
 }
