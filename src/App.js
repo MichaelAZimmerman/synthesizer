@@ -73,7 +73,7 @@ function App() {
               className="link text-center"
               to="/location"
             >
-              Location Drone
+              Drone
             </NavLink>
             <NavLink
               activeClassName="active"
