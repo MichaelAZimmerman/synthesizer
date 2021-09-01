@@ -186,13 +186,6 @@ export default function Sequencer() {
           STOP
         </button>
       )}
-      <button
-        onClick={() => {
-          console.log(synthPart);
-        }}
-      >
-        log
-      </button>
     </div>
   );
 }
