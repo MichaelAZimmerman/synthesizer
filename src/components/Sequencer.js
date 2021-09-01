@@ -2,16 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion, ToneEvent } from "tone";
-
-// useEffect(() => {
-//   synthPart.stop();
-//   return () => {
-//     cleanup;
-//   };
-// }, [notes, hihatNotes, snareNotes]);
+import { Modal, Button } from "react-bootstrap";
 
 export default function Sequencer() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const transport = Tone.Transport;
+
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
   const dist = new Distortion(1).toDestination();
@@ -146,6 +145,17 @@ export default function Sequencer() {
     notes,
     "16n"
   );
+  useEffect(() => {
+    if (play) {
+      hihatPart.stop();
+      synthPart.stop();
+      snarePart.stop();
+      transport.stop();
+      transport.cancel();
+      setPlay(false);
+      handleShow();
+    }
+  }, [notes, hihatNotes, snareNotes]);
   return (
     <div>
       <div>Bass Drum</div>
@@ -186,6 +196,21 @@ export default function Sequencer() {
           STOP
         </button>
       )}
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title className="modal-header">
+            <p>Warning!</p>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="modal-body">
+          <p>Sequence can only be changed while it is not in play.</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

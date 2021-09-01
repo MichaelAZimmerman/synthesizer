@@ -232,3 +232,11 @@ button {
   border-radius: 5px;
   color: rgb(129, 58, 40);
 }
+.modal-header,
+.modal-body {
+  color: black;
+}
+
+.modal-header {
+  font-weight: bold;
+}
