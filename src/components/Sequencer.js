@@ -35,7 +35,7 @@ export default function Sequencer() {
     },
   }).toDestination();
   const snareSynth = new Tone.MembraneSynth({
-    volume: 0,
+    volume: 3,
     detune: 2400,
     envelope: {
       attack: 0.001,
@@ -185,7 +185,7 @@ export default function Sequencer() {
       setPlay(false);
       handleShow();
     }
-  }, [notes, hihatNotes, snareNotes]);
+  }, [notes, hihatNotes, snareNotes, bassNotes]);
   return (
     <div>
       <div>Bass Drum</div>
