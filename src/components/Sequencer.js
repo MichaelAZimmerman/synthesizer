@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
-import { NoiseSynth, Distortion, ToneEvent } from "tone";
+import { NoiseSynth, Distortion } from "tone";
 import { Modal, Button } from "react-bootstrap";
 
 export default function Sequencer() {
@@ -198,12 +198,10 @@ export default function Sequencer() {
       )}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="modal-header">
-            <p>Warning!</p>
-          </Modal.Title>
+          <Modal.Title className="modal-header">Warning!</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modal-body">
-          <p>Sequence can only be changed while it is not in play.</p>
+          Sequence can only be changed while it is not in play.
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>
