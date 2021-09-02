@@ -3,7 +3,7 @@ import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion } from "tone";
 import { Modal, Button } from "react-bootstrap";
-import KeySequence from "./Sequences/KeySequence";
+import KeySelector from "./Sequences/KeySelector";
 import Keys from "./Sequences/Keys";
 
 export default function Sequencer() {
@@ -16,8 +16,15 @@ export default function Sequencer() {
   const synth = new Tone.MembraneSynth().toDestination();
 
   const dist = new Distortion(1).toDestination();
-  const bassSynth = new Tone.Synth().connect(dist);
-  bassSynth.oscillator.type = "sine";
+  const bassSynth = new Tone.Synth({
+    envelope: {
+      attack: 0.001,
+      decay: 0.1,
+      sustain: 0.2,
+      release: 0.13,
+    },
+  }).connect(dist);
+  bassSynth.oscillator.type = "triangle";
   //   const lowPass = new Filter({
   //     frequency: 11000,
   //   }).connect(dist);
@@ -56,7 +63,7 @@ export default function Sequencer() {
       sustain: 0,
       release: 0.03,
     },
-  }).connect(dist);
+  }).toDestination();
   const noise = new NoiseSynth({
     volume: 10,
     noise: {
@@ -196,7 +203,11 @@ export default function Sequencer() {
       <div>Hi-Hat</div>
       <Drum notes={hihatNotes} setNotes={setHihatNotes} />
       <div>Bass Synth</div>
-      <KeySequence activeNote={activeNote} setActiveNote={setActiveNote} />
+      <KeySelector
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
+        synth={bassSynth}
+      />
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
       {/* <br /> */}
       {/* start button */}
