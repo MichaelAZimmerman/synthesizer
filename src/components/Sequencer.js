@@ -232,6 +232,7 @@ export default function Sequencer() {
     leadNotes,
     "16n"
   );
+
   useEffect(() => {
     if (play) {
       hihatPart.stop();
@@ -244,7 +245,7 @@ export default function Sequencer() {
       setPlay(false);
       handleShow();
     }
-  }, [notes, hihatNotes, snareNotes, bassNotes]);
+  }, [notes, hihatNotes, snareNotes, bassNotes, leadNotes]);
 
   useEffect(() => {
     transport.bpm.value = tempo;
@@ -314,13 +315,13 @@ export default function Sequencer() {
         <button
           className="stop"
           onClick={() => {
-            hihatPart.stop("+0.1");
-            synthPart.stop("+0.1");
-            snarePart.stop("+0.1");
-            bassPart.stop("+0.1");
-            leadPart.stop("+0.1");
-            transport.stop("+0.1");
-            transport.cancel("+0.2");
+            hihatPart.stop();
+            synthPart.stop();
+            snarePart.stop();
+            bassPart.stop();
+            leadPart.stop();
+            transport.stop();
+            transport.cancel();
 
             setPlay(false);
           }}
