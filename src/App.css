@@ -13,10 +13,10 @@ footer {
   color: rgb(40, 63, 87);
   background: linear-gradient(180deg, #ccc, rgb(50, 62, 71) 100%);
   padding-top: 30px;
-  border-top: 5px solid lightslategray;
+  border-top: 2px solid lightslategray;
 }
 nav {
-  border-bottom: 5px solid lightslategray;
+  border-bottom: 2px solid lightslategray;
 }
 input {
   margin: 5px;
@@ -48,7 +48,17 @@ input {
   padding: 5px;
   background-color: rgb(19, 33, 44);
 }
-
+.tempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  width: 350px;
+  margin: auto;
+  margin-top: 5px;
+  padding: 5px;
+  background-color: rgb(25, 45, 54);
+}
 .link {
   flex-basis: calc(100% / 5 - 10px);
   background-color: rgb(63, 78, 90);
@@ -89,7 +99,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border-top: 5px solid lightslategray;
+  border-top: 2px solid lightslategray;
 }
 .control-container {
   width: 350px;
@@ -245,6 +255,18 @@ input {
 button {
   margin: 5px;
 }
+.notice {
+  margin: auto;
+  margin-bottom: 5px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(132, 182, 190);
+  font-size: 12px;
+  font-weight: bold;
+  width: 320px;
+  padding: 2px;
+  border: 1px dashed rgb(50, 62, 71);
+  border-radius: 5px;
+}
 
 .seq-note-off {
   height: 20px;
@@ -272,6 +294,7 @@ button {
   font-style: oblique;
   font-weight: bold;
   border-radius: 5px;
+  width: 80px;
   color: rgb(119, 187, 113);
 }
 .stop {
@@ -280,6 +303,7 @@ button {
   font-style: oblique;
   font-weight: bold;
   border-radius: 5px;
+  width: 80px;
   color: rgb(129, 58, 40);
 }
 .modal-header,

@@ -72,6 +72,10 @@ const Login = () => {
         </button>
       </form>
       <div className="error">{error}</div>
+      <div className="notice">
+        Note: This site is not optimized for phones. This is a work in progress,
+        and has best results in the Chrome browser.
+      </div>
     </>
   );
 };

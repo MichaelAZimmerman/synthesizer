@@ -4,13 +4,18 @@ import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion } from "tone";
 import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
+import KeySelectorLead from "./Sequences/KeySelectorLead";
 import Keys from "./Sequences/Keys";
+import Typography from "@material-ui/core/Typography";
+import Slider from "@material-ui/core/Slider";
 
 export default function Sequencer() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [activeNote, setActiveNote] = useState("C3");
+  const [activeNoteLead, setActiveNoteLead] = useState("C4");
+  const [tempo, setTempo] = useState(120);
   const transport = Tone.Transport;
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
@@ -25,6 +30,26 @@ export default function Sequencer() {
     },
   }).connect(dist);
   bassSynth.oscillator.type = "triangle";
+  const leadSynth = new Tone.Synth({
+    volume: -12,
+    envelope: {
+      attack: 0.001,
+      decay: 0.2,
+      sustain: 0.2,
+      release: 0.23,
+    },
+  }).toDestination();
+  leadSynth.oscillator.type = "square";
+  const leadSynthTwo = new Tone.Synth({
+    volume: -12,
+    envelope: {
+      attack: 0.001,
+      decay: 0.2,
+      sustain: 0.2,
+      release: 0.23,
+    },
+  }).toDestination();
+  leadSynthTwo.oscillator.type = "sawtooth";
   //   const lowPass = new Filter({
   //     frequency: 11000,
   //   }).connect(dist);
@@ -77,6 +102,24 @@ export default function Sequencer() {
       release: 0.03,
     },
   }).connect(dist);
+  const [leadNotes, setLeadNotes] = useState([
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ]);
   const [bassNotes, setBassNotes] = useState([
     null,
     null,
@@ -181,20 +224,50 @@ export default function Sequencer() {
     bassNotes,
     "16n"
   );
+  const leadPart = new Tone.Sequence(
+    function (time, note) {
+      leadSynth.triggerAttackRelease(note, "10hz", time);
+      leadSynthTwo.triggerAttackRelease(note, "10hz", time);
+    },
+    leadNotes,
+    "16n"
+  );
   useEffect(() => {
     if (play) {
       hihatPart.stop();
       synthPart.stop();
       snarePart.stop();
       bassPart.stop();
+      leadPart.stop();
       transport.stop();
       transport.cancel();
       setPlay(false);
       handleShow();
     }
   }, [notes, hihatNotes, snareNotes, bassNotes]);
+
+  useEffect(() => {
+    transport.bpm.value = tempo;
+  }, [tempo, setTempo, transport.bpm]);
+
   return (
     <div>
+      <div className="tempo">
+        <Typography id="discrete-slider-small-steps">
+          Tempo ({tempo}):
+        </Typography>
+        <div className="slider-sm">
+          <Slider
+            value={tempo}
+            onChange={(e, newValue) => setTempo(newValue)}
+            aria-labelledby="discrete-slider-small-steps"
+            step={1}
+            min={60}
+            max={180}
+            valueLabelDisplay="auto"
+          />
+        </div>
+      </div>
       <div>Bass Drum</div>
       <Drum notes={notes} setNotes={setNotes} />
       {/* <br /> */}
@@ -209,17 +282,29 @@ export default function Sequencer() {
         synth={bassSynth}
       />
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
+      <div>Lead Synth</div>
+      <KeySelectorLead
+        activeNote={activeNoteLead}
+        setActiveNote={setActiveNoteLead}
+        synth={leadSynth}
+      />
+      <Keys
+        notes={leadNotes}
+        setNotes={setLeadNotes}
+        activeNote={activeNoteLead}
+      />
       {/* <br /> */}
       {/* start button */}
       {!play ? (
         <button
           className="start"
           onClick={() => {
-            hihatPart.start();
-            synthPart.start();
-            snarePart.start();
-            bassPart.start();
-            transport.toggle();
+            hihatPart.start("+0.2");
+            synthPart.start("+0.2");
+            snarePart.start("+0.2");
+            bassPart.start("+0.2");
+            leadPart.start("+0.2");
+            transport.start("+0.2");
             setPlay(true);
           }}
         >
@@ -229,12 +314,13 @@ export default function Sequencer() {
         <button
           className="stop"
           onClick={() => {
-            hihatPart.stop();
-            synthPart.stop();
-            snarePart.stop();
-            bassPart.stop();
-            transport.stop();
-            transport.cancel();
+            hihatPart.stop("+0.1");
+            synthPart.stop("+0.1");
+            snarePart.stop("+0.1");
+            bassPart.stop("+0.1");
+            leadPart.stop("+0.1");
+            transport.stop("+0.1");
+            transport.cancel("+0.2");
 
             setPlay(false);
           }}
