@@ -11,7 +11,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("C#3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("C#3", "16n");
           }}
         >
           C#
@@ -22,7 +22,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("D#3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("D#3", "16n");
           }}
         >
           D#
@@ -34,7 +34,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("F#3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("F#3", "16n");
           }}
         >
           F#
@@ -45,7 +45,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("G#3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("G#3", "16n");
           }}
         >
           G#
@@ -56,7 +56,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("A#3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("A#3", "16n");
           }}
         >
           A#
@@ -68,7 +68,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "C3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("C3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("C3", "16n");
           }}
         >
           C
@@ -77,7 +77,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "D3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("D3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("D3", "16n");
           }}
         >
           D
@@ -86,7 +86,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "E3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("E3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("E3", "16n");
           }}
         >
           E
@@ -95,7 +95,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "F3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("F3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("F3", "16n");
           }}
         >
           F
@@ -104,7 +104,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "G3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("G3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("G3", "16n");
           }}
         >
           G
@@ -113,7 +113,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "A3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("A3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("A3", "16n");
           }}
         >
           A
@@ -122,7 +122,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "B3" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("B3");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("B3", "16n");
           }}
         >
           B

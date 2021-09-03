@@ -37,6 +37,12 @@ input {
   margin-left: 10px;
   margin-right: 10px;
 }
+.slider-title {
+  font-size: 12px;
+  font-weight: bold;
+  padding-top: 10px;
+  color: rgb(96, 127, 194);
+}
 .drop-down {
   display: flex;
   align-items: center;
@@ -54,9 +60,10 @@ input {
   justify-content: center;
   border-radius: 5px;
   width: 350px;
+  height: 40px;
   margin: auto;
   margin-top: 5px;
-  padding: 5px;
+  padding-top: 5px;
   background-color: rgb(25, 45, 54);
 }
 .link {

@@ -254,9 +254,7 @@ export default function Sequencer() {
   return (
     <div>
       <div className="tempo">
-        <Typography id="discrete-slider-small-steps">
-          Tempo ({tempo}):
-        </Typography>
+        <p className="slider-title">Tempo ({tempo} BPM):</p>
         <div className="slider-sm">
           <Slider
             value={tempo}
@@ -329,6 +327,18 @@ export default function Sequencer() {
           STOP
         </button>
       )}
+      <button
+        onClick={() => {
+          hihatPart.cancel();
+          synthPart.cancel();
+          snarePart.cancel();
+          bassPart.cancel();
+          leadPart.cancel();
+          console.log("cancel");
+        }}
+      >
+        log
+      </button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-header">Warning!</Modal.Title>

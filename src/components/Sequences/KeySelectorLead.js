@@ -11,7 +11,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("C#4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("C#4", "16n");
           }}
         >
           C#
@@ -22,7 +22,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("D#4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("D#4", "16n");
           }}
         >
           D#
@@ -34,7 +34,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("F#4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("F#4", "16n");
           }}
         >
           F#
@@ -45,7 +45,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("G#4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("G#4", "16n");
           }}
         >
           G#
@@ -56,7 +56,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("A#4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("A#4", "16n");
           }}
         >
           A#
@@ -68,7 +68,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "C4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("C4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("C4", "16n");
           }}
         >
           C
@@ -77,7 +77,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "D4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("D4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("D4", "16n");
           }}
         >
           D
@@ -86,7 +86,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "E4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("E4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("E4", "16n");
           }}
         >
           E
@@ -95,7 +95,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "F4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("F4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("F4", "16n");
           }}
         >
           F
@@ -104,7 +104,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "G4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("G4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("G4", "16n");
           }}
         >
           G
@@ -113,7 +113,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "A4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("A4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("A4", "16n");
           }}
         >
           A
@@ -122,7 +122,7 @@ function KeySelectorLead({ activeNote, setActiveNote, synth }) {
           className={activeNote === "B4" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("B4");
-            synth.triggerAttackRelease(activeNote, "16n");
+            synth.triggerAttackRelease("B4", "16n");
           }}
         >
           B
