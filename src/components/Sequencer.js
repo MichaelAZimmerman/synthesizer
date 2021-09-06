@@ -6,10 +6,14 @@ import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
 import Keys from "./Sequences/Keys";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
 export default function Sequencer() {
+  // const context = new Tone.Context({ latencyHint: "playback" });
+  // // set this context as the global Context
+
+  // Tone.setContext(context);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,9 +21,10 @@ export default function Sequencer() {
   const [activeNoteLead, setActiveNoteLead] = useState("C4");
   const [tempo, setTempo] = useState(120);
   const transport = Tone.Transport;
+  Tone.Context.lookAhead = 0.2;
+  Tone.Context.latencyHint = "balanced";
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
-
   const dist = new Distortion(1).toDestination();
   const bassSynth = new Tone.Synth({
     envelope: {
@@ -30,18 +35,18 @@ export default function Sequencer() {
     },
   }).connect(dist);
   bassSynth.oscillator.type = "triangle";
-  const leadSynth = new Tone.Synth({
-    volume: -12,
-    envelope: {
-      attack: 0.001,
-      decay: 0.2,
-      sustain: 0.2,
-      release: 0.23,
-    },
-  }).toDestination();
-  leadSynth.oscillator.type = "square";
+  // const leadSynth = new Tone.Synth({
+  //   volume: -12,
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.2,
+  //     sustain: 0.2,
+  //     release: 0.23,
+  //   },
+  // }).toDestination();
+  // leadSynth.oscillator.type = "square";
   const leadSynthTwo = new Tone.Synth({
-    volume: -12,
+    volume: -6,
     envelope: {
       attack: 0.001,
       decay: 0.2,
@@ -226,7 +231,7 @@ export default function Sequencer() {
   );
   const leadPart = new Tone.Sequence(
     function (time, note) {
-      leadSynth.triggerAttackRelease(note, "10hz", time);
+      // leadSynth.triggerAttackRelease(note, "10hz", time);
       leadSynthTwo.triggerAttackRelease(note, "10hz", time);
     },
     leadNotes,
@@ -285,7 +290,7 @@ export default function Sequencer() {
       <KeySelectorLead
         activeNote={activeNoteLead}
         setActiveNote={setActiveNoteLead}
-        synth={leadSynth}
+        synth={leadSynthTwo}
       />
       <Keys
         notes={leadNotes}
@@ -297,7 +302,8 @@ export default function Sequencer() {
       {!play ? (
         <button
           className="start"
-          onClick={() => {
+          onClick={async () => {
+            await Tone.start();
             hihatPart.start("+0.2");
             synthPart.start("+0.2");
             snarePart.start("+0.2");
@@ -319,6 +325,7 @@ export default function Sequencer() {
             bassPart.stop();
             leadPart.stop();
             transport.stop();
+            // transport.position = 0;
             transport.cancel();
 
             setPlay(false);
@@ -327,18 +334,16 @@ export default function Sequencer() {
           STOP
         </button>
       )}
-      <button
+      {/* <button
         onClick={() => {
-          hihatPart.cancel();
-          synthPart.cancel();
-          snarePart.cancel();
-          bassPart.cancel();
-          leadPart.cancel();
-          console.log("cancel");
+          transport.context.clearTimeout();
+          transport.context.lookAhead = 0.2;
+          transport.context.debug = true;
+          console.log(transport.context);
         }}
       >
         log
-      </button>
+      </button> */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-header">Warning!</Modal.Title>
