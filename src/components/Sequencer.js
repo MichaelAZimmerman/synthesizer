@@ -13,7 +13,8 @@ export default function Sequencer() {
   // // set this context as the global Context
 
   // Tone.setContext(context);
-
+  Tone.Context.lookAhead = 0.2;
+  Tone.Context.latencyHint = "balanced";
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,8 +22,7 @@ export default function Sequencer() {
   const [activeNoteLead, setActiveNoteLead] = useState("C4");
   const [tempo, setTempo] = useState(120);
   const transport = Tone.Transport;
-  Tone.Context.lookAhead = 0.2;
-  Tone.Context.latencyHint = "balanced";
+
   const [play, setPlay] = useState(false);
   const synth = new Tone.MembraneSynth().toDestination();
   const dist = new Distortion(1).toDestination();
@@ -81,19 +81,19 @@ export default function Sequencer() {
       release: 0.13,
     },
   }).connect(dist);
-  const noiseTwo = new NoiseSynth({
-    volume: 6,
-    noise: {
-      type: "white",
-      playbackRate: 12,
-    },
-    envelope: {
-      attack: 0.001,
-      decay: 0.03,
-      sustain: 0,
-      release: 0.03,
-    },
-  }).toDestination();
+  // const noiseTwo = new NoiseSynth({
+  //   volume: 6,
+  //   noise: {
+  //     type: "white",
+  //     playbackRate: 12,
+  //   },
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.03,
+  //     sustain: 0,
+  //     release: 0.03,
+  //   },
+  // }).toDestination();
   const noise = new NoiseSynth({
     volume: 10,
     noise: {
@@ -209,7 +209,7 @@ export default function Sequencer() {
   const snarePart = new Tone.Sequence(
     function (time, note) {
       noise.triggerAttackRelease("10hz", time);
-      noiseTwo.triggerAttackRelease("10hz", time);
+      // noiseTwo.triggerAttackRelease("10hz", time);
       snareSynth.triggerAttackRelease(note, "10hz", time);
     },
     snareNotes,
