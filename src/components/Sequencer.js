@@ -18,7 +18,7 @@ export default function Sequencer() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [activeNote, setActiveNote] = useState("C3");
+  const [activeNote, setActiveNote] = useState("C2");
   const [activeNoteLead, setActiveNoteLead] = useState("C4");
   const [tempo, setTempo] = useState(120);
   const transport = Tone.Transport;

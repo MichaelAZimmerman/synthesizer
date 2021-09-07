@@ -7,22 +7,22 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
         <div className="seq-note-halfspace"></div>
         <button
           className={
-            activeNote === "C#3" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "C#2" ? "seq-note-blk-active" : "seq-note-blk"
           }
           onClick={() => {
-            setActiveNote("C#3");
-            synth.triggerAttackRelease("C#3", "16n");
+            setActiveNote("C#2");
+            synth.triggerAttackRelease("C#2", "16n");
           }}
         >
           C#
         </button>
         <button
           className={
-            activeNote === "D#3" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "D#2" ? "seq-note-blk-active" : "seq-note-blk"
           }
           onClick={() => {
-            setActiveNote("D#3");
-            synth.triggerAttackRelease("D#3", "16n");
+            setActiveNote("D#2");
+            synth.triggerAttackRelease("D#2", "16n");
           }}
         >
           D#
@@ -30,33 +30,33 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
         <div className="seq-note-space"></div>
         <button
           className={
-            activeNote === "F#3" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "F#2" ? "seq-note-blk-active" : "seq-note-blk"
           }
           onClick={() => {
-            setActiveNote("F#3");
-            synth.triggerAttackRelease("F#3", "16n");
+            setActiveNote("F#2");
+            synth.triggerAttackRelease("F#2", "16n");
           }}
         >
           F#
         </button>
         <button
           className={
-            activeNote === "G#3" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "G#2" ? "seq-note-blk-active" : "seq-note-blk"
           }
           onClick={() => {
-            setActiveNote("G#3");
-            synth.triggerAttackRelease("G#3", "16n");
+            setActiveNote("G#2");
+            synth.triggerAttackRelease("G#2", "16n");
           }}
         >
           G#
         </button>
         <button
           className={
-            activeNote === "A#3" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "A#2" ? "seq-note-blk-active" : "seq-note-blk"
           }
           onClick={() => {
-            setActiveNote("A#3");
-            synth.triggerAttackRelease("A#3", "16n");
+            setActiveNote("A#2");
+            synth.triggerAttackRelease("A#2", "16n");
           }}
         >
           A#
@@ -65,64 +65,64 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
       </div>
       <div className="seq-note-container">
         <button
-          className={activeNote === "C3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "C2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("C3");
-            synth.triggerAttackRelease("C3", "16n");
+            setActiveNote("C2");
+            synth.triggerAttackRelease("C2", "16n");
           }}
         >
           C
         </button>
         <button
-          className={activeNote === "D3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "D2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("D3");
-            synth.triggerAttackRelease("D3", "16n");
+            setActiveNote("D2");
+            synth.triggerAttackRelease("D2", "16n");
           }}
         >
           D
         </button>
         <button
-          className={activeNote === "E3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "E2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("E3");
-            synth.triggerAttackRelease("E3", "16n");
+            setActiveNote("E2");
+            synth.triggerAttackRelease("E2", "16n");
           }}
         >
           E
         </button>
         <button
-          className={activeNote === "F3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "F2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("F3");
-            synth.triggerAttackRelease("F3", "16n");
+            setActiveNote("F2");
+            synth.triggerAttackRelease("F2", "16n");
           }}
         >
           F
         </button>
         <button
-          className={activeNote === "G3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "G2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("G3");
-            synth.triggerAttackRelease("G3", "16n");
+            setActiveNote("G2");
+            synth.triggerAttackRelease("G2", "16n");
           }}
         >
           G
         </button>
         <button
-          className={activeNote === "A3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "A2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("A3");
-            synth.triggerAttackRelease("A3", "16n");
+            setActiveNote("A2");
+            synth.triggerAttackRelease("A2", "16n");
           }}
         >
           A
         </button>
         <button
-          className={activeNote === "B3" ? "seq-note-active" : "seq-note"}
+          className={activeNote === "B2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
-            setActiveNote("B3");
-            synth.triggerAttackRelease("B3", "16n");
+            setActiveNote("B2");
+            synth.triggerAttackRelease("B2", "16n");
           }}
         >
           B
