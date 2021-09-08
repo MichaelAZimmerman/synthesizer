@@ -97,7 +97,10 @@ input {
   border-bottom: 4px solid rgb(39, 62, 83);
 }
 .active {
-  background-color: rgb(37, 46, 53);
+  background: linear-gradient(180deg, rgb(80, 152, 201), rgb(31, 98, 136) 100%);
+  text-decoration: none;
+
+  color: rgb(176, 220, 255);
 }
 .note:hover,
 .note-blk:hover {
