@@ -13,13 +13,21 @@ footer {
   color: rgb(40, 63, 87);
   background: linear-gradient(180deg, #ccc, rgb(50, 62, 71) 100%);
   padding-top: 30px;
-  border-top: 2px solid lightslategray;
+  border-top: 2px solid rgb(34, 43, 51);
 }
 nav {
-  border-bottom: 2px solid lightslategray;
+  border-bottom: 2px solid rgb(34, 43, 51);
 }
 input {
   margin: 5px;
+}
+.loading {
+  text-align: center;
+  position: relative;
+  top: 200px;
+}
+.spinner {
+  margin: auto;
 }
 .about {
   display: flex;
@@ -28,7 +36,7 @@ input {
   max-width: 500px;
 }
 .slider-sm {
-  width: 200px;
+  width: 140px;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -43,15 +51,22 @@ input {
   padding-top: 10px;
   color: rgb(96, 127, 194);
 }
+.slider-title-large {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(96, 127, 194);
+}
 .drop-down {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 5px;
   width: 340px;
   margin: auto;
   margin-top: 5px;
   padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: rgb(19, 33, 44);
 }
 .tempo {
@@ -68,12 +83,14 @@ input {
 }
 .link {
   flex-basis: calc(100% / 5 - 10px);
-  background-color: rgb(63, 78, 90);
+  background: linear-gradient(180deg, rgb(68, 104, 134), rgb(34, 72, 97) 100%);
   text-decoration: none;
+  font-weight: bold;
   padding: 5px;
   flex-grow: 1;
   font-family: Roboto;
-  color: white;
+  color: rgb(111, 168, 221);
+  border-radius: 5px;
   border-left: 2px solid rgb(39, 62, 83);
   border-right: 2px solid rgb(39, 62, 83);
   border-top: 4px solid rgb(39, 62, 83);
@@ -88,15 +105,16 @@ input {
 }
 .active:hover,
 .link:hover {
-  background-color: rgb(169, 206, 101);
-  border-left: 2px solid rgb(39, 83, 56);
-  border-right: 2px solid rgb(39, 83, 56);
-  border-top: 4px solid rgb(39, 83, 56);
-  border-bottom: 4px solid rgb(39, 83, 56);
+  transition-duration: 0.7s;
+  background: linear-gradient(
+    180deg,
+    rgb(100, 171, 218),
+    rgb(44, 125, 172) 100%
+  );
+
   text-decoration: none;
-  font-weight: bold;
-  color: black;
-  transition-duration: 0.5s;
+
+  color: rgb(176, 220, 255);
 }
 .text-center {
   text-align: center;
@@ -106,15 +124,18 @@ input {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  border-top: 2px solid lightslategray;
+  border-top: 2px solid rgb(34, 43, 51);
 }
 .control-container {
   width: 350px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(39, 62, 83);
+  background-color: #ccc;
   padding: 5px;
   margin: auto;
+  margin-top: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .seq-note-container {
   height: 44px;
@@ -131,9 +152,9 @@ input {
   align-items: center;
   justify-content: center;
   padding-top: 10px;
-  border-left: 5px solid rgb(39, 62, 83);
-  border-right: 5px solid rgb(39, 62, 83);
-  background-color: rgb(119, 135, 151);
+  border-left: 5px solid #ccc;
+  border-right: 5px solid #ccc;
+  background-color: #ccc;
   margin: auto;
 }
 .note-container-wht {
@@ -145,23 +166,23 @@ input {
   justify-content: center;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
-  background-color: rgb(119, 135, 151);
+  background-color: #ccc;
   margin: auto;
-  border-left: 5px solid rgb(39, 62, 83);
-  border-right: 5px solid rgb(39, 62, 83);
-  border-bottom: 5px solid rgb(39, 62, 83);
+  border-left: 5px solid #ccc;
+  border-right: 5px solid #ccc;
+  border-bottom: 5px solid #ccc;
 }
 .input-container {
   margin: 5px;
 }
 .keyboard {
   width: 100%;
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     #ccc,
     lightslategray,
     rgb(127, 164, 192) 100%
-  );
+  ); */
   padding-bottom: 10px;
 }
 .note-halfspace {
@@ -184,7 +205,7 @@ input {
   height: 160px;
   width: 40px;
   background: white;
-  border: 2px solid #ccc;
+  border: 2px solid lightslategray;
   border-radius: 5px;
   margin: 2px;
 
@@ -196,7 +217,7 @@ input {
   width: 40px;
   background: rgb(0, 0, 0);
   color: white;
-  border: 2px solid #ccc;
+  border: 2px solid lightslategray;
   border-radius: 5px;
   margin: 2px;
   position: relative;
@@ -294,6 +315,28 @@ button {
     rgb(69, 211, 116) 100%
   );
   border: 2px solid rgb(20, 105, 41);
+}
+.effect-off {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
+  border: 2px solid rgb(25, 54, 44);
+  position: relative;
+  left: -1px;
+}
+.effect-on {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgb(115, 235, 115),
+    rgb(69, 211, 116) 100%
+  );
+  border: 2px solid rgb(20, 105, 41);
+  position: relative;
+  left: -1px;
 }
 .start {
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);

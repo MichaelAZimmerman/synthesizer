@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -25,7 +25,30 @@ export default function Keyboard() {
   const comp = new Tone.Compressor(-30, 3);
   const synth = new Tone.Synth().chain(dist, tremolo, pingPong, comp);
   synth.oscillator.type = synthesizer.oscType;
-
+  const [distOn, setDistOn] = useState(false);
+  const [tremOn, setTremOn] = useState(false);
+  const [delayOn, setDelayOn] = useState(false);
+  useEffect(() => {
+    if (!synthesizer.distAmt == 0) {
+      setDistOn(true);
+    } else {
+      setDistOn(false);
+    }
+  }, [synthesizer.distAmt, distOn, setDistOn]);
+  useEffect(() => {
+    if (!synthesizer.tremAmt == 0) {
+      setTremOn(true);
+    } else {
+      setTremOn(false);
+    }
+  }, [synthesizer.tremAmt, tremOn, setTremOn]);
+  useEffect(() => {
+    if (!synthesizer.pingPongRate == 0) {
+      setDelayOn(true);
+    } else {
+      setDelayOn(false);
+    }
+  }, [synthesizer.pingPongRate, delayOn, setDelayOn]);
   return (
     <div className="keyboard">
       <div className="control-container">
@@ -54,33 +77,6 @@ export default function Keyboard() {
               32nd Note
             </Dropdown.Item>
           </DropdownButton>
-        </div>
-        {/* This DropdownButton 
-               selects a wave-form */}
-        <div className="drop-down">
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={`Waveform: ${synthesizer.oscType}`}
-            variant="secondary"
-            size="sm"
-          >
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
-              Triangle
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("square")}>
-              Square
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("sine")}>
-              Sine
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
-              Sawtooth
-            </Dropdown.Item>
-          </DropdownButton>
-        </div>
-        {/* This DropdownButton 
-               selects an octave */}
-        <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
             title={`Octave: ${synthesizer.octave}`}
@@ -113,10 +109,38 @@ export default function Keyboard() {
             </Dropdown.Item>
           </DropdownButton>
         </div>
+        {/* This DropdownButton 
+               selects a wave-form */}
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Waveform: ${synthesizer.oscType}`}
+            variant="secondary"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
+              Triangle
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("square")}>
+              Square
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("sine")}>
+              Sine
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscType("sawtooth")}>
+              Sawtooth
+            </Dropdown.Item>
+          </DropdownButton>
+        </div>
         {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">Distortion</Typography>
+          {!distOn ? (
+            <div className="effect-off" />
+          ) : (
+            <div className="effect-on" />
+          )}
+          <div className="slider-title-large">Distortion</div>
           <div className="slider-sm">
             <Slider
               value={synthesizer.distAmt}
@@ -133,7 +157,12 @@ export default function Keyboard() {
         {/* This Slider 
                selects a distortion amount */}
         <div className="drop-down">
-          <Typography id="discrete-slider-small-steps">Tremelo Rate</Typography>
+          {!tremOn ? (
+            <div className="effect-off" />
+          ) : (
+            <div className="effect-on" />
+          )}
+          <div className="slider-title-large">Tremelo Rate</div>
           <div className="slider-sm">
             <Slider
               value={synthesizer.tremAmt}
@@ -174,6 +203,11 @@ export default function Keyboard() {
         {/* This DropdownButton 
                sets ping pong rate */}
         <div className="drop-down">
+          {!delayOn ? (
+            <div className="effect-off" />
+          ) : (
+            <div className="effect-on" />
+          )}
           <DropdownButton
             id="dropdown-basic-button"
             title={`Delay Rate: ${synthesizer.pingPongRate}`}
@@ -200,9 +234,7 @@ export default function Keyboard() {
             </Dropdown.Item>
           </DropdownButton>
           <div className="slider-sm">
-            <Typography id="discrete-slider-small-steps">
-              Delay Depth
-            </Typography>
+            <div className="slider-title-large">Delay Depth</div>
             <Slider
               value={synthesizer.pingPongDepth}
               onChange={(e, newValue) => synthesizer.setPingPongDepth(newValue)}

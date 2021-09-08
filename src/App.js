@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
   NavLink,
   Redirect,
@@ -17,87 +17,94 @@ import Sequencer from "./components/Sequencer";
 import { UserContext, LocationContext } from "./context/";
 import ProtectedRoute from "./shared/ProtectedRoute";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Spinner } from "react-bootstrap";
 
 function App() {
   const location = useLocation();
   const { username, logout } = useContext(UserContext);
   const { clearSearch } = useContext(LocationContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 1000);
+  }, []);
 
   return (
     <>
-      <header>
-        {username ? (
-          <h6 className="text-center">Welcome {username}</h6>
-        ) : (
-          <h6 className="text-center">Please log in to access keyboard.</h6>
-        )}
-      </header>
-      <nav className="flex-wrap">
-        {!username && (
-          <>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/signup"
-            >
-              Sign Up
-            </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/login"
-            >
-              Login
-            </NavLink>
-          </>
-        )}
+      {loading === false ? (
+        <>
+          <header>
+            {username ? (
+              <h6 className="text-center">Welcome {username}</h6>
+            ) : (
+              <h6 className="text-center">Please log in to access keyboard.</h6>
+            )}
+          </header>
+          <nav className="flex-wrap">
+            {!username && (
+              <>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/signup"
+                >
+                  Sign Up
+                </NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/login"
+                >
+                  Login
+                </NavLink>
+              </>
+            )}
 
-        {username && (
-          <>
+            {username && (
+              <>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/keyboard"
+                >
+                  Keyboard
+                </NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/sequencer"
+                >
+                  Sequencer
+                </NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/location"
+                >
+                  Drone
+                </NavLink>
+                <NavLink
+                  activeClassName="active"
+                  className="link text-center"
+                  to="/login"
+                  onClick={() => {
+                    logout();
+                    clearSearch();
+                  }}
+                >
+                  Logout
+                </NavLink>
+              </>
+            )}
             <NavLink
               activeClassName="active"
               className="link text-center"
-              to="/keyboard"
+              to="/about"
             >
-              Keyboard
+              About
             </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/sequencer"
-            >
-              Sequencer
-            </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/location"
-            >
-              Drone
-            </NavLink>
-            <NavLink
-              activeClassName="active"
-              className="link text-center"
-              to="/login"
-              onClick={() => {
-                logout();
-                clearSearch();
-              }}
-            >
-              Logout
-            </NavLink>
-          </>
-        )}
-        <NavLink
-          activeClassName="active"
-          className="link text-center"
-          to="/about"
-        >
-          About
-        </NavLink>
-      </nav>
-      <TransitionGroup>
-        <CSSTransition key={location.key} classNames="fade" timeout={500}>
+          </nav>
+
           <main className="text-center">
             <Switch location={location}>
               <ProtectedRoute path="/login" reqUser={false}>
@@ -123,11 +130,16 @@ function App() {
               </Route>
             </Switch>
           </main>
-        </CSSTransition>
-      </TransitionGroup>
-      <footer className="text-center">
-        <div>Last updated: 9/5/2021</div>
-      </footer>
+
+          <footer className="text-center">
+            <div>Last updated: 9/5/2021</div>
+          </footer>
+        </>
+      ) : (
+        <div className="loading">
+          <Spinner animation="border" />
+        </div>
+      )}
     </>
   );
 }
