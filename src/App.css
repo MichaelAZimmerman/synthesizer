@@ -82,11 +82,10 @@ input {
   width: 350px;
   height: 40px;
   margin: auto;
-  margin-top: 5px;
   padding-top: 5px;
   padding-left: 30px;
   padding-right: 25px;
-  background-color: rgb(25, 45, 54);
+  background-color: rgb(19, 33, 44);
 }
 .link {
   flex-basis: calc(100% / 5 - 10px);
@@ -365,6 +364,16 @@ button {
   border-radius: 5px;
   width: 80px;
   color: rgb(129, 58, 40);
+}
+.sequencer {
+  background-color: rgb(72, 76, 82);
+  padding-top: 10px;
+  width: 400px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  border: 2px solid rgb(19, 33, 44);
 }
 .modal-header,
 .modal-body {

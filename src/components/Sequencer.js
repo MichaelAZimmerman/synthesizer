@@ -257,7 +257,7 @@ export default function Sequencer() {
   }, [tempo, setTempo, transport.bpm]);
 
   return (
-    <div>
+    <div className="sequencer">
       <div className="tempo">
         <p className="slider-title">Tempo ({tempo} BPM):</p>
         <div className="slider-sm">
