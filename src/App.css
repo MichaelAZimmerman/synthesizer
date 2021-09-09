@@ -140,7 +140,9 @@ input {
   display: flex;
   flex-direction: column;
   background-color: #ccc;
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
   margin: auto;
   margin-top: 10px;
   border-top-left-radius: 10px;
@@ -368,7 +370,7 @@ button {
 .sequencer {
   background-color: rgb(72, 76, 82);
   padding-top: 10px;
-  width: 400px;
+  width: 375px;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
