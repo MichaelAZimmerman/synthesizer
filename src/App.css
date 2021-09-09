@@ -69,8 +69,7 @@ input {
   margin: auto;
   margin-top: 5px;
   padding: 5px;
-  padding-left: 10px;
-  padding-right: 10px;
+
   background-color: rgb(19, 33, 44);
   border: 2px solid lightslategray;
 }
@@ -334,7 +333,7 @@ button {
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
   border: 2px solid rgb(25, 54, 44);
   position: relative;
-  left: -1px;
+  left: 5px;
 }
 .effect-on {
   height: 15px;
@@ -347,7 +346,7 @@ button {
   );
   border: 2px solid rgb(20, 105, 41);
   position: relative;
-  left: -1px;
+  left: 2px;
 }
 .start {
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
