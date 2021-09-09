@@ -3,7 +3,6 @@ import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
-import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 import * as Tone from "tone";
 
@@ -58,7 +57,7 @@ export default function Keyboard() {
           <DropdownButton
             id="dropdown-basic-button"
             title={`Note Type/Length: ${synthesizer.noteType}`}
-            variant="secondary"
+            variant="dark"
             size="sm"
           >
             <Dropdown.Item onSelect={() => synthesizer.setNoteType("1n")}>
@@ -80,7 +79,7 @@ export default function Keyboard() {
           <DropdownButton
             id="dropdown-basic-button"
             title={`Octave: ${synthesizer.octave}`}
-            variant="secondary"
+            variant="dark"
             size="sm"
           >
             <Dropdown.Item onSelect={() => synthesizer.setOctave(1)}>
@@ -115,7 +114,7 @@ export default function Keyboard() {
           <DropdownButton
             id="dropdown-basic-button"
             title={`Waveform: ${synthesizer.oscType}`}
-            variant="secondary"
+            variant="dark"
             size="sm"
           >
             <Dropdown.Item onSelect={() => synthesizer.setOscType("triangle")}>
@@ -223,7 +222,7 @@ export default function Keyboard() {
           <DropdownButton
             id="dropdown-basic-button"
             title={`Delay Rate: ${synthesizer.pingPongRate}`}
-            variant="secondary"
+            variant="dark"
             size="sm"
           >
             <Dropdown.Item onSelect={() => synthesizer.setPingPongRate(0)}>

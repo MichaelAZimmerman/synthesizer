@@ -265,7 +265,8 @@ export default function Sequencer() {
             value={tempo}
             onChange={(e, newValue) => setTempo(newValue)}
             aria-labelledby="discrete-slider-small-steps"
-            step={1}
+            step={10}
+            marks
             min={60}
             max={180}
             valueLabelDisplay="auto"
