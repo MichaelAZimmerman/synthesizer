@@ -72,6 +72,7 @@ input {
   padding-left: 10px;
   padding-right: 10px;
   background-color: rgb(19, 33, 44);
+  border: 2px solid lightslategray;
 }
 .tempo {
   display: flex;
@@ -167,7 +168,7 @@ input {
   margin: auto;
 }
 .note-container-wht {
-  height: 100px;
+  height: 75px;
   width: 350px;
   display: flex;
   align-items: center;
@@ -230,7 +231,7 @@ input {
   border-radius: 5px;
   margin: 2px;
   position: relative;
-  top: -5px;
+  top: -17px;
   z-index: 1;
 }
 .seq-note,
