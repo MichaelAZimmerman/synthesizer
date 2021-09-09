@@ -346,7 +346,7 @@ button {
   );
   border: 2px solid rgb(20, 105, 41);
   position: relative;
-  left: 2px;
+  left: 5px;
 }
 .start {
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
