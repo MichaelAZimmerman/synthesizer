@@ -35,7 +35,7 @@ function App() {
         <>
           <header>
             {username ? (
-              <h6 className="text-center">Welcome {username}</h6>
+              <h6 className="text-center">Welcome, {username}</h6>
             ) : (
               <h6 className="text-center">Please log in to access keyboard.</h6>
             )}

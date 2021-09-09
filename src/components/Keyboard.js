@@ -131,6 +131,18 @@ export default function Keyboard() {
               Sawtooth
             </Dropdown.Item>
           </DropdownButton>
+          {synthesizer.oscType === "sine" && (
+            <img className="wave" src="sine.png" />
+          )}
+          {synthesizer.oscType === "triangle" && (
+            <img className="wave" src="triangle.png" />
+          )}
+          {synthesizer.oscType === "square" && (
+            <img className="wave" src="square.png" />
+          )}
+          {synthesizer.oscType === "sawtooth" && (
+            <img className="wave" src="sawtooth.png" />
+          )}
         </div>
         {/* This Slider 
                selects a distortion amount */}
