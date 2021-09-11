@@ -31,8 +31,10 @@ export default function Sequencer() {
   const hihatRef = useRef(null);
   const bassRef = useRef(null);
   const leadRef = useRef(null);
-  const dist = new Distortion(1).toDestination();
+  const distRef = useRef(null);
+  // const dist = new Distortion(1).toDestination();
   useEffect(() => {
+    distRef.current = new Distortion(1).toDestination();
     kickRef.current = new Tone.MembraneSynth().toDestination();
     snareRef.current = new Tone.MembraneSynth({
       volume: 3,
@@ -43,7 +45,7 @@ export default function Sequencer() {
         sustain: 0.01,
         release: 0.13,
       },
-    }).connect(dist);
+    }).connect(distRef.current);
     snareNoiseRef.current = new NoiseSynth({
       volume: 10,
       noise: {
@@ -56,7 +58,7 @@ export default function Sequencer() {
         sustain: 0,
         release: 0.03,
       },
-    }).connect(dist);
+    }).connect(distRef.current);
     hihatRef.current = new NoiseSynth({
       volume: -12,
       noise: {
@@ -78,7 +80,7 @@ export default function Sequencer() {
         release: 0.13,
       },
       oscillator: { type: "triangle" },
-    }).connect(dist);
+    }).connect(distRef.current);
     leadRef.current = new Tone.Synth({
       volume: -6,
       envelope: {
