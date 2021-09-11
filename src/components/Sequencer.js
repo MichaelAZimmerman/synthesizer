@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
 import { NoiseSynth, Distortion } from "tone";
@@ -13,8 +13,10 @@ export default function Sequencer() {
   // // set this context as the global Context
 
   // Tone.setContext(context);
+
   Tone.Context.lookAhead = 0.2;
-  Tone.Context.latencyHint = "balanced";
+  Tone.Context.latencyHint = "playback";
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,19 +24,82 @@ export default function Sequencer() {
   const [activeNoteLead, setActiveNoteLead] = useState("C4");
   const [tempo, setTempo] = useState(120);
   const transport = Tone.Transport;
-
   const [play, setPlay] = useState(false);
-  const synth = new Tone.MembraneSynth().toDestination();
+  const kickRef = useRef(null);
+  const snareRef = useRef(null);
+  const snareNoiseRef = useRef(null);
+  const hihatRef = useRef(null);
+  const bassRef = useRef(null);
+  const leadRef = useRef(null);
   const dist = new Distortion(1).toDestination();
-  const bassSynth = new Tone.Synth({
-    envelope: {
-      attack: 0.001,
-      decay: 0.1,
-      sustain: 0.2,
-      release: 0.13,
-    },
-  }).connect(dist);
-  bassSynth.oscillator.type = "triangle";
+  useEffect(() => {
+    kickRef.current = new Tone.MembraneSynth().toDestination();
+    snareRef.current = new Tone.MembraneSynth({
+      volume: 3,
+      detune: 2400,
+      envelope: {
+        attack: 0.001,
+        decay: 0.1,
+        sustain: 0.01,
+        release: 0.13,
+      },
+    }).connect(dist);
+    snareNoiseRef.current = new NoiseSynth({
+      volume: 10,
+      noise: {
+        type: "pink",
+        playbackRate: 6,
+      },
+      envelope: {
+        attack: 0.001,
+        decay: 0.13,
+        sustain: 0,
+        release: 0.03,
+      },
+    }).connect(dist);
+    hihatRef.current = new NoiseSynth({
+      volume: -12,
+      noise: {
+        type: "white",
+        playbackRate: 6,
+      },
+      envelope: {
+        attack: 0.001,
+        decay: 0.13,
+        sustain: 0,
+        release: 0.03,
+      },
+    }).toDestination();
+    bassRef.current = new Tone.Synth({
+      envelope: {
+        attack: 0.001,
+        decay: 0.1,
+        sustain: 0.2,
+        release: 0.13,
+      },
+      oscillator: { type: "triangle" },
+    }).connect(dist);
+    leadRef.current = new Tone.Synth({
+      volume: -6,
+      envelope: {
+        attack: 0.001,
+        decay: 0.2,
+        sustain: 0.2,
+        release: 0.23,
+      },
+      oscillator: { type: "sawtooth" },
+    }).toDestination();
+  }, []);
+
+  // const bassSynth = new Tone.Synth({
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.1,
+  //     sustain: 0.2,
+  //     release: 0.13,
+  //   },
+  // }).connect(dist);
+  // bassSynth.oscillator.type = "triangle";
   // const leadSynth = new Tone.Synth({
   //   volume: -12,
   //   envelope: {
@@ -53,34 +118,35 @@ export default function Sequencer() {
       sustain: 0.2,
       release: 0.23,
     },
+    oscillator: { type: "sawtooth" },
   }).toDestination();
-  leadSynthTwo.oscillator.type = "sawtooth";
+  // leadSynthTwo.oscillator.type = "sawtooth";
   //   const lowPass = new Filter({
   //     frequency: 11000,
   //   }).connect(dist);
-  const hihatSynth = new NoiseSynth({
-    volume: -12,
-    noise: {
-      type: "white",
-      playbackRate: 6,
-    },
-    envelope: {
-      attack: 0.001,
-      decay: 0.13,
-      sustain: 0,
-      release: 0.03,
-    },
-  }).toDestination();
-  const snareSynth = new Tone.MembraneSynth({
-    volume: 3,
-    detune: 2400,
-    envelope: {
-      attack: 0.001,
-      decay: 0.1,
-      sustain: 0.01,
-      release: 0.13,
-    },
-  }).connect(dist);
+  // const hihatSynth = new NoiseSynth({
+  //   volume: -12,
+  //   noise: {
+  //     type: "white",
+  //     playbackRate: 6,
+  //   },
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.13,
+  //     sustain: 0,
+  //     release: 0.03,
+  //   },
+  // }).toDestination();
+  // const snareSynth = new Tone.MembraneSynth({
+  //   volume: 3,
+  //   detune: 2400,
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.1,
+  //     sustain: 0.01,
+  //     release: 0.13,
+  //   },
+  // }).connect(dist);
   // const noiseTwo = new NoiseSynth({
   //   volume: 6,
   //   noise: {
@@ -94,19 +160,19 @@ export default function Sequencer() {
   //     release: 0.03,
   //   },
   // }).toDestination();
-  const noise = new NoiseSynth({
-    volume: 10,
-    noise: {
-      type: "pink",
-      playbackRate: 6,
-    },
-    envelope: {
-      attack: 0.001,
-      decay: 0.13,
-      sustain: 0,
-      release: 0.03,
-    },
-  }).connect(dist);
+  // const noise = new NoiseSynth({
+  //   volume: 10,
+  //   noise: {
+  //     type: "pink",
+  //     playbackRate: 6,
+  //   },
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.13,
+  //     sustain: 0,
+  //     release: 0.03,
+  //   },
+  // }).connect(dist);
   const [leadNotes, setLeadNotes] = useState([
     null,
     null,
@@ -201,30 +267,30 @@ export default function Sequencer() {
   //   // create a new sequence with the synth and notes
   const hihatPart = new Tone.Sequence(
     function (time, note) {
-      hihatSynth.triggerAttackRelease("10hz", time);
+      hihatRef.current.triggerAttackRelease("10hz", time);
     },
     hihatNotes,
     "16n"
   );
   const snarePart = new Tone.Sequence(
     function (time, note) {
-      noise.triggerAttackRelease("10hz", time);
+      snareNoiseRef.current.triggerAttackRelease("10hz", time);
       // noiseTwo.triggerAttackRelease("10hz", time);
-      snareSynth.triggerAttackRelease(note, "10hz", time);
+      snareRef.current.triggerAttackRelease(note, "10hz", time);
     },
     snareNotes,
     "16n"
   );
   const synthPart = new Tone.Sequence(
     function (time, note) {
-      synth.triggerAttackRelease(note, "10hz", time);
+      kickRef.current.triggerAttackRelease(note, "10hz", time);
     },
     notes,
     "16n"
   );
   const bassPart = new Tone.Sequence(
     function (time, note) {
-      bassSynth.triggerAttackRelease(note, "10hz", time);
+      bassRef.current.triggerAttackRelease(note, "10hz", time);
     },
     bassNotes,
     "16n"
@@ -232,7 +298,7 @@ export default function Sequencer() {
   const leadPart = new Tone.Sequence(
     function (time, note) {
       // leadSynth.triggerAttackRelease(note, "10hz", time);
-      leadSynthTwo.triggerAttackRelease(note, "10hz", time);
+      leadRef.current.triggerAttackRelease(note, "10hz", time);
     },
     leadNotes,
     "16n"
@@ -284,14 +350,14 @@ export default function Sequencer() {
       <KeySelector
         activeNote={activeNote}
         setActiveNote={setActiveNote}
-        synth={bassSynth}
+        synth={bassRef.current}
       />
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
       <div>Lead Synth</div>
       <KeySelectorLead
         activeNote={activeNoteLead}
         setActiveNote={setActiveNoteLead}
-        synth={leadSynthTwo}
+        synth={leadRef.current}
       />
       <Keys
         notes={leadNotes}
@@ -335,16 +401,7 @@ export default function Sequencer() {
           STOP
         </button>
       )}
-      {/* <button
-        onClick={() => {
-          transport.context.clearTimeout();
-          transport.context.lookAhead = 0.2;
-          transport.context.debug = true;
-          console.log(transport.context);
-        }}
-      >
-        log
-      </button> */}
+
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-header">Warning!</Modal.Title>
