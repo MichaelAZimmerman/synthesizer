@@ -30,7 +30,7 @@ function Keys({ notes, setNotes, activeNote }) {
   return (
     <div>
       {!seqOneActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -38,9 +38,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqOneActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -48,10 +48,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqOneActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqTwoActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -59,9 +59,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTwoActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -69,10 +69,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTwoActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqThreeActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -80,9 +80,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqThreeActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -90,10 +90,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqThreeActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqFourActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -101,9 +101,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFourActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -111,10 +111,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFourActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqFiveActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -122,9 +122,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFiveActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -132,10 +132,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFiveActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqSixActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -143,9 +143,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSixActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -153,10 +153,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSixActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqSevenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -164,9 +164,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSevenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -174,10 +174,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSevenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqEightActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -185,9 +185,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqEightActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -195,11 +195,11 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqEightActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {/* halfway there */}
       {!seqNineActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -207,9 +207,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqNineActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -217,10 +217,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqNineActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqTenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -228,9 +228,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -238,10 +238,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqElevenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -249,9 +249,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqElevenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -259,10 +259,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqElevenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqTwelveActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -270,9 +270,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTwelveActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -280,10 +280,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqTwelveActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqThirteenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -291,9 +291,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqThirteenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -301,10 +301,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqThirteenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqFourteenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -312,9 +312,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFourteenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -322,10 +322,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFourteenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqFifteenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -333,9 +333,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFifteenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -343,10 +343,10 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqFifteenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
       {!seqSixteenActiveA ? (
-        <button
+        <div
           className="seq-note-off"
           onClick={() => {
             let newArr = [...notes];
@@ -354,9 +354,9 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSixteenActiveA(true);
           }}
-        ></button>
+        ></div>
       ) : (
-        <button
+        <div
           className="seq-note-on"
           onClick={() => {
             let newArr = [...notes];
@@ -364,7 +364,7 @@ function Keys({ notes, setNotes, activeNote }) {
             setNotes(newArr);
             setSeqSixteenActiveA(false);
           }}
-        ></button>
+        ></div>
       )}
     </div>
   );
