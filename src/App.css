@@ -302,6 +302,8 @@ button {
 }
 .seq-note-on,
 .seq-note-off {
+  display: inline-block;
+  cursor: pointer;
   height: 20px;
   width: 20px;
   margin: 1px;
