@@ -110,16 +110,16 @@ export default function Sequencer() {
   //   },
   // }).toDestination();
   // leadSynth.oscillator.type = "square";
-  const leadSynthTwo = new Tone.Synth({
-    volume: -6,
-    envelope: {
-      attack: 0.001,
-      decay: 0.2,
-      sustain: 0.2,
-      release: 0.23,
-    },
-    oscillator: { type: "sawtooth" },
-  }).toDestination();
+  // const leadSynthTwo = new Tone.Synth({
+  //   volume: -6,
+  //   envelope: {
+  //     attack: 0.001,
+  //     decay: 0.2,
+  //     sustain: 0.2,
+  //     release: 0.23,
+  //   },
+  //   oscillator: { type: "sawtooth" },
+  // }).toDestination();
   // leadSynthTwo.oscillator.type = "sawtooth";
   //   const lowPass = new Filter({
   //     frequency: 11000,
