@@ -91,7 +91,6 @@ export default function Sequencer() {
       },
       oscillator: { type: "sawtooth" },
     }).toDestination();
-    console.log("loaded");
   }, []);
 
   // const bassSynth = new Tone.Synth({
