@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { SynthContext } from "../context";
 import playNote from "../shared/playNote";
 import DropdownButton from "react-bootstrap/DropdownButton";
@@ -22,8 +22,11 @@ export default function Keyboard() {
     release: 0.8,
   }).toDestination();
   const comp = new Tone.Compressor(-30, 3);
-  const synth = new Tone.Synth().chain(dist, tremolo, pingPong, comp);
-  synth.oscillator.type = synthesizer.oscType;
+  const synthRef = useRef(null);
+
+  synthRef.current = new Tone.Synth().chain(dist, tremolo, pingPong, comp);
+
+  synthRef.current.oscillator.type = synthesizer.oscType;
   const [distOn, setDistOn] = useState(false);
   const [tremOn, setTremOn] = useState(false);
   const [delayOn, setDelayOn] = useState(false);
@@ -263,32 +266,42 @@ export default function Keyboard() {
         <div className="note-halfspace"></div>
         <button
           className="note-blk"
-          onClick={() => playNote("C#", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("C#", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           C#
         </button>
         <button
           className="note-blk"
-          onClick={() => playNote("D#", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("D#", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           D#
         </button>
         <div className="note-space"></div>
         <button
           className="note-blk"
-          onClick={() => playNote("F#", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("F#", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           F#
         </button>
         <button
           className="note-blk"
-          onClick={() => playNote("G#", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("G#", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           G#
         </button>
         <button
           className="note-blk"
-          onClick={() => playNote("A#", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("A#", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           A#
         </button>
@@ -297,43 +310,57 @@ export default function Keyboard() {
       <div className="note-container-wht">
         <button
           className="note"
-          onClick={() => playNote("C", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("C", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           C
         </button>
         <button
           className="note"
-          onClick={() => playNote("D", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("D", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           D
         </button>
         <button
           className="note"
-          onClick={() => playNote("E", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("E", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           E
         </button>
         <button
           className="note"
-          onClick={() => playNote("F", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("F", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           F
         </button>
         <button
           className="note"
-          onClick={() => playNote("G", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("G", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           G
         </button>
         <button
           className="note"
-          onClick={() => playNote("A", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("A", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           A
         </button>
         <button
           className="note"
-          onClick={() => playNote("B", synthesizer, synth, env, tremolo)}
+          onClick={() =>
+            playNote("B", synthesizer, synthRef.current, env, tremolo)
+          }
         >
           B
         </button>

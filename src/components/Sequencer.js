@@ -34,7 +34,7 @@ export default function Sequencer() {
   const distRef = useRef(null);
   // const dist = new Distortion(1).toDestination();
   useEffect(() => {
-    distRef.current = new Distortion(1).toDestination();
+    distRef.current = new Tone.Distortion(1).toDestination();
     kickRef.current = new Tone.MembraneSynth().toDestination();
     snareRef.current = new Tone.MembraneSynth({
       volume: 3,
@@ -91,6 +91,7 @@ export default function Sequencer() {
       },
       oscillator: { type: "sawtooth" },
     }).toDestination();
+    console.log("loaded");
   }, []);
 
   // const bassSynth = new Tone.Synth({

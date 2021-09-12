@@ -1,6 +1,20 @@
-import React from "react";
-
-function KeySelector({ activeNote, setActiveNote, synth }) {
+import React, { useRef, useEffect } from "react";
+import * as Tone from "tone";
+function KeySelector({ activeNote, setActiveNote }) {
+  const synthRef = useRef(null);
+  const distRef = useRef(null);
+  useEffect(() => {
+    distRef.current = new Tone.Distortion(1).toDestination();
+    synthRef.current = new Tone.Synth({
+      envelope: {
+        attack: 0.001,
+        decay: 0.1,
+        sustain: 0.2,
+        release: 0.13,
+      },
+      oscillator: { type: "triangle" },
+    }).connect(distRef.current);
+  }, []);
   return (
     <div>
       <div className="seq-note-container">
@@ -11,7 +25,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("C#2");
-            synth.triggerAttackRelease("C#2", "16n");
+            synthRef.current.triggerAttackRelease("C#2", "16n");
           }}
         >
           C#
@@ -22,7 +36,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("D#2");
-            synth.triggerAttackRelease("D#2", "16n");
+            synthRef.current.triggerAttackRelease("D#2", "16n");
           }}
         >
           D#
@@ -34,7 +48,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("F#2");
-            synth.triggerAttackRelease("F#2", "16n");
+            synthRef.current.triggerAttackRelease("F#2", "16n");
           }}
         >
           F#
@@ -45,7 +59,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("G#2");
-            synth.triggerAttackRelease("G#2", "16n");
+            synthRef.current.triggerAttackRelease("G#2", "16n");
           }}
         >
           G#
@@ -56,7 +70,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           }
           onClick={() => {
             setActiveNote("A#2");
-            synth.triggerAttackRelease("A#2", "16n");
+            synthRef.current.triggerAttackRelease("A#2", "16n");
           }}
         >
           A#
@@ -68,7 +82,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "C2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("C2");
-            synth.triggerAttackRelease("C2", "16n");
+            synthRef.current.triggerAttackRelease("C2", "16n");
           }}
         >
           C
@@ -77,7 +91,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "D2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("D2");
-            synth.triggerAttackRelease("D2", "16n");
+            synthRef.current.triggerAttackRelease("D2", "16n");
           }}
         >
           D
@@ -86,7 +100,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "E2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("E2");
-            synth.triggerAttackRelease("E2", "16n");
+            synthRef.current.triggerAttackRelease("E2", "16n");
           }}
         >
           E
@@ -95,7 +109,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "F2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("F2");
-            synth.triggerAttackRelease("F2", "16n");
+            synthRef.current.triggerAttackRelease("F2", "16n");
           }}
         >
           F
@@ -104,7 +118,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "G2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("G2");
-            synth.triggerAttackRelease("G2", "16n");
+            synthRef.current.triggerAttackRelease("G2", "16n");
           }}
         >
           G
@@ -113,7 +127,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "A2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("A2");
-            synth.triggerAttackRelease("A2", "16n");
+            synthRef.current.triggerAttackRelease("A2", "16n");
           }}
         >
           A
@@ -122,7 +136,7 @@ function KeySelector({ activeNote, setActiveNote, synth }) {
           className={activeNote === "B2" ? "seq-note-active" : "seq-note"}
           onClick={() => {
             setActiveNote("B2");
-            synth.triggerAttackRelease("B2", "16n");
+            synthRef.current.triggerAttackRelease("B2", "16n");
           }}
         >
           B
