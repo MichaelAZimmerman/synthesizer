@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
-import { NoiseSynth, Distortion } from "tone";
 import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
@@ -46,7 +45,7 @@ export default function Sequencer() {
         release: 0.13,
       },
     }).connect(distRef.current);
-    snareNoiseRef.current = new NoiseSynth({
+    snareNoiseRef.current = new Tone.NoiseSynth({
       volume: 10,
       noise: {
         type: "pink",
@@ -59,7 +58,7 @@ export default function Sequencer() {
         release: 0.03,
       },
     }).connect(distRef.current);
-    hihatRef.current = new NoiseSynth({
+    hihatRef.current = new Tone.NoiseSynth({
       volume: -12,
       noise: {
         type: "white",
