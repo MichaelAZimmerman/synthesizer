@@ -7,7 +7,7 @@ import { useEffect } from "react";
 export default function useKeyDown(key, action) {
   useEffect(() => {
     function onKeyDown(e) {
-      if (e.key === key) action();
+      if (e.key === key && !e.repeat) action();
     }
     window.addEventListener("keydown", onKeyDown);
 

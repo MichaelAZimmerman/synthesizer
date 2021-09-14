@@ -19,7 +19,7 @@ export default function Keyboard() {
   const comp = new Tone.Compressor(-30, 3);
   const synthRef = useRef(null);
 
-  synthRef.current = new Tone.Synth({
+  synthRef.current = new Tone.PolySynth({
     envelope: {
       attack: 0.1,
       decay: 0.2,
@@ -28,7 +28,7 @@ export default function Keyboard() {
     },
   }).chain(dist, tremolo, pingPong, comp);
 
-  synthRef.current.oscillator.type = synthesizer.oscType;
+  synthRef.current.options.oscillator.type = synthesizer.oscType;
   const [distOn, setDistOn] = useState(false);
   const [tremOn, setTremOn] = useState(false);
   const [delayOn, setDelayOn] = useState(false);
@@ -58,73 +58,73 @@ export default function Keyboard() {
     playNote("C", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("z", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "C", synthesizer);
   });
   useKeyDown("s", () => {
     playNote("C#", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("s", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "C#", synthesizer);
   });
   useKeyDown("x", () => {
     playNote("D", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("x", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "D", synthesizer);
   });
   useKeyDown("d", () => {
     playNote("D#", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("d", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "D#", synthesizer);
   });
   useKeyDown("c", () => {
     playNote("E", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("c", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "E", synthesizer);
   });
   useKeyDown("v", () => {
     playNote("F", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("v", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "F", synthesizer);
   });
   useKeyDown("g", () => {
     playNote("F#", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("g", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "F#", synthesizer);
   });
   useKeyDown("b", () => {
     playNote("G", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("b", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "G", synthesizer);
   });
   useKeyDown("h", () => {
     playNote("G#", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("h", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "G#", synthesizer);
   });
   useKeyDown("n", () => {
     playNote("A", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("n", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "A", synthesizer);
   });
   useKeyDown("j", () => {
     playNote("A#", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("j", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "A#", synthesizer);
   });
   useKeyDown("m", () => {
     playNote("B", synthesizer, synthRef.current, tremolo);
   });
   useKeyUp("m", () => {
-    stopNote(synthRef.current, tremolo);
+    stopNote(synthRef.current, tremolo, "B", synthesizer);
   });
   return (
     <div className="keyboard">
@@ -344,7 +344,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("C#", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "C#", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "C#", synthesizer)
+          }
         >
           C#
         </button>
@@ -353,7 +358,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("D#", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "D#", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "D#", synthesizer)
+          }
         >
           D#
         </button>
@@ -363,7 +373,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("F#", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "F#", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "F#", synthesizer)
+          }
         >
           F#
         </button>
@@ -372,7 +387,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("G#", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "G#", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "G#", synthesizer)
+          }
         >
           G#
         </button>
@@ -381,7 +401,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("A#", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "A#", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "A#", synthesizer)
+          }
         >
           A#
         </button>
@@ -393,7 +418,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("C", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "C", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "C", synthesizer)
+          }
         >
           C
         </button>
@@ -402,7 +432,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("D", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "D", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "D", synthesizer)
+          }
         >
           D
         </button>
@@ -411,7 +446,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("E", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "E", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "E", synthesizer)
+          }
         >
           E
         </button>
@@ -420,7 +460,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("F", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "F", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "F", synthesizer)
+          }
         >
           F
         </button>
@@ -429,7 +474,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("G", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "G", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "G", synthesizer)
+          }
         >
           G
         </button>
@@ -438,7 +488,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("A", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "A", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "A", synthesizer)
+          }
         >
           A
         </button>
@@ -447,7 +502,12 @@ export default function Keyboard() {
           onMouseDown={() =>
             playNote("B", synthesizer, synthRef.current, tremolo)
           }
-          onMouseUp={() => stopNote(synthRef.current, tremolo)}
+          onMouseUp={() =>
+            stopNote(synthRef.current, tremolo, "B", synthesizer)
+          }
+          onMouseOut={() =>
+            stopNote(synthRef.current, tremolo, "B", synthesizer)
+          }
         >
           B
         </button>
@@ -458,11 +518,11 @@ export default function Keyboard() {
     tremolo.start();
     synth.triggerAttack(`${note}${synthesizer.octave}`, synthesizer.noteType);
   }
-  function stopNote(synth, tremolo) {
-    synth.triggerRelease();
+  function stopNote(synth, tremolo, note, synthesizer) {
+    synth.triggerRelease(`${note}${synthesizer.octave}`, "+0.1");
 
-    synth.onsilence(() => {
-      tremolo.stop();
-    });
+    // synth.onsilence(() => {
+    //   tremolo.stop();
+    // });
   }
 }
