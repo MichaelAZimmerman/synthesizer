@@ -35,9 +35,19 @@ function App() {
         <>
           <header>
             {username ? (
-              <h6 className="text-center">Welcome, {username}</h6>
+              <div className="space-between">
+                <img className="logo" src="mz101logo.png" />
+                <h6 className="text-center welcome">Welcome, {username}</h6>
+                <div className="logo" />
+              </div>
             ) : (
-              <h6 className="text-center">Please log in to access keyboard.</h6>
+              <div className="space-between">
+                <img className="logo" src="mz101logo.png" />
+                <h6 className="text-center welcome">
+                  Please log in to access keyboard.
+                </h6>
+                <div className="logo" />
+              </div>
             )}
           </header>
           <nav className="flex-wrap">
