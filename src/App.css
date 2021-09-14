@@ -19,6 +19,10 @@ footer {
   height: 46%;
   width: 46%;
 }
+.help-img {
+  height: 100%;
+  width: 100%;
+}
 nav {
   border-bottom: 2px solid rgb(34, 43, 51);
 }
