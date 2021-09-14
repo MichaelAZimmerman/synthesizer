@@ -21,7 +21,7 @@ export default function Keyboard() {
 
   synthRef.current = new Tone.Synth({
     envelope: {
-      attack: 0.01,
+      attack: 0.1,
       decay: 0.2,
       sustain: 0.2,
       release: 0.1,
@@ -132,7 +132,7 @@ export default function Keyboard() {
         {/* This DropdownButton 
                selects a note-length */}
         <div className="drop-down">
-          <DropdownButton
+          {/* <DropdownButton
             id="dropdown-basic-button"
             title={`Note Type/Length: ${synthesizer.noteType}`}
             variant="dark"
@@ -153,7 +153,7 @@ export default function Keyboard() {
             <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
               32nd Note
             </Dropdown.Item>
-          </DropdownButton>
+          </DropdownButton> */}
           <DropdownButton
             id="dropdown-basic-button"
             title={`Octave: ${synthesizer.octave}`}
