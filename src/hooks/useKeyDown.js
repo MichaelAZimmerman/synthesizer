@@ -12,5 +12,5 @@ export default function useKeyDown(key, action) {
     window.addEventListener("keydown", onKeyDown);
 
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, []);
+  }, [action]);
 }

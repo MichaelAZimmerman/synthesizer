@@ -12,5 +12,5 @@ export default function useKeyUp(key, action) {
     window.addEventListener("keyup", onKeyUp);
 
     return () => window.removeEventListener("keyup", onKeyUp);
-  }, []);
+  }, [action]);
 }

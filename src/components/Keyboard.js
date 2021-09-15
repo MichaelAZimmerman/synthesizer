@@ -1,4 +1,10 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, {
+  useContext,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
 import { SynthContext } from "../context";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -43,6 +49,26 @@ export default function Keyboard() {
   const [distOn, setDistOn] = useState(false);
   const [tremOn, setTremOn] = useState(false);
   const [delayOn, setDelayOn] = useState(false);
+
+  const playNote = useCallback(
+    (note, synthesizer, synth, tremolo) => {
+      tremolo.start();
+      synth.triggerAttack(`${note}${synthesizer.octave}`, synthesizer.noteType);
+    },
+    [synthesizer, tremolo, synthRef]
+  );
+  const stopNote = useCallback(
+    (synth, tremolo, note, synthesizer) => {
+      synth.triggerRelease(`${note}${synthesizer.octave}`, "+0.1");
+      tremolo.stop();
+
+      // synth.onsilence(() => {
+      //   tremolo.stop();
+      // });
+    },
+    [synthesizer, tremolo, synthRef]
+  );
+
   useEffect(() => {
     if (!synthesizer.distAmt == 0) {
       setDistOn(true);
@@ -467,16 +493,4 @@ export default function Keyboard() {
       </Modal>
     </div>
   );
-  function playNote(note, synthesizer, synth, tremolo) {
-    tremolo.start();
-    synth.triggerAttack(`${note}${synthesizer.octave}`, synthesizer.noteType);
-  }
-  function stopNote(synth, tremolo, note, synthesizer) {
-    synth.triggerRelease(`${note}${synthesizer.octave}`, "+0.1");
-    tremolo.stop();
-
-    // synth.onsilence(() => {
-    //   tremolo.stop();
-    // });
-  }
 }
