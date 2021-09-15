@@ -19,7 +19,8 @@ export default function Keyboard() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const synthesizer = useContext(SynthContext);
-  const comp = new Tone.Compressor(-30, 3).toDestination();
+  const vol = new Tone.Volume(synthesizer.volume).toDestination();
+  const comp = new Tone.Compressor(-30, 3).connect(vol);
   const tremolo = new Tone.Tremolo(synthesizer.tremAmt, 1).connect(comp);
   const pingPong = new Tone.PingPongDelay(
     synthesizer.pingPongRate,
@@ -223,6 +224,19 @@ export default function Keyboard() {
               8 - Highest Pitch
             </Dropdown.Item>
           </DropdownButton>
+          <div className="slider-sm">
+            <div className="slider-title-large">Volume</div>
+            <Slider
+              value={synthesizer.volume}
+              onChange={(e, newValue) => synthesizer.setVolume(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={2}
+              marks
+              min={-12}
+              max={12}
+              valueLabelDisplay="auto"
+            />
+          </div>
           <button onClick={() => handleShow()}>HELP</button>
         </div>
         {/* This DropdownButton 

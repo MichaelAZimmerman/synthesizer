@@ -10,6 +10,8 @@ export function SynthProvider(props) {
   const [tremAmt, setTremAmt] = useState(0);
   const [pingPongRate, setPingPongRate] = useState(0);
   const [pingPongDepth, setPingPongDepth] = useState(0);
+  const [volume, setVolume] = useState(0);
+
   return (
     <SynthContext.Provider
       value={{
@@ -27,6 +29,8 @@ export function SynthProvider(props) {
         setPingPongRate,
         pingPongDepth,
         setPingPongDepth,
+        volume,
+        setVolume,
       }}
     >
       {props.children}
