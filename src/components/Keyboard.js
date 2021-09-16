@@ -188,6 +188,7 @@ export default function Keyboard() {
       <div className="control-container">
         {/* This DropdownButton 
                selects a note-length */}
+        <div className="control-title">Oscillator 1</div>
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
@@ -220,7 +221,8 @@ export default function Keyboard() {
               8 - Highest Pitch
             </Dropdown.Item>
           </DropdownButton>
-          <button onClick={() => handleShow()}>?</button>
+          {/* help button  */}
+          {/* <button onClick={() => handleShow()}>?</button> */}
           <div className="slider-sm">
             <div className="slider-title-large lower">
               Osc 1 Volume: {synthesizer.volume}
@@ -272,7 +274,7 @@ export default function Keyboard() {
             <img className="wave" src="sawtooth.png" />
           )}
         </div>
-
+        <div className="control-title">Oscillator 2</div>
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
@@ -362,6 +364,7 @@ export default function Keyboard() {
         </div>
         {/* This Slider 
                selects a distortion amount */}
+        <div className="control-title">Effects</div>
         <div className="drop-down">
           {!distOn ? (
             <div className="effect-off" />

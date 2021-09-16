@@ -71,6 +71,17 @@ input {
   position: relative;
   top: 5px;
 }
+.control-title {
+  position: relative;
+  top: 3px;
+  background: linear-gradient(-90deg, #ccc, rgb(68, 104, 134) 100%);
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  text-align: left;
+  padding-left: 10px;
+  margin-bottom: 1px;
+  margin-left: 2px;
+}
 .drop-down {
   display: flex;
   align-items: center;
