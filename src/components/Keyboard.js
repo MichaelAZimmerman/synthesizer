@@ -12,12 +12,9 @@ import Slider from "@material-ui/core/Slider";
 import * as Tone from "tone";
 import useKeyDown from "../hooks/useKeyDown";
 import useKeyUp from "../hooks/useKeyUp";
-import { Modal, Button } from "react-bootstrap";
+import { Card, Accordion } from "react-bootstrap";
 
 export default function Keyboard() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const synthesizer = useContext(SynthContext);
   const limiter = new Tone.Limiter(-2).toDestination();
   const vol = new Tone.Volume(synthesizer.volume).connect(limiter);
@@ -478,6 +475,21 @@ export default function Keyboard() {
             />
           </div>
         </div>
+        <div>
+          <Accordion className="position-right">
+            <Card className="accordion">
+              <Accordion.Toggle as={Card.Header} eventKey="0">
+                Help
+              </Accordion.Toggle>
+
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <img className="help-img" src="keyboardHelp.png" />
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+        </div>
       </div>
       <div className="note-container-blk">
         <div className="note-halfspace"></div>
@@ -582,19 +594,6 @@ export default function Keyboard() {
           B
         </button>
       </div>
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title className="modal-header">Help</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="modal-body">
-          <img className="help-img" src="keyboardHelp.png" />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 }
