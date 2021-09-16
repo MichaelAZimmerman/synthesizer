@@ -21,7 +21,8 @@ export default function Keyboard() {
   const synthesizer = useContext(SynthContext);
   const limiter = new Tone.Limiter(-2).toDestination();
   const vol = new Tone.Volume(synthesizer.volume).connect(limiter);
-  const comp = new Tone.Compressor(-30, 3).connect(vol);
+  const volTwo = new Tone.Volume(synthesizer.volumeTwo).connect(limiter);
+  const comp = new Tone.Compressor(-30, 3).connect(limiter);
   const tremolo = new Tone.Tremolo(synthesizer.tremAmt, 1)
     .connect(comp)
     .start();
@@ -40,7 +41,16 @@ export default function Keyboard() {
       sustain: 0.2,
       release: 0.1,
     },
-  }).chain(dist, tremolo);
+  }).chain(vol, dist, tremolo);
+  const synthTwoRef = new Tone.PolySynth({
+    maxPolyphony: 24,
+    envelope: {
+      attack: 0.1,
+      decay: 0.2,
+      sustain: 0.2,
+      release: 0.1,
+    },
+  }).chain(volTwo, dist, tremolo);
   // synthRef.current = new Tone.PolySynth({
   //   envelope: {
   //     attack: 0.1,
@@ -49,22 +59,27 @@ export default function Keyboard() {
   //     release: 0.1,
   //   },
   // }).chain(dist, tremolo, pingPong, comp);
-
   synthRef.options.oscillator.type = synthesizer.oscType;
+  synthTwoRef.options.oscillator.type = synthesizer.oscTypeTwo;
   const [distOn, setDistOn] = useState(false);
   const [tremOn, setTremOn] = useState(false);
   const [delayOn, setDelayOn] = useState(false);
 
   const playNote = useCallback(
-    (note, synthesizer, synth, tremolo) => {
+    (note, synthesizer, synth, synthTwo) => {
       // tremolo.start();
       synth.triggerAttack(`${note}${synthesizer.octave}`, synthesizer.noteType);
+      synthTwo.triggerAttack(
+        `${note}${synthesizer.octaveTwo}`,
+        synthesizer.noteType
+      );
     },
     [synthesizer, tremolo, synthRef]
   );
   const stopNote = useCallback(
-    (synth, tremolo, note, synthesizer) => {
+    (synth, synthTwo, note, synthesizer) => {
       synth.triggerRelease(`${note}${synthesizer.octave}`, "+0.1");
+      synthTwo.triggerRelease(`${note}${synthesizer.octaveTwo}`, "+0.1");
       // tremolo.stop();
 
       // synth.onsilence(() => {
@@ -97,76 +112,76 @@ export default function Keyboard() {
   }, [synthesizer.pingPongRate, delayOn, setDelayOn]);
 
   useKeyDown("z", () => {
-    playNote("C", synthesizer, synthRef, tremolo);
+    playNote("C", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("z", () => {
-    stopNote(synthRef, tremolo, "C", synthesizer);
+    stopNote(synthRef, synthTwoRef, "C", synthesizer);
   });
   useKeyDown("s", () => {
-    playNote("C#", synthesizer, synthRef, tremolo);
+    playNote("C#", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("s", () => {
-    stopNote(synthRef, tremolo, "C#", synthesizer);
+    stopNote(synthRef, synthTwoRef, "C#", synthesizer);
   });
   useKeyDown("x", () => {
-    playNote("D", synthesizer, synthRef, tremolo);
+    playNote("D", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("x", () => {
-    stopNote(synthRef, tremolo, "D", synthesizer);
+    stopNote(synthRef, synthTwoRef, "D", synthesizer);
   });
   useKeyDown("d", () => {
-    playNote("D#", synthesizer, synthRef, tremolo);
+    playNote("D#", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("d", () => {
-    stopNote(synthRef, tremolo, "D#", synthesizer);
+    stopNote(synthRef, synthTwoRef, "D#", synthesizer);
   });
   useKeyDown("c", () => {
-    playNote("E", synthesizer, synthRef, tremolo);
+    playNote("E", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("c", () => {
-    stopNote(synthRef, tremolo, "E", synthesizer);
+    stopNote(synthRef, synthTwoRef, "E", synthesizer);
   });
   useKeyDown("v", () => {
-    playNote("F", synthesizer, synthRef, tremolo);
+    playNote("F", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("v", () => {
-    stopNote(synthRef, tremolo, "F", synthesizer);
+    stopNote(synthRef, synthTwoRef, "F", synthesizer);
   });
   useKeyDown("g", () => {
-    playNote("F#", synthesizer, synthRef, tremolo);
+    playNote("F#", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("g", () => {
-    stopNote(synthRef, tremolo, "F#", synthesizer);
+    stopNote(synthRef, synthTwoRef, "F#", synthesizer);
   });
   useKeyDown("b", () => {
-    playNote("G", synthesizer, synthRef, tremolo);
+    playNote("G", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("b", () => {
-    stopNote(synthRef, tremolo, "G", synthesizer);
+    stopNote(synthRef, synthTwoRef, "G", synthesizer);
   });
   useKeyDown("h", () => {
-    playNote("G#", synthesizer, synthRef, tremolo);
+    playNote("G#", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("h", () => {
-    stopNote(synthRef, tremolo, "G#", synthesizer);
+    stopNote(synthRef, synthTwoRef, "G#", synthesizer);
   });
   useKeyDown("n", () => {
-    playNote("A", synthesizer, synthRef, tremolo);
+    playNote("A", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("n", () => {
-    stopNote(synthRef, tremolo, "A", synthesizer);
+    stopNote(synthRef, synthTwoRef, "A", synthesizer);
   });
   useKeyDown("j", () => {
-    playNote("A#", synthesizer, synthRef, tremolo);
+    playNote("A#", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("j", () => {
-    stopNote(synthRef, tremolo, "A#", synthesizer);
+    stopNote(synthRef, synthTwoRef, "A#", synthesizer);
   });
   useKeyDown("m", () => {
-    playNote("B", synthesizer, synthRef, tremolo);
+    playNote("B", synthesizer, synthRef, synthTwoRef);
   });
   useKeyUp("m", () => {
-    stopNote(synthRef, tremolo, "B", synthesizer);
+    stopNote(synthRef, synthTwoRef, "B", synthesizer);
   });
   return (
     <div className="keyboard">
@@ -174,28 +189,6 @@ export default function Keyboard() {
         {/* This DropdownButton 
                selects a note-length */}
         <div className="drop-down">
-          {/* <DropdownButton
-            id="dropdown-basic-button"
-            title={`Note Type/Length: ${synthesizer.noteType}`}
-            variant="dark"
-            size="sm"
-          >
-            <Dropdown.Item onSelect={() => synthesizer.setNoteType("1n")}>
-              Whole Note
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setNoteType("4n")}>
-              Quarter Note
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setNoteType("8n")}>
-              8th Note
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setNoteType("16n")}>
-              16th Note
-            </Dropdown.Item>
-            <Dropdown.Item onSelect={() => synthesizer.setNoteType("32n")}>
-              32nd Note
-            </Dropdown.Item>
-          </DropdownButton> */}
           <DropdownButton
             id="dropdown-basic-button"
             title={`Octave: ${synthesizer.octave}`}
@@ -274,6 +267,92 @@ export default function Keyboard() {
             <img className="wave" src="square.png" />
           )}
           {synthesizer.oscType === "sawtooth" && (
+            <img className="wave" src="sawtooth.png" />
+          )}
+        </div>
+
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Octave: ${synthesizer.octaveTwo}`}
+            variant="dark"
+            size="sm"
+          >
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(1)}>
+              1 - Lowest Pitch
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(2)}>
+              2
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(3)}>
+              3
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(4)}>
+              4
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(5)}>
+              5
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(6)}>
+              6
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(7)}>
+              7
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOctaveTwo(8)}>
+              8 - Highest Pitch
+            </Dropdown.Item>
+          </DropdownButton>
+          <div className="slider-sm">
+            <div className="slider-title-large">Volume</div>
+            <Slider
+              value={synthesizer.volumeTwo}
+              onChange={(e, newValue) => synthesizer.setVolumeTwo(newValue)}
+              aria-labelledby="discrete-slider-small-steps"
+              step={2}
+              marks
+              min={-12}
+              max={12}
+              valueLabelDisplay="auto"
+            />
+          </div>
+        </div>
+        {/* This DropdownButton 
+               selects a wave-form */}
+        <div className="drop-down">
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Waveform: ${synthesizer.oscTypeTwo}`}
+            variant="dark"
+            size="sm"
+          >
+            <Dropdown.Item
+              onSelect={() => synthesizer.setOscTypeTwo("triangle")}
+            >
+              Triangle
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscTypeTwo("square")}>
+              Square
+            </Dropdown.Item>
+            <Dropdown.Item onSelect={() => synthesizer.setOscTypeTwo("sine")}>
+              Sine
+            </Dropdown.Item>
+            <Dropdown.Item
+              onSelect={() => synthesizer.setOscTypeTwo("sawtooth")}
+            >
+              Sawtooth
+            </Dropdown.Item>
+          </DropdownButton>
+          {synthesizer.oscTypeTwo === "sine" && (
+            <img className="wave" src="sine.png" />
+          )}
+          {synthesizer.oscTypeTwo === "triangle" && (
+            <img className="wave" src="triangle.png" />
+          )}
+          {synthesizer.oscTypeTwo === "square" && (
+            <img className="wave" src="square.png" />
+          )}
+          {synthesizer.oscTypeTwo === "sawtooth" && (
             <img className="wave" src="sawtooth.png" />
           )}
         </div>
@@ -397,42 +476,42 @@ export default function Keyboard() {
         <div className="note-halfspace"></div>
         <button
           className="note-blk"
-          onMouseDown={() => playNote("C#", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "C#", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "C#", synthesizer)}
+          onMouseDown={() => playNote("C#", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "C#", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "C#", synthesizer)}
         >
           C#
         </button>
         <button
           className="note-blk"
-          onMouseDown={() => playNote("D#", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "D#", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "D#", synthesizer)}
+          onMouseDown={() => playNote("D#", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "D#", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "D#", synthesizer)}
         >
           D#
         </button>
         <div className="note-space"></div>
         <button
           className="note-blk"
-          onMouseDown={() => playNote("F#", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "F#", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "F#", synthesizer)}
+          onMouseDown={() => playNote("F#", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "F#", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "F#", synthesizer)}
         >
           F#
         </button>
         <button
           className="note-blk"
-          onMouseDown={() => playNote("G#", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "G#", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "G#", synthesizer)}
+          onMouseDown={() => playNote("G#", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "G#", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "G#", synthesizer)}
         >
           G#
         </button>
         <button
           className="note-blk"
-          onMouseDown={() => playNote("A#", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "A#", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "A#", synthesizer)}
+          onMouseDown={() => playNote("A#", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "A#", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "A#", synthesizer)}
         >
           A#
         </button>
@@ -441,57 +520,57 @@ export default function Keyboard() {
       <div className="note-container-wht">
         <button
           className="note"
-          onMouseDown={() => playNote("C", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "C", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "C", synthesizer)}
+          onMouseDown={() => playNote("C", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "C", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "C", synthesizer)}
         >
           C
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("D", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "D", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "D", synthesizer)}
+          onMouseDown={() => playNote("D", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "D", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "D", synthesizer)}
         >
           D
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("E", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "E", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "E", synthesizer)}
+          onMouseDown={() => playNote("E", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "E", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "E", synthesizer)}
         >
           E
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("F", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "F", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "F", synthesizer)}
+          onMouseDown={() => playNote("F", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "F", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "F", synthesizer)}
         >
           F
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("G", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "G", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "G", synthesizer)}
+          onMouseDown={() => playNote("G", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "G", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "G", synthesizer)}
         >
           G
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("A", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "A", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "A", synthesizer)}
+          onMouseDown={() => playNote("A", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "A", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "A", synthesizer)}
         >
           A
         </button>
         <button
           className="note"
-          onMouseDown={() => playNote("B", synthesizer, synthRef, tremolo)}
-          onMouseUp={() => stopNote(synthRef, tremolo, "B", synthesizer)}
-          onMouseOut={() => stopNote(synthRef, tremolo, "B", synthesizer)}
+          onMouseDown={() => playNote("B", synthesizer, synthRef, synthTwoRef)}
+          onMouseUp={() => stopNote(synthRef, synthTwoRef, "B", synthesizer)}
+          onMouseOut={() => stopNote(synthRef, synthTwoRef, "B", synthesizer)}
         >
           B
         </button>
