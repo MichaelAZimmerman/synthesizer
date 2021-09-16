@@ -483,7 +483,7 @@ export default function Keyboard() {
               </Accordion.Toggle>
 
               <Accordion.Collapse eventKey="0">
-                <Card.Body>
+                <Card.Body className="cursor">
                   <img className="help-img" src="keyboardHelp.png" />
                 </Card.Body>
               </Accordion.Collapse>
