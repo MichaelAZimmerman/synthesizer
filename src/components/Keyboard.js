@@ -19,9 +19,12 @@ export default function Keyboard() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const synthesizer = useContext(SynthContext);
-  const vol = new Tone.Volume(synthesizer.volume).toDestination();
+  const limiter = new Tone.Limiter(-2).toDestination();
+  const vol = new Tone.Volume(synthesizer.volume).connect(limiter);
   const comp = new Tone.Compressor(-30, 3).connect(vol);
-  const tremolo = new Tone.Tremolo(synthesizer.tremAmt, 1).connect(comp);
+  const tremolo = new Tone.Tremolo(synthesizer.tremAmt, 1)
+    .connect(comp)
+    .start();
   const pingPong = new Tone.PingPongDelay(
     synthesizer.pingPongRate,
     synthesizer.pingPongDepth
@@ -30,6 +33,7 @@ export default function Keyboard() {
   const dist = new Tone.Distortion(synthesizer.distAmt).connect(pingPong);
 
   const synthRef = new Tone.PolySynth({
+    maxPolyphony: 12,
     envelope: {
       attack: 0.1,
       decay: 0.2,
@@ -37,7 +41,7 @@ export default function Keyboard() {
       release: 0.1,
     },
   }).chain(dist, tremolo);
-
+  console.log(synthRef);
   // synthRef.current = new Tone.PolySynth({
   //   envelope: {
   //     attack: 0.1,
@@ -54,7 +58,7 @@ export default function Keyboard() {
 
   const playNote = useCallback(
     (note, synthesizer, synth, tremolo) => {
-      tremolo.start();
+      // tremolo.start();
       synth.triggerAttack(`${note}${synthesizer.octave}`, synthesizer.noteType);
     },
     [synthesizer, tremolo, synthRef]
