@@ -33,7 +33,7 @@ export default function Keyboard() {
   const dist = new Tone.Distortion(synthesizer.distAmt).connect(pingPong);
 
   const synthRef = new Tone.PolySynth({
-    maxPolyphony: 12,
+    maxPolyphony: 24,
     envelope: {
       attack: 0.1,
       decay: 0.2,
@@ -41,7 +41,6 @@ export default function Keyboard() {
       release: 0.1,
     },
   }).chain(dist, tremolo);
-  console.log(synthRef);
   // synthRef.current = new Tone.PolySynth({
   //   envelope: {
   //     attack: 0.1,
