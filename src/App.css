@@ -67,13 +67,17 @@ input {
   font-size: 12px;
   padding-top: 10px;
 }
-
+.lower {
+  position: relative;
+  top: 5px;
+}
 .drop-down {
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
-  width: 340px;
+  width: 360px;
+  max-height: 60px;
   margin: auto;
   margin-top: 5px;
   padding: 5px;
@@ -147,7 +151,7 @@ input {
   border-top: 2px solid rgb(34, 43, 51);
 }
 .control-container {
-  width: 350px;
+  width: 375px;
   display: flex;
   flex-direction: column;
   background-color: #ccc;
@@ -169,7 +173,7 @@ input {
 }
 .note-container-blk {
   height: 100px;
-  width: 350px;
+  width: 375px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -181,7 +185,7 @@ input {
 }
 .note-container-wht {
   height: 75px;
-  width: 350px;
+  width: 375px;
   display: flex;
   align-items: center;
   padding-bottom: 25px;

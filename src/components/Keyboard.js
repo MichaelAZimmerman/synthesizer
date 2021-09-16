@@ -191,7 +191,7 @@ export default function Keyboard() {
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Octave: ${synthesizer.octave}`}
+            title={`Osc 1 Octave: ${synthesizer.octave}`}
             variant="dark"
             size="sm"
           >
@@ -220,27 +220,29 @@ export default function Keyboard() {
               8 - Highest Pitch
             </Dropdown.Item>
           </DropdownButton>
+          <button onClick={() => handleShow()}>?</button>
           <div className="slider-sm">
-            <div className="slider-title-large">Volume</div>
+            <div className="slider-title-large lower">
+              Osc 1 Volume: {synthesizer.volume}
+            </div>
             <Slider
               value={synthesizer.volume}
               onChange={(e, newValue) => synthesizer.setVolume(newValue)}
               aria-labelledby="discrete-slider-small-steps"
-              step={2}
+              step={5}
               marks
-              min={-12}
-              max={12}
+              min={-30}
+              max={10}
               valueLabelDisplay="auto"
             />
           </div>
-          <button onClick={() => handleShow()}>HELP</button>
         </div>
         {/* This DropdownButton 
                selects a wave-form */}
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Waveform: ${synthesizer.oscType}`}
+            title={`Waveform 1: ${synthesizer.oscType}`}
             variant="dark"
             size="sm"
           >
@@ -274,7 +276,7 @@ export default function Keyboard() {
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Octave: ${synthesizer.octaveTwo}`}
+            title={`Osc 2 Octave: ${synthesizer.octaveTwo}`}
             variant="dark"
             size="sm"
           >
@@ -304,15 +306,17 @@ export default function Keyboard() {
             </Dropdown.Item>
           </DropdownButton>
           <div className="slider-sm">
-            <div className="slider-title-large">Volume</div>
+            <div className="slider-title-large lower">
+              Osc 2 Volume: {synthesizer.volumeTwo}
+            </div>
             <Slider
               value={synthesizer.volumeTwo}
               onChange={(e, newValue) => synthesizer.setVolumeTwo(newValue)}
               aria-labelledby="discrete-slider-small-steps"
-              step={2}
+              step={5}
               marks
-              min={-12}
-              max={12}
+              min={-30}
+              max={10}
               valueLabelDisplay="auto"
             />
           </div>
@@ -322,7 +326,7 @@ export default function Keyboard() {
         <div className="drop-down">
           <DropdownButton
             id="dropdown-basic-button"
-            title={`Waveform: ${synthesizer.oscTypeTwo}`}
+            title={`Waveform 2: ${synthesizer.oscTypeTwo}`}
             variant="dark"
             size="sm"
           >
@@ -365,7 +369,7 @@ export default function Keyboard() {
             <div className="effect-on" />
           )}
           <div className="slider-title-large">Distortion</div>
-          <div className="slider-sm">
+          <div className="slider-sm lower">
             <Slider
               value={synthesizer.distAmt}
               onChange={(e, newValue) => synthesizer.setDistAmt(newValue)}
@@ -387,7 +391,7 @@ export default function Keyboard() {
             <div className="effect-on" />
           )}
           <div className="slider-title-large">Tremolo Rate</div>
-          <div className="slider-sm">
+          <div className="slider-sm lower">
             <Slider
               value={synthesizer.tremAmt}
               onChange={(e, newValue) => synthesizer.setTremAmt(newValue)}
@@ -458,7 +462,7 @@ export default function Keyboard() {
             </Dropdown.Item>
           </DropdownButton>
           <div className="slider-sm">
-            <div className="slider-title-large">Delay Depth</div>
+            <div className="slider-title-large lower">Delay Depth</div>
             <Slider
               value={synthesizer.pingPongDepth}
               onChange={(e, newValue) => synthesizer.setPingPongDepth(newValue)}
