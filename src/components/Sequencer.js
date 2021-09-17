@@ -14,7 +14,7 @@ export default function Sequencer() {
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
-    p5.createCanvas(350, 80).parent(canvasParentRef);
+    p5.createCanvas(350, 40).parent(canvasParentRef);
   };
 
   const draw = (p5) => {
@@ -33,7 +33,7 @@ export default function Sequencer() {
     for (let i = 0; i < values.length; i++) {
       const amplitude = values[i];
       const x = p5.map(i, 20, values.length - 1, 0, 350);
-      const y = 80 / 2 + amplitude * 40;
+      const y = 40 / 2 + amplitude * 20;
       // Place vertex
       p5.vertex(x, y);
     }

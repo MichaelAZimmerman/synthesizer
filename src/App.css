@@ -110,12 +110,16 @@ input {
   border: 2px solid lightslategray;
 }
 .visualizer {
-  height: 84px;
+  background-color: rgb(34, 97, 74);
+  height: 54px;
   width: 354px;
   border: 2px solid rgb(25, 54, 44);
   position: relative;
   left: 9px;
   margin-bottom: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
 }
 .tempo {
   display: flex;
