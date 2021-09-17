@@ -21,11 +21,24 @@ export default function Sequencer() {
     const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
     p5.background(34, 97, 74, 255);
     p5.stroke(74, 212, 109, 255);
-    p5.strokeWeight(200 * 0.0175);
+    p5.strokeWeight(100 * 0.0175);
     p5.noFill();
 
-    p5.circle(175, 40, 200 * 0.4 * scale);
+    // p5.circle(175, 40, 200 * 0.4 * scale);
 
+    // if (play) {
+    const values = analyser.getValue();
+
+    p5.beginShape();
+    for (let i = 0; i < values.length; i++) {
+      const amplitude = values[i];
+      const x = p5.map(i, 20, values.length - 1, 0, 350);
+      const y = 80 / 2 + amplitude * 40;
+      // Place vertex
+      p5.vertex(x, y);
+    }
+    p5.endShape();
+    // }
     // NOTE: Do not use setState in the draw function or in functions that are executed
     // in the draw function...
     // please use normal variables or class properties for these purposes
@@ -54,10 +67,12 @@ export default function Sequencer() {
   const leadRef = useRef(null);
   const distRef = useRef(null);
   const meter = new Tone.Meter();
+  const analyser = new Tone.Analyser("waveform", 128);
   // const dist = new Distortion(1).toDestination();
   useEffect(() => {
     distRef.current = new Tone.Distortion(1).toDestination();
     kickRef.current = new Tone.MembraneSynth().toDestination();
+
     snareRef.current = new Tone.MembraneSynth({
       volume: 3,
       detune: 2400,
@@ -114,7 +129,7 @@ export default function Sequencer() {
       oscillator: { type: "sawtooth" },
     }).toDestination();
   }, []);
-  Tone.Destination.connect(meter);
+  Tone.Destination.chain(analyser, meter);
 
   // const bassSynth = new Tone.Synth({
   //   envelope: {
