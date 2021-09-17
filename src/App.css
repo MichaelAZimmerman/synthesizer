@@ -93,6 +93,7 @@ input {
   padding-left: 10px;
   margin-bottom: 1px;
   margin-left: 2px;
+  text-shadow: 1px 1px rgb(34, 43, 51);
 }
 .drop-down {
   display: flex;
@@ -181,10 +182,11 @@ input {
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 5px;
+  padding-top: 1px;
   margin: auto;
   margin-top: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 }
 .seq-note-container {
   height: 44px;
@@ -213,8 +215,8 @@ input {
   align-items: center;
   padding-bottom: 25px;
   justify-content: center;
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
   background-color: #ccc;
   margin: auto;
   border-left: 5px solid #ccc;
@@ -236,11 +238,11 @@ input {
 }
 .note-halfspace {
   height: 80px;
-  width: 24px;
+  width: 26px;
 }
 .note-space {
   height: 80px;
-  width: 44px;
+  width: 52px;
 }
 .seq-note-halfspace {
   height: 40px;
@@ -252,23 +254,23 @@ input {
 }
 .note {
   height: 160px;
-  width: 40px;
+  width: 50px;
   background: white;
   border: 2px solid lightslategray;
   border-radius: 5px;
-  margin: 2px;
+  margin: 1px;
 
   position: relative;
   top: -40px;
 }
 .note-blk {
   height: 70px;
-  width: 40px;
+  width: 50px;
   background: rgb(0, 0, 0);
   color: white;
   border: 2px solid lightslategray;
   border-radius: 5px;
-  margin: 2px;
+  margin: 1px;
   position: relative;
   top: -17px;
   z-index: 1;
