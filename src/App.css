@@ -126,13 +126,14 @@ input {
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
-  width: 350px;
+  width: 354px;
   height: 40px;
   margin: auto;
   padding-top: 5px;
   padding-left: 30px;
   padding-right: 25px;
   background-color: rgb(19, 33, 44);
+  border: 2px solid rgb(46, 54, 59);
 }
 .link {
   flex-basis: calc(100% / 5 - 10px);

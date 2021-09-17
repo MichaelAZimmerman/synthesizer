@@ -9,8 +9,6 @@ import Slider from "@material-ui/core/Slider";
 import Sketch from "react-p5";
 
 export default function Sequencer() {
-  let x = 40;
-  let y = 40;
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
@@ -18,16 +16,18 @@ export default function Sequencer() {
   };
 
   const draw = (p5) => {
-    const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
+    // const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
+    const values = analyser.getValue();
+
     p5.background(34, 97, 74, 255);
     p5.stroke(74, 212, 109, 255);
     p5.strokeWeight(100 * 0.0175);
     p5.noFill();
+    // p5.fill(74, 212, 109, 125);
 
-    // p5.circle(175, 40, 200 * 0.4 * scale);
+    // p5.circle(175, 20, -100 * 0.1 * scale);
 
     // if (play) {
-    const values = analyser.getValue();
 
     p5.beginShape();
     for (let i = 0; i < values.length; i++) {
@@ -67,7 +67,7 @@ export default function Sequencer() {
   const leadRef = useRef(null);
   const distRef = useRef(null);
   const meter = new Tone.Meter();
-  const analyser = new Tone.Analyser("waveform", 128);
+  const analyser = new Tone.Analyser("waveform", 512);
   // const dist = new Distortion(1).toDestination();
   useEffect(() => {
     distRef.current = new Tone.Distortion(1).toDestination();
