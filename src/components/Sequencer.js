@@ -6,8 +6,30 @@ import KeySelector from "./Sequences/KeySelector";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
 import Keys from "./Sequences/Keys";
 import Slider from "@material-ui/core/Slider";
+import Sketch from "react-p5";
 
 export default function Sequencer() {
+  let x = 40;
+  let y = 40;
+  const setup = (p5, canvasParentRef) => {
+    // use parent to render the canvas in this ref
+    // (without that p5 will render the canvas outside of your component)
+    p5.createCanvas(350, 80).parent(canvasParentRef);
+  };
+
+  const draw = (p5) => {
+    const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
+    p5.background(34, 97, 74, 255);
+    p5.stroke(74, 212, 109, 255);
+    p5.strokeWeight(200 * 0.0175);
+    p5.noFill();
+
+    p5.circle(175, 40, 200 * 0.4 * scale);
+
+    // NOTE: Do not use setState in the draw function or in functions that are executed
+    // in the draw function...
+    // please use normal variables or class properties for these purposes
+  };
   // const context = new Tone.Context({ latencyHint: "playback" });
   // // set this context as the global Context
 
@@ -31,6 +53,7 @@ export default function Sequencer() {
   const bassRef = useRef(null);
   const leadRef = useRef(null);
   const distRef = useRef(null);
+  const meter = new Tone.Meter();
   // const dist = new Distortion(1).toDestination();
   useEffect(() => {
     distRef.current = new Tone.Distortion(1).toDestination();
@@ -91,6 +114,7 @@ export default function Sequencer() {
       oscillator: { type: "sawtooth" },
     }).toDestination();
   }, []);
+  Tone.Destination.connect(meter);
 
   // const bassSynth = new Tone.Synth({
   //   envelope: {
@@ -325,6 +349,9 @@ export default function Sequencer() {
 
   return (
     <div className="sequencer">
+      <div className="visualizer">
+        <Sketch setup={setup} draw={draw} />
+      </div>
       <div className="tempo">
         <p className="slider-title">Tempo ({tempo} BPM):</p>
         <div className="slider-sm">

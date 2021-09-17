@@ -109,6 +109,14 @@ input {
   background-color: rgb(19, 33, 44);
   border: 2px solid lightslategray;
 }
+.visualizer {
+  height: 84px;
+  width: 354px;
+  border: 2px solid rgb(25, 54, 44);
+  position: relative;
+  left: 9px;
+  margin-bottom: 5px;
+}
 .tempo {
   display: flex;
   align-items: center;
