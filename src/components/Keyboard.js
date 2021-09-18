@@ -13,8 +13,45 @@ import * as Tone from "tone";
 import useKeyDown from "../hooks/useKeyDown";
 import useKeyUp from "../hooks/useKeyUp";
 import { Card, Accordion } from "react-bootstrap";
+import Sketch from "react-p5";
 
 export default function Keyboard() {
+  const setup = (p5, canvasParentRef) => {
+    // use parent to render the canvas in this ref
+    // (without that p5 will render the canvas outside of your component)
+    p5.createCanvas(350, 40).parent(canvasParentRef);
+  };
+
+  const draw = (p5) => {
+    // const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
+    const values = analyser.getValue();
+
+    p5.background(34, 97, 74, 255);
+    p5.stroke(74, 212, 109, 255);
+    p5.strokeWeight(100 * 0.0175);
+    p5.noFill();
+    // p5.fill(74, 212, 109, 125);
+
+    // p5.circle(175, 20, -100 * 0.1 * scale);
+
+    // if (play) {
+
+    p5.beginShape();
+    for (let i = 0; i < values.length; i++) {
+      const amplitude = values[i];
+      const x = p5.map(i, 20, values.length - 1, 0, 350);
+      const y = 40 / 2 + amplitude * -20;
+      // Place vertex
+      p5.vertex(x, y);
+    }
+    p5.endShape();
+    // }
+    // NOTE: Do not use setState in the draw function or in functions that are executed
+    // in the draw function...
+    // please use normal variables or class properties for these purposes
+  };
+  const analyser = new Tone.Analyser("waveform", 512);
+  Tone.Destination.connect(analyser);
   const synthesizer = useContext(SynthContext);
   const limiter = new Tone.Limiter(-2).toDestination();
   const vol = new Tone.Volume(synthesizer.volume).connect(limiter);
@@ -183,6 +220,9 @@ export default function Keyboard() {
   return (
     <div className="keyboard">
       <div className="control-container">
+        <div className="visualizer-two">
+          <Sketch setup={setup} draw={draw} />
+        </div>
         {/* This DropdownButton 
                selects a note-length */}
         <div className="control-title">Oscillator 1</div>

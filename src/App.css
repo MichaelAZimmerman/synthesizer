@@ -109,6 +109,7 @@ input {
   background-color: rgb(19, 33, 44);
   border: 2px solid lightslategray;
 }
+.visualizer-two,
 .visualizer {
   background-color: rgb(34, 97, 74);
   height: 54px;
@@ -120,6 +121,10 @@ input {
   padding-top: 5px;
   padding-bottom: 5px;
   border-radius: 5px;
+}
+.visualizer-two {
+  left: 5px;
+  top: 2px;
 }
 .tempo {
   display: flex;
@@ -192,10 +197,7 @@ input {
   display: flex;
   flex-direction: column;
   background-color: #ccc;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
-  padding-top: 1px;
+  padding: 5px;
   margin: auto;
   margin-top: 10px;
   border-top-left-radius: 15px;
