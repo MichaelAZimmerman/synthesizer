@@ -16,7 +16,7 @@ export default function Sequencer() {
   };
 
   const draw = (p5) => {
-    const opacity = p5.map(meter.getValue(), -150, 0, 0, 255, true);
+    const opacity = p5.map(meter.getValue(), -150, 0, 50, 255, true);
     const values = analyser.getValue();
 
     p5.background(34, 97, 74, 255);
