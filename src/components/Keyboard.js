@@ -23,11 +23,10 @@ export default function Keyboard() {
   };
 
   const draw = (p5) => {
-    // const scale = p5.map(meter.getValue(), -100, -20, 5, 1, true);
+    const opacity = p5.map(meter.getValue(), -150, 0, 0, 255, true);
     const values = analyser.getValue();
-
     p5.background(34, 97, 74, 255);
-    p5.stroke(74, 212, 109, 255);
+    p5.stroke(74, 212, 109, opacity);
     p5.strokeWeight(100 * 0.0175);
     p5.noFill();
     // p5.fill(74, 212, 109, 125);
@@ -50,7 +49,9 @@ export default function Keyboard() {
     // in the draw function...
     // please use normal variables or class properties for these purposes
   };
+  const meter = new Tone.Meter();
   const analyser = new Tone.Analyser("waveform", 512);
+  Tone.Destination.connect(meter);
   Tone.Destination.connect(analyser);
   const synthesizer = useContext(SynthContext);
   const limiter = new Tone.Limiter(-2).toDestination();
