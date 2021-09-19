@@ -10,7 +10,8 @@ import Sketch from "react-p5";
 
 export default function Sequencer() {
   const [squareMeter, setSquareMeter] = useState(false);
-  const [oscilloscope, setOscilloscope] = useState(true);
+  const [oscilloscope, setOscilloscope] = useState(false);
+  const [circleMeter, setCircleMeter] = useState(true);
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
@@ -27,6 +28,11 @@ export default function Sequencer() {
     const scaleFour = p5.map(meterBass.getValue(), -30, -10, 0, 40, true);
     const scaleFive = p5.map(meterLead.getValue(), -30, 0, 0, 40, true);
     const values = analyser.getValue();
+    const width = p5.map(meterKick.getValue(), -30, 0, 1, 50, true);
+    const widthTwo = p5.map(meterSnare.getValue(), -40, 0, 1, 50, true);
+    const widthThree = p5.map(meterHats.getValue(), -40, -10, 1, 50, true);
+    const widthFour = p5.map(meterBass.getValue(), -30, -10, 1, 50, true);
+    const widthFive = p5.map(meterLead.getValue(), -30, 0, 1, 50, true);
 
     p5.background(34, 97, 74, 255);
 
@@ -87,6 +93,28 @@ export default function Sequencer() {
       p5.fill(74, 212, 109, opacity);
       p5.strokeWeight(0);
       p5.text(`Oscilloscope`, 2, 10);
+    } else if (circleMeter) {
+      p5.stroke(74, 212, 109, opacity);
+
+      p5.noFill();
+      p5.strokeWeight(width);
+      p5.circle(175, 20, 50);
+      p5.strokeWeight(widthTwo);
+      p5.circle(175, 20, 110);
+      p5.strokeWeight(widthThree);
+      p5.circle(175, 20, 170);
+      p5.strokeWeight(widthFour);
+      p5.circle(175, 20, 230);
+      p5.strokeWeight(widthFive);
+      p5.circle(175, 20, 290);
+
+      p5.strokeWeight(100 * 0.0175);
+      p5.fill(34, 97, 74, 255);
+      p5.rect(0, 0, 58, 14);
+
+      p5.fill(74, 212, 109, opacity);
+      p5.strokeWeight(0);
+      p5.text(`Circle Meter`, 2, 10);
     }
   };
   // const context = new Tone.Context({ latencyHint: "playback" });
@@ -437,8 +465,8 @@ export default function Sequencer() {
           <div
             className="visual-changer"
             onClick={() => {
-              setSquareMeter(true);
               setOscilloscope(false);
+              setSquareMeter(true);
             }}
           >
             Click here to change visualization mode
@@ -449,6 +477,18 @@ export default function Sequencer() {
             className="visual-changer"
             onClick={() => {
               setSquareMeter(false);
+              setCircleMeter(true);
+            }}
+          >
+            Click here to change visualization mode
+          </div>
+        )}
+        {circleMeter && (
+          <div
+            className="visual-changer"
+            onClick={() => {
+              setCircleMeter(false);
+
               setOscilloscope(true);
             }}
           >
