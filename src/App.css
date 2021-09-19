@@ -112,7 +112,7 @@ input {
 .visualizer-two,
 .visualizer {
   background-color: rgb(34, 97, 74);
-  height: 54px;
+  height: 68px;
   width: 354px;
   border: 2px solid rgb(25, 54, 44);
   position: relative;
@@ -125,6 +125,16 @@ input {
 .visualizer-two {
   left: 5px;
   top: 2px;
+  height: 54px;
+}
+.visual-changer {
+  color: rgb(61, 160, 86);
+  font-size: 9px;
+  position: relative;
+  top: 0px;
+  border-top: 1px solid rgb(37, 126, 71);
+  line-height: 11px;
+  cursor: pointer;
 }
 .tempo {
   display: flex;

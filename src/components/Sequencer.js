@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
 import { Modal, Button } from "react-bootstrap";
@@ -9,39 +9,85 @@ import Slider from "@material-ui/core/Slider";
 import Sketch from "react-p5";
 
 export default function Sequencer() {
+  const [squareMeter, setSquareMeter] = useState(false);
+  const [oscilloscope, setOscilloscope] = useState(true);
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
     p5.createCanvas(350, 40).parent(canvasParentRef);
+    p5.textSize(10);
   };
 
   const draw = (p5) => {
     const opacity = p5.map(meter.getValue(), -150, 0, 50, 255, true);
+    const opacityTwo = p5.map(meter.getValue(), -100, 0, 0, 255, true);
+    const scale = p5.map(meterKick.getValue(), -30, 0, 0, 40, true);
+    const scaleTwo = p5.map(meterSnare.getValue(), -40, 0, 0, 40, true);
+    const scaleThree = p5.map(meterHats.getValue(), -40, -10, 0, 40, true);
+    const scaleFour = p5.map(meterBass.getValue(), -30, -10, 0, 40, true);
+    const scaleFive = p5.map(meterLead.getValue(), -30, 0, 0, 40, true);
     const values = analyser.getValue();
 
     p5.background(34, 97, 74, 255);
-    p5.stroke(74, 212, 109, opacity);
-    p5.strokeWeight(100 * 0.0175);
-    p5.noFill();
-    // p5.fill(74, 212, 109, 125);
 
-    // p5.circle(175, 20, -100 * 0.1 * scale);
+    if (squareMeter) {
+      p5.stroke(74, 212, 109, opacityTwo);
+      // p5.strokeWeight(100 * 0.0175);
+      p5.strokeWeight(0);
+      // p5.noFill();
 
-    // if (play) {
+      p5.fill(74, 212, 109, opacityTwo);
 
-    p5.beginShape();
-    for (let i = 0; i < values.length; i++) {
-      const amplitude = values[i];
-      const x = p5.map(i, 20, values.length - 1, 0, 350);
-      const y = 40 / 2 + amplitude * 20;
-      // Place vertex
-      p5.vertex(x, y);
+      // p5.circle(175, 20, -1 * scale);
+      // p5.circle(125, 20, -1 * scaleTwo);
+      // p5.circle(225, 20, -1 * scaleThree);
+      p5.rect(175, scale / 2, 40, scale * 2);
+      p5.rect(125, scaleTwo / 2, 40, scaleTwo * 2);
+      p5.rect(225, scaleThree / 2, 40, scaleThree * 2);
+      p5.rect(75, scaleFour / 2, 40, scaleFour * 2);
+      p5.rect(275, scaleFive / 2, 40, scaleFive * 2);
+      // p5.beginShape();
+      // for (let i = 0; i < values.length; i++) {
+      //   const amplitude = values[i];
+      //   const x = p5.map(i, 20, values.length - 1, 0, 350);
+      //   const y = 40 / 2 + amplitude * 20;
+      //   // Place vertex
+      //   p5.vertex(x, y);
+      // }
+      // p5.endShape();
+      p5.stroke(74, 212, 109, opacity);
+      p5.strokeWeight(100 * 0.0175);
+      p5.fill(34, 97, 74, 255);
+      p5.rect(0, 0, 65, 14);
+
+      // p5.fill(74, 212, 109, opacity);
+      // p5.strokeWeight(0);
+      // p5.text(`Oscilloscope`, 2, 10);
+      p5.fill(74, 212, 109, opacity);
+      p5.strokeWeight(0);
+      p5.text(`Square Meter`, 2, 10);
+    } else if (oscilloscope) {
+      p5.stroke(74, 212, 109, opacity);
+      p5.strokeWeight(100 * 0.0175);
+
+      p5.noFill();
+      p5.beginShape();
+      for (let i = 0; i < values.length; i++) {
+        const amplitude = values[i];
+        const x = p5.map(i, 20, values.length - 1, 0, 350);
+        const y = 40 / 2 + amplitude * 20;
+        // Place vertex
+        p5.vertex(x, y);
+      }
+      p5.endShape();
+      p5.strokeWeight(100 * 0.0175);
+      p5.fill(34, 97, 74, 255);
+      p5.rect(0, 0, 61, 14);
+
+      p5.fill(74, 212, 109, opacity);
+      p5.strokeWeight(0);
+      p5.text(`Oscilloscope`, 2, 10);
     }
-    p5.endShape();
-    // }
-    // NOTE: Do not use setState in the draw function or in functions that are executed
-    // in the draw function...
-    // please use normal variables or class properties for these purposes
   };
   // const context = new Tone.Context({ latencyHint: "playback" });
   // // set this context as the global Context
@@ -50,7 +96,7 @@ export default function Sequencer() {
 
   Tone.Context.lookAhead = 0.2;
   Tone.Context.latencyHint = "playback";
-
+  const [run, setRun] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -67,6 +113,11 @@ export default function Sequencer() {
   const leadRef = useRef(null);
   const distRef = useRef(null);
   const meter = new Tone.Meter();
+  const meterKick = new Tone.Meter();
+  const meterSnare = new Tone.Meter();
+  const meterHats = new Tone.Meter();
+  const meterBass = new Tone.Meter();
+  const meterLead = new Tone.Meter();
   const analyser = new Tone.Analyser("waveform", 512);
   // const dist = new Distortion(1).toDestination();
   useEffect(() => {
@@ -129,8 +180,24 @@ export default function Sequencer() {
       oscillator: { type: "sawtooth" },
     }).toDestination();
   }, []);
-  Tone.Destination.chain(analyser, meter);
+  useEffect(() => {
+    let timer1 = setTimeout(() => setRun(true), 5000);
 
+    // this will clear Timeout
+    // when component unmount like in willComponentUnmount
+    // and show will not change to true
+    return () => {
+      clearTimeout(timer1);
+    };
+  }, []);
+  if (run) {
+    Tone.Destination.chain(analyser, meter);
+    kickRef.current.connect(meterKick);
+    snareRef.current.connect(meterSnare);
+    hihatRef.current.connect(meterHats);
+    bassRef.current.connect(meterBass);
+    leadRef.current.connect(meterLead);
+  }
   // const bassSynth = new Tone.Synth({
   //   envelope: {
   //     attack: 0.001,
@@ -366,6 +433,28 @@ export default function Sequencer() {
     <div className="sequencer">
       <div className="visualizer">
         <Sketch setup={setup} draw={draw} />
+        {oscilloscope && (
+          <div
+            className="visual-changer"
+            onClick={() => {
+              setSquareMeter(true);
+              setOscilloscope(false);
+            }}
+          >
+            Click here to change visualization mode
+          </div>
+        )}
+        {squareMeter && (
+          <div
+            className="visual-changer"
+            onClick={() => {
+              setSquareMeter(false);
+              setOscilloscope(true);
+            }}
+          >
+            Click here to change visualization mode
+          </div>
+        )}
       </div>
       <div className="tempo">
         <p className="slider-title">Tempo ({tempo} BPM):</p>
