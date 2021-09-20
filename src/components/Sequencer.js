@@ -11,7 +11,9 @@ import Sketch from "react-p5";
 export default function Sequencer() {
   const [squareMeter, setSquareMeter] = useState(false);
   const [oscilloscope, setOscilloscope] = useState(false);
-  const [circleMeter, setCircleMeter] = useState(true);
+  const [circleMeter, setCircleMeter] = useState(false);
+  const [visualSync, setVisualSync] = useState(true);
+  // const [beat, setBeat] = useState(0);
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
@@ -116,14 +118,102 @@ export default function Sequencer() {
       p5.strokeWeight(0);
       p5.text(`Circle Meter`, 2, 10);
     }
+    if (visualSync) {
+      let beat;
+      const position = transport.position;
+      const posSplit = position.split(":");
+      const count = posSplit[1];
+      const subdivision = parseInt(posSplit[2]);
+
+      if (count === "1") {
+        beat = 4 + subdivision + 1;
+      } else if (count === "2") {
+        beat = 8 + subdivision + 1;
+      } else if (count === "3") {
+        beat = 12 + subdivision + 1;
+      } else if (count === "0") {
+        beat = 1 + subdivision;
+      }
+      p5.stroke(74, 212, 109, opacity);
+      p5.strokeWeight(1);
+      p5.noFill();
+      // draws the grid of notes
+      for (let i = 0; i < 16; i++) {
+        let j = i + 1;
+        if (notes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 21 - 3 + 21, 5, 5);
+        } else {
+          p5.noFill();
+
+          p5.circle(j * 21 - 3, 5, 5);
+        }
+
+        if (snareNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 21 - 3 + 21, 12, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 21 - 3, 12, 5);
+        }
+        if (hihatNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 21 - 3 + 21, 19, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 21 - 3, 19, 5);
+        }
+        if (bassNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 21 - 3 + 21, 26, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 21 - 3, 26, 5);
+        }
+        if (leadNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 21 - 3 + 21, 33, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 21 - 3, 33, 5);
+        }
+        p5.noFill();
+
+        p5.circle(j * 21 - 3, 5, 5);
+        // shows the active beat hits
+        p5.fill(74, 212, 109, opacityTwo);
+        p5.stroke(74, 212, 109, 0);
+        if (j === beat && notes[i] !== null) {
+          p5.circle(beat * 21 - 3, 5, 10);
+        }
+        if (j === beat && snareNotes[i] !== null) {
+          p5.circle(beat * 21 - 3, 12, 10);
+        }
+        if (j === beat && hihatNotes[i] !== null) {
+          p5.circle(beat * 21 - 3, 19, 10);
+        }
+        if (j === beat && bassNotes[i] !== null) {
+          p5.circle(beat * 21 - 3, 26, 10);
+        }
+        if (j === beat && leadNotes[i] !== null) {
+          p5.circle(beat * 21 - 3, 33, 10);
+        }
+        p5.stroke(74, 212, 109, opacity);
+        // p5.circle(j * 21 - 3, 10, 5);
+      }
+      // p5.fill(74, 212, 109, opacityThree);
+      // p5.stroke(74, 212, 109, opacityThree);
+      // p5.circle(beat * 21 - 4, 10, 10);
+      // console.log(count, subdivision, beat, notes);
+    }
   };
   // const context = new Tone.Context({ latencyHint: "playback" });
   // // set this context as the global Context
 
   // Tone.setContext(context);
 
-  Tone.Context.lookAhead = 0.2;
-  Tone.Context.latencyHint = "playback";
+  // Tone.Context.lookAhead = 0.2;
+  // Tone.Context.latencyHint = "playback";
   const [run, setRun] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -489,6 +579,18 @@ export default function Sequencer() {
             onClick={() => {
               setCircleMeter(false);
 
+              setVisualSync(true);
+            }}
+          >
+            Click here to change visualization mode
+          </div>
+        )}
+        {visualSync && (
+          <div
+            className="visual-changer"
+            onClick={() => {
+              setVisualSync(false);
+
               setOscilloscope(true);
             }}
           >
@@ -543,12 +645,12 @@ export default function Sequencer() {
           className="start"
           onClick={async () => {
             await Tone.start();
-            hihatPart.start("+0.2");
-            synthPart.start("+0.2");
-            snarePart.start("+0.2");
-            bassPart.start("+0.2");
-            leadPart.start("+0.2");
-            transport.start("+0.2");
+            hihatPart.start();
+            synthPart.start();
+            snarePart.start();
+            bassPart.start();
+            leadPart.start();
+            transport.start();
             setPlay(true);
           }}
         >
