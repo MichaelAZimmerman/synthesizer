@@ -130,7 +130,7 @@ input {
 }
 .visualizer-drone {
   left: 0px;
-  height: 364px;
+  height: 414px;
   width: 364px;
   margin: auto;
 
@@ -138,6 +138,8 @@ input {
   margin-top: 10px;
   padding: 5px;
 }
+.drone-parameters,
+.drone-error,
 .location-start,
 .location-search,
 .location-scan,
@@ -150,16 +152,31 @@ input {
   height: 0px;
   margin: auto;
 }
+.drone-error {
+  top: 60px;
+}
 .location-scan {
   top: -120px;
 }
 .location-search {
   font-size: small;
-  top: 310px;
+  top: 360px;
 }
 .location-start {
   top: 90px;
   left: 90px;
+}
+.drone-parameters {
+  text-align: right;
+  font-size: xx-small;
+  top: -290px;
+  left: -5px;
+}
+.drone-title {
+  color: rgb(255, 135, 119);
+}
+.drone-subtitle {
+  color: rgb(255, 235, 119);
 }
 .drone-play,
 .drone-stop,
@@ -180,6 +197,7 @@ input {
   height: 20px;
   font-size: x-small;
 }
+
 .visual-changer {
   color: rgb(61, 160, 86);
   font-size: 9px;

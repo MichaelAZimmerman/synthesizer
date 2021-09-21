@@ -28,7 +28,7 @@ const Location = () => {
   const setup = (p5, canvasParentRef) => {
     // use parent to render the canvas in this ref
     // (without that p5 will render the canvas outside of your component)
-    p5.createCanvas(350, 350, p5.WEBGL).parent(canvasParentRef);
+    p5.createCanvas(350, 400, p5.WEBGL).parent(canvasParentRef);
   };
 
   const draw = (p5) => {
@@ -36,7 +36,7 @@ const Location = () => {
     p5.stroke(74, 212, 109, 255);
     p5.strokeWeight(1);
     p5.fill(0, 0, 0, 150);
-    p5.rect(-100, -75, 200, 150);
+    p5.rect(-174, -75, 348, 150);
     p5.fill(74, 212, 109, 255);
     // satellite parameters
     const dim = Math.min(175, 175);
@@ -60,12 +60,12 @@ const Location = () => {
     // draw line
     if (search.location && !error) {
       p5.beginShape();
-      p5.vertex(-60, -84);
+      p5.vertex(-60, -112);
       p5.vertex(-60, -60);
       p5.vertex(-50, -50);
       p5.endShape();
       p5.fill(34, 97, 74, 200);
-      p5.rect(-174, -174, 348, 90);
+      p5.rect(-174, -199, 348, 87);
       const values = analyser.getValue();
 
       // p5.fill(74, 212, 109, 125);
@@ -140,7 +140,7 @@ const Location = () => {
           Search Location Drone
         </button>
       </form>
-      {error && <div className="text-center">{error}</div>}
+      {error && <div className="text-center drone-error">{error}</div>}
       {search.location && !error && (
         <div className="location">
           <div>Location drone generated for:</div>
@@ -194,6 +194,21 @@ const Location = () => {
       </div>
       {!search.location && (
         <div className="location-scan">Scanning Earth...</div>
+      )}
+      {search.location && (
+        <div className="drone-parameters">
+          <div className="drone-title">Temperature </div>
+          <div className="drone-subtitle">(Osc. Pitch 1-2):</div>
+          <div>{Math.floor(search.current.temp_c)} Degrees Celsius</div>
+          <div>{Math.floor(search.current.temp_f)} Degrees Fahrenheit</div>
+          <div className="drone-title">Feels Like </div>
+          <div className="drone-subtitle">(Osc. Pitch 3-4):</div>
+          <div>{Math.floor(search.current.feelslike_c)} Degrees Celsius</div>
+          <div>{Math.floor(search.current.feelslike_f)} Degrees Fahrenheit</div>
+          <div className="drone-title">Wind Speed </div>
+          <div className="drone-subtitle">(Tremolo Rate):</div>
+          <div>{Math.floor(search.current.wind_mph)} MPH</div>
+        </div>
       )}
     </>
   );
