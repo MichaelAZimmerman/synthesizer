@@ -130,20 +130,55 @@ input {
 }
 .visualizer-drone {
   left: 0px;
-  height: 354px;
+  height: 364px;
+  width: 364px;
   margin: auto;
 
   margin-bottom: 10px;
-  padding: 0px;
+  margin-top: 10px;
+  padding: 5px;
 }
+.location-start,
+.location-search,
+.location-scan,
 .location {
   color: rgb(74, 212, 109);
   position: relative;
   z-index: 1;
-  top: 50px;
+  top: 20px;
   width: 350px;
   height: 0px;
   margin: auto;
+}
+.location-scan {
+  top: -120px;
+}
+.location-search {
+  font-size: small;
+  top: 310px;
+}
+.location-start {
+  top: 90px;
+  left: 90px;
+}
+.drone-play,
+.drone-stop,
+.search-btn,
+.search-input {
+  background-color: rgb(34, 97, 74);
+  color: rgb(74, 212, 109);
+  border: 2px solid rgb(74, 212, 109);
+  border-radius: 2px;
+}
+.search-btn {
+  position: relative;
+  top: -6px;
+  height: 25px;
+}
+.drone-play,
+.drone-stop {
+  height: 20px;
+  font-size: x-small;
 }
 .visual-changer {
   color: rgb(61, 160, 86);

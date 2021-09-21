@@ -35,6 +35,8 @@ const Location = () => {
     p5.background(34, 97, 74, 255);
     p5.stroke(74, 212, 109, 255);
     p5.strokeWeight(1);
+    p5.fill(0, 0, 0, 150);
+    p5.rect(-100, -75, 200, 150);
     p5.fill(74, 212, 109, 255);
     // satellite parameters
     const dim = Math.min(175, 175);
@@ -54,7 +56,7 @@ const Location = () => {
     p5.strokeWeight(2);
     p5.circle(0, 0, 104);
     p5.strokeWeight(1);
-    p5.fill(34, 97, 74, 200);
+
     // draw line
     if (search.location && !error) {
       p5.beginShape();
@@ -62,6 +64,7 @@ const Location = () => {
       p5.vertex(-60, -60);
       p5.vertex(-50, -50);
       p5.endShape();
+      p5.fill(34, 97, 74, 200);
       p5.rect(-174, -174, 348, 90);
       const values = analyser.getValue();
 
@@ -75,7 +78,7 @@ const Location = () => {
       for (let i = 0; i < values.length; i++) {
         const amplitude = values[i];
         const x = p5.map(i, 175, values.length - 1, 0, 350);
-        const y = 111 + amplitude * -20;
+        const y = 100 + amplitude * -20;
         // Place vertex
         p5.vertex(x, y);
       }
@@ -83,6 +86,9 @@ const Location = () => {
     }
     // end line
     // draw rotating sphere
+    p5.ambientLight(100, 100, 100);
+    p5.pointLight(255, 255, 255, px, py, 70);
+    p5.shininess(20);
     p5.rotateY(p5.millis() / 3000);
     p5.sphere(50, 12, 12);
     // draw rotating globe scan line
@@ -94,16 +100,18 @@ const Location = () => {
   };
   return (
     <>
-      <form>
+      <form className="location-search">
         <div>
           <label htmlFor="search">Search City Name:</label>
           <input
             id="search"
             ref={searchRef}
             placeholder="Omaha, for example."
+            className="search-input"
           />
         </div>
         <button
+          className="search-btn"
           onClick={async (e) => {
             drone.triggerRelease([
               oscOnePitch,
@@ -142,44 +150,51 @@ const Location = () => {
           </div>
         </div>
       )}
-      {search.location && (
-        <button
-          onClick={() => {
-            tremolo.start();
-            drone.triggerRelease([
-              oscOnePitch,
-              oscTwoPitch,
-              oscThreePitch,
-              oscFourPitch,
-            ]);
-            drone.triggerAttack([
-              oscOnePitch,
-              oscTwoPitch,
-              oscThreePitch,
-              oscFourPitch,
-            ]);
-          }}
-        >
-          Play Drone
-        </button>
-      )}
-      {search.location && (
-        <button
-          onClick={() => {
-            drone.triggerRelease([
-              oscOnePitch,
-              oscTwoPitch,
-              oscThreePitch,
-              oscFourPitch,
-            ]);
-          }}
-        >
-          Stop Drone
-        </button>
-      )}
+      <div className="location-start">
+        {search.location && (
+          <button
+            className="drone-play"
+            onClick={() => {
+              tremolo.start();
+              drone.triggerRelease([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
+              drone.triggerAttack([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
+            }}
+          >
+            Play Drone
+          </button>
+        )}
+        {search.location && (
+          <button
+            className="drone-stop"
+            onClick={() => {
+              drone.triggerRelease([
+                oscOnePitch,
+                oscTwoPitch,
+                oscThreePitch,
+                oscFourPitch,
+              ]);
+            }}
+          >
+            Stop Drone
+          </button>
+        )}
+      </div>
       <div className="visualizer-drone">
         <Sketch setup={setup} draw={draw} />
       </div>
+      {!search.location && (
+        <div className="location-scan">Scanning Earth...</div>
+      )}
     </>
   );
 };
