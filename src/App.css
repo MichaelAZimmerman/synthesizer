@@ -109,6 +109,7 @@ input {
   background-color: rgb(19, 33, 44);
   border: 2px solid lightslategray;
 }
+.visualizer-drone,
 .visualizer-two,
 .visualizer {
   background-color: rgb(34, 97, 74);
@@ -126,6 +127,23 @@ input {
   left: 5px;
   top: 2px;
   height: 54px;
+}
+.visualizer-drone {
+  left: 0px;
+  height: 354px;
+  margin: auto;
+
+  margin-bottom: 10px;
+  padding: 0px;
+}
+.location {
+  color: rgb(74, 212, 109);
+  position: relative;
+  z-index: 1;
+  top: 50px;
+  width: 350px;
+  height: 0px;
+  margin: auto;
 }
 .visual-changer {
   color: rgb(61, 160, 86);

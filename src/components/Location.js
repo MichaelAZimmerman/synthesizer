@@ -2,6 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import useFetch from "../hooks/useFetch";
 import { LocationContext } from "../context";
 import * as Tone from "tone";
+import Sketch from "react-p5";
 
 const baseUrl =
   "https://api.weatherapi.com/v1/current.json?key=70c6d31abc674143ac2155929212507&q=";
@@ -17,9 +18,80 @@ const Location = () => {
   const tremolo = new Tone.Tremolo(droneTrem, 0.5).toDestination();
   const comp = new Tone.Compressor(-30, 3);
   const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo, comp);
+  const meter = new Tone.Meter();
+  const analyser = new Tone.Analyser("waveform", 512);
+  Tone.Destination.connect(analyser);
   const searchRef = useRef(null);
   const { callAPI: locationCall } = useFetch("GET");
   const [error, setError] = useState(null);
+
+  const setup = (p5, canvasParentRef) => {
+    // use parent to render the canvas in this ref
+    // (without that p5 will render the canvas outside of your component)
+    p5.createCanvas(350, 350, p5.WEBGL).parent(canvasParentRef);
+  };
+
+  const draw = (p5) => {
+    p5.background(34, 97, 74, 255);
+    p5.stroke(74, 212, 109, 255);
+    p5.strokeWeight(1);
+    p5.fill(74, 212, 109, 255);
+    // satellite parameters
+    const dim = Math.min(175, 175);
+    const time = p5.millis() / 1000;
+    const speed = 0.1;
+    const angle = time * p5.PI * 2.0 * speed;
+    const u = Math.cos(angle);
+    const v = Math.sin(angle);
+    const radius = dim * 0.37;
+    const px = 0 + u * radius;
+    const py = 0 + v * radius;
+    const r = dim * 0.05;
+    // draw satellite
+    p5.ellipse(px, py, r, r);
+    // make outline of globe
+    p5.noFill();
+    p5.strokeWeight(2);
+    p5.circle(0, 0, 104);
+    p5.strokeWeight(1);
+    p5.fill(34, 97, 74, 200);
+    // draw line
+    if (search.location && !error) {
+      p5.beginShape();
+      p5.vertex(-60, -84);
+      p5.vertex(-60, -60);
+      p5.vertex(-50, -50);
+      p5.endShape();
+      p5.rect(-174, -174, 348, 90);
+      const values = analyser.getValue();
+
+      // p5.fill(74, 212, 109, 125);
+
+      // p5.circle(175, 20, -100 * 0.1 * scale);
+
+      // if (play) {
+
+      p5.beginShape();
+      for (let i = 0; i < values.length; i++) {
+        const amplitude = values[i];
+        const x = p5.map(i, 175, values.length - 1, 0, 350);
+        const y = 111 + amplitude * -20;
+        // Place vertex
+        p5.vertex(x, y);
+      }
+      p5.endShape();
+    }
+    // end line
+    // draw rotating sphere
+    p5.rotateY(p5.millis() / 3000);
+    p5.sphere(50, 12, 12);
+    // draw rotating globe scan line
+    p5.rotateX(p5.millis() / 2000);
+    p5.noFill();
+    p5.stroke(74, 212, 109);
+    p5.strokeWeight(2);
+    p5.circle(0, 0, 104);
+  };
   return (
     <>
       <form>
@@ -62,13 +134,13 @@ const Location = () => {
       </form>
       {error && <div className="text-center">{error}</div>}
       {search.location && !error && (
-        <>
+        <div className="location">
           <div>Location drone generated for:</div>
           <div>
             {search.location.name}, {search.location.region} in{" "}
             {search.location.country}
           </div>
-        </>
+        </div>
       )}
       {search.location && (
         <button
@@ -105,6 +177,9 @@ const Location = () => {
           Stop Drone
         </button>
       )}
+      <div className="visualizer-drone">
+        <Sketch setup={setup} draw={draw} />
+      </div>
     </>
   );
 };
