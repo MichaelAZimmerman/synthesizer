@@ -142,7 +142,7 @@ function App() {
           </main>
 
           <footer className="text-center">
-            <div>Last updated: 9/20/2021</div>
+            <div>Last updated: 9/21/2021</div>
           </footer>
         </>
       ) : (
