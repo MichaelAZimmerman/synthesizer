@@ -479,6 +479,8 @@ button {
   );
   border: 2px solid rgb(20, 105, 41);
 }
+.add-measure,
+.remove-measure,
 .stop,
 .start {
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
@@ -488,11 +490,17 @@ button {
   border-radius: 5px;
   width: 80px;
   color: rgb(119, 187, 113);
+  height: 30px;
 }
+.remove-measure,
 .stop {
   background: linear-gradient(180deg, rgb(201, 105, 67), rgb(214, 76, 58) 100%);
   border: 2px solid rgb(68, 29, 5);
   color: rgb(129, 58, 40);
+}
+.add-measure,
+.remove-measure {
+  width: 120px;
 }
 .sequencer {
   background-color: rgb(72, 76, 82);
@@ -511,4 +519,9 @@ button {
 
 .modal-header {
   font-weight: bold;
+}
+.measure-two {
+  position: relative;
+  top: -6px;
+  height: 14px;
 }

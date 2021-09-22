@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import * as Tone from "tone";
 import Drum from "./Sequences/Drum";
+import DrumTwo from "./Sequences/DrumTwo";
 import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
 import Keys from "./Sequences/Keys";
+import KeysTwo from "./Sequences/KeysTwo";
 import Slider from "@material-ui/core/Slider";
 import Sketch from "react-p5";
 
@@ -118,7 +120,7 @@ export default function Sequencer() {
       p5.strokeWeight(0);
       p5.text(`Circle Meter`, 2, 10);
     }
-    if (visualSync) {
+    if (visualSync && !measureTwo) {
       let beat;
       const position = transport.position;
       const posSplit = position.split(":");
@@ -206,6 +208,104 @@ export default function Sequencer() {
       // p5.circle(beat * 21 - 4, 10, 10);
       // console.log(count, subdivision, beat, notes);
     }
+    if (visualSync && measureTwo) {
+      let beat;
+      const position = transport.position;
+      const posSplit = position.split(":");
+      const count = posSplit[1];
+      const subdivision = parseInt(posSplit[2]);
+      const measureCount = parseInt(posSplit[0]);
+
+      if (count === "1" && (1 + measureCount) % 2 !== 0) {
+        beat = 4 + subdivision + 1;
+      } else if (count === "2" && (1 + measureCount) % 2 !== 0) {
+        beat = 8 + subdivision + 1;
+      } else if (count === "3" && (1 + measureCount) % 2 !== 0) {
+        beat = 12 + subdivision + 1;
+      } else if (count === "1" && (1 + measureCount) % 2 === 0) {
+        beat = 20 + subdivision + 1;
+      } else if (count === "2" && (1 + measureCount) % 2 === 0) {
+        beat = 24 + subdivision + 1;
+      } else if (count === "3" && (1 + measureCount) % 2 === 0) {
+        beat = 28 + subdivision + 1;
+      } else if (count === "0" && (1 + measureCount) % 2 === 0) {
+        beat = 16 + subdivision + 1;
+      } else if (count === "0" && (1 + measureCount) % 2 !== 0) {
+        beat = 1 + subdivision;
+      }
+      p5.stroke(74, 212, 109, opacity);
+      p5.strokeWeight(1);
+      p5.noFill();
+      // draws the grid of notes
+      for (let i = 0; i < 32; i++) {
+        let j = i + 1;
+        if (notes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 10 + 20, 5, 5);
+        } else {
+          p5.noFill();
+
+          p5.circle(j * 10 + 10, 5, 5);
+        }
+
+        if (snareNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 10 + 20, 12, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 10 + 10, 12, 5);
+        }
+        if (hihatNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 10 + 20, 19, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 10 + 10, 19, 5);
+        }
+        if (bassNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 10 + 20, 26, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 10 + 10, 26, 5);
+        }
+        if (leadNotes[i] !== null) {
+          p5.fill(74, 212, 109, opacity);
+          p5.circle(i * 10 + 20, 33, 5);
+        } else {
+          p5.noFill();
+          p5.circle(j * 10 + 10, 33, 5);
+        }
+        p5.noFill();
+
+        // p5.circle(j * 21 - 3, 5, 5);
+        // shows the active beat hits
+        p5.fill(74, 212, 109, opacityTwo);
+        p5.stroke(74, 212, 109, 0);
+        if (j === beat && notes[i] !== null) {
+          p5.circle(beat * 10 + 10, 5, 10);
+        }
+        if (j === beat && snareNotes[i] !== null) {
+          p5.circle(beat * 10 + 10, 12, 10);
+        }
+        if (j === beat && hihatNotes[i] !== null) {
+          p5.circle(beat * 10 + 10, 19, 10);
+        }
+        if (j === beat && bassNotes[i] !== null) {
+          p5.circle(beat * 10 + 10, 26, 10);
+        }
+        if (j === beat && leadNotes[i] !== null) {
+          p5.circle(beat * 10 + 10, 33, 10);
+        }
+        p5.stroke(74, 212, 109, opacity);
+        // p5.circle(j * 21 - 3, 10, 5);
+      }
+      console.log(beat);
+      // p5.fill(74, 212, 109, opacityThree);
+      // p5.stroke(74, 212, 109, opacityThree);
+      // p5.circle(beat * 21 - 4, 10, 10);
+      // console.log(count, subdivision, beat, notes);
+    }
   };
   // const context = new Tone.Context({ latencyHint: "playback" });
   // // set this context as the global Context
@@ -214,6 +314,7 @@ export default function Sequencer() {
 
   // Tone.Context.lookAhead = 0.2;
   // Tone.Context.latencyHint = "playback";
+  const [measureTwo, setMeasureTwo] = useState(false);
   const [run, setRun] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -238,6 +339,7 @@ export default function Sequencer() {
   const meterLead = new Tone.Meter();
   const analyser = new Tone.Analyser("waveform", 512);
   // const dist = new Distortion(1).toDestination();
+
   useEffect(() => {
     distRef.current = new Tone.Distortion(1).toDestination();
     kickRef.current = new Tone.MembraneSynth().toDestination();
@@ -316,88 +418,24 @@ export default function Sequencer() {
     bassRef.current.connect(meterBass);
     leadRef.current.connect(meterLead);
   }
-  // const bassSynth = new Tone.Synth({
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.1,
-  //     sustain: 0.2,
-  //     release: 0.13,
-  //   },
-  // }).connect(dist);
-  // bassSynth.oscillator.type = "triangle";
-  // const leadSynth = new Tone.Synth({
-  //   volume: -12,
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.2,
-  //     sustain: 0.2,
-  //     release: 0.23,
-  //   },
-  // }).toDestination();
-  // leadSynth.oscillator.type = "square";
-  // const leadSynthTwo = new Tone.Synth({
-  //   volume: -6,
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.2,
-  //     sustain: 0.2,
-  //     release: 0.23,
-  //   },
-  //   oscillator: { type: "sawtooth" },
-  // }).toDestination();
-  // leadSynthTwo.oscillator.type = "sawtooth";
-  //   const lowPass = new Filter({
-  //     frequency: 11000,
-  //   }).connect(dist);
-  // const hihatSynth = new NoiseSynth({
-  //   volume: -12,
-  //   noise: {
-  //     type: "white",
-  //     playbackRate: 6,
-  //   },
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.13,
-  //     sustain: 0,
-  //     release: 0.03,
-  //   },
-  // }).toDestination();
-  // const snareSynth = new Tone.MembraneSynth({
-  //   volume: 3,
-  //   detune: 2400,
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.1,
-  //     sustain: 0.01,
-  //     release: 0.13,
-  //   },
-  // }).connect(dist);
-  // const noiseTwo = new NoiseSynth({
-  //   volume: 6,
-  //   noise: {
-  //     type: "white",
-  //     playbackRate: 12,
-  //   },
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.03,
-  //     sustain: 0,
-  //     release: 0.03,
-  //   },
-  // }).toDestination();
-  // const noise = new NoiseSynth({
-  //   volume: 10,
-  //   noise: {
-  //     type: "pink",
-  //     playbackRate: 6,
-  //   },
-  //   envelope: {
-  //     attack: 0.001,
-  //     decay: 0.13,
-  //     sustain: 0,
-  //     release: 0.03,
-  //   },
-  // }).connect(dist);
+  const measure = [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+  ];
   const [leadNotes, setLeadNotes] = useState([
     null,
     null,
@@ -547,6 +585,42 @@ export default function Sequencer() {
     transport.bpm.value = tempo;
   }, [tempo, setTempo, transport.bpm]);
 
+  useEffect(() => {
+    if (measureTwo) {
+      let arr = notes.concat(measure);
+      setNotes(arr);
+      let arrSnare = snareNotes.concat(measure);
+      setSnareNotes(arrSnare);
+      let arrHats = hihatNotes.concat(measure);
+      setHihatNotes(arrHats);
+      let arrBass = bassNotes.concat(measure);
+      setBassNotes(arrBass);
+      let arrLead = leadNotes.concat(measure);
+      setLeadNotes(arrLead);
+    } else {
+      let filtered = notes.filter(function (value, index, arr) {
+        return index < 16;
+      });
+      setNotes(filtered);
+      let filteredSnare = snareNotes.filter(function (value, index, arr) {
+        return index < 16;
+      });
+      setSnareNotes(filteredSnare);
+      let filteredHats = hihatNotes.filter(function (value, index, arr) {
+        return index < 16;
+      });
+      setHihatNotes(filteredHats);
+      let filteredBass = bassNotes.filter(function (value, index, arr) {
+        return index < 16;
+      });
+      setBassNotes(filteredBass);
+      let filteredLead = leadNotes.filter(function (value, index, arr) {
+        return index < 16;
+      });
+      setLeadNotes(filteredLead);
+    }
+  }, [measureTwo]);
+
   return (
     <div className="sequencer">
       <div className="visualizer">
@@ -615,11 +689,26 @@ export default function Sequencer() {
       </div>
       <div>Bass Drum</div>
       <Drum notes={notes} setNotes={setNotes} />
+      {measureTwo && (
+        <div className="measure-two">
+          <DrumTwo notes={notes} setNotes={setNotes} />
+        </div>
+      )}
       {/* <br /> */}
       <div>Snare</div>
       <Drum notes={snareNotes} setNotes={setSnareNotes} />
+      {measureTwo && (
+        <div className="measure-two">
+          <DrumTwo notes={snareNotes} setNotes={setSnareNotes} />
+        </div>
+      )}
       <div>Hi-Hat</div>
       <Drum notes={hihatNotes} setNotes={setHihatNotes} />
+      {measureTwo && (
+        <div className="measure-two">
+          <DrumTwo notes={hihatNotes} setNotes={setHihatNotes} />
+        </div>
+      )}
       <div>Bass Synth</div>
       <KeySelector
         activeNote={activeNote}
@@ -627,6 +716,15 @@ export default function Sequencer() {
         synth={bassRef.current}
       />
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
+      {measureTwo && (
+        <div className="measure-two">
+          <KeysTwo
+            notes={bassNotes}
+            setNotes={setBassNotes}
+            activeNote={activeNote}
+          />
+        </div>
+      )}
       <div>Lead Synth</div>
       <KeySelectorLead
         activeNote={activeNoteLead}
@@ -638,6 +736,15 @@ export default function Sequencer() {
         setNotes={setLeadNotes}
         activeNote={activeNoteLead}
       />
+      {measureTwo && (
+        <div className="measure-two">
+          <KeysTwo
+            notes={leadNotes}
+            setNotes={setLeadNotes}
+            activeNote={activeNoteLead}
+          />
+        </div>
+      )}
       {/* <br /> */}
       {/* start button */}
       {!play ? (
@@ -675,7 +782,25 @@ export default function Sequencer() {
           STOP
         </button>
       )}
-
+      {!measureTwo ? (
+        <button
+          className="add-measure"
+          onClick={() => {
+            setMeasureTwo(true);
+          }}
+        >
+          + MEASURE
+        </button>
+      ) : (
+        <button
+          className="remove-measure"
+          onClick={() => {
+            setMeasureTwo(false);
+          }}
+        >
+          - MEASURE
+        </button>
+      )}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title className="modal-header">Warning!</Modal.Title>
