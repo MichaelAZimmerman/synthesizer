@@ -548,8 +548,12 @@ button {
 .octave-down,
 .octave {
   display: inline-block;
-  background: linear-gradient(180deg, rgb(202, 131, 95), rgb(179, 95, 84) 100%);
-  border: 2px solid rgb(70, 35, 31);
+  background: linear-gradient(
+    180deg,
+    rgb(202, 191, 95),
+    rgb(179, 149, 84) 100%
+  );
+  border: 2px solid rgb(70, 68, 31);
 
   font-size: small;
   color: rgb(0, 0, 0);
@@ -561,8 +565,12 @@ button {
 }
 
 .octave-down {
-  background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
-  border: 2px solid rgb(12, 54, 41);
+  background: linear-gradient(
+    180deg,
+    rgb(95, 163, 202),
+    rgb(84, 117, 179) 100%
+  );
+  border: 2px solid rgb(31, 55, 70);
 }
 .seq-header {
   display: inline-block;

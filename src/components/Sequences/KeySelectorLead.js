@@ -21,7 +21,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
         <div className="seq-note-halfspace"></div>
         <button
           className={
-            activeNote === "C#4" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "C#4"
+              ? "seq-note-blk-active-two"
+              : "seq-note-blk-two"
           }
           onClick={() => {
             setActiveNote("C#4");
@@ -32,7 +34,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
         </button>
         <button
           className={
-            activeNote === "D#4" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "D#4"
+              ? "seq-note-blk-active-two"
+              : "seq-note-blk-two"
           }
           onClick={() => {
             setActiveNote("D#4");
@@ -44,7 +48,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
         <div className="seq-note-space"></div>
         <button
           className={
-            activeNote === "F#4" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "F#4"
+              ? "seq-note-blk-active-two"
+              : "seq-note-blk-two"
           }
           onClick={() => {
             setActiveNote("F#4");
@@ -55,7 +61,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
         </button>
         <button
           className={
-            activeNote === "G#4" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "G#4"
+              ? "seq-note-blk-active-two"
+              : "seq-note-blk-two"
           }
           onClick={() => {
             setActiveNote("G#4");
@@ -66,7 +74,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
         </button>
         <button
           className={
-            activeNote === "A#4" ? "seq-note-blk-active" : "seq-note-blk"
+            activeNote === "A#4"
+              ? "seq-note-blk-active-two"
+              : "seq-note-blk-two"
           }
           onClick={() => {
             setActiveNote("A#4");
@@ -79,7 +89,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
       </div>
       <div className="seq-note-container">
         <button
-          className={activeNote === "C4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "C4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("C4");
             synthRef.current.triggerAttackRelease("C4", "16n");
@@ -88,7 +100,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           C
         </button>
         <button
-          className={activeNote === "D4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "D4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("D4");
             synthRef.current.triggerAttackRelease("D4", "16n");
@@ -97,7 +111,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           D
         </button>
         <button
-          className={activeNote === "E4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "E4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("E4");
             synthRef.current.triggerAttackRelease("E4", "16n");
@@ -106,7 +122,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           E
         </button>
         <button
-          className={activeNote === "F4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "F4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("F4");
             synthRef.current.triggerAttackRelease("F4", "16n");
@@ -115,7 +133,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           F
         </button>
         <button
-          className={activeNote === "G4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "G4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("G4");
             synthRef.current.triggerAttackRelease("G4", "16n");
@@ -124,7 +144,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           G
         </button>
         <button
-          className={activeNote === "A4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "A4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("A4");
             synthRef.current.triggerAttackRelease("A4", "16n");
@@ -133,7 +155,9 @@ function KeySelectorLead({ activeNote, setActiveNote }) {
           A
         </button>
         <button
-          className={activeNote === "B4" ? "seq-note-active" : "seq-note"}
+          className={
+            activeNote === "B4" ? "seq-note-active-two" : "seq-note-two"
+          }
           onClick={() => {
             setActiveNote("B4");
             synthRef.current.triggerAttackRelease("B4", "16n");

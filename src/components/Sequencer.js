@@ -6,6 +6,7 @@ import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
 import KeySelectorOctUp from "./Sequences/KeySelectorOctUp";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
+import KeySelectorLeadOctDown from "./Sequences/KeySelectorLeadOctDown";
 import Keys from "./Sequences/Keys";
 import KeysTwo from "./Sequences/KeysTwo";
 import Slider from "@material-ui/core/Slider";
@@ -315,6 +316,7 @@ export default function Sequencer() {
 
   // Tone.Context.lookAhead = 0.2;
   // Tone.Context.latencyHint = "playback";
+  const [octDownLead, setOctDownLead] = useState(false);
   const [octUpBass, setOctUpBass] = useState(false);
   const [measureTwo, setMeasureTwo] = useState(false);
   const [run, setRun] = useState(false);
@@ -758,12 +760,41 @@ export default function Sequencer() {
         </div>
       )}
       <div className="seq-header">Lead Synth</div>
+      {!octDownLead && (
+        <>
+          <div
+            className="octave"
+            onClick={() => {
+              setOctDownLead(true);
+            }}
+          >
+            + Octave
+          </div>
+          <KeySelectorLeadOctDown
+            activeNote={activeNoteLead}
+            setActiveNote={setActiveNoteLead}
+            synth={leadRef.current}
+          />
+        </>
+      )}
+      {octDownLead && (
+        <>
+          <div
+            className="octave-down"
+            onClick={() => {
+              setOctDownLead(false);
+            }}
+          >
+            - Octave
+          </div>
+          <KeySelectorLead
+            activeNote={activeNoteLead}
+            setActiveNote={setActiveNoteLead}
+            synth={leadRef.current}
+          />
+        </>
+      )}
 
-      <KeySelectorLead
-        activeNote={activeNoteLead}
-        setActiveNote={setActiveNoteLead}
-        synth={leadRef.current}
-      />
       <Keys
         notes={leadNotes}
         setNotes={setLeadNotes}
