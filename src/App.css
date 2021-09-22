@@ -512,15 +512,35 @@ button {
   color: rgb(119, 187, 113);
   height: 30px;
 }
-.remove-measure,
+
 .stop {
   background: linear-gradient(180deg, rgb(201, 105, 67), rgb(214, 76, 58) 100%);
   border: 2px solid rgb(68, 29, 5);
   color: rgb(129, 58, 40);
 }
+
 .add-measure,
 .remove-measure {
-  width: 120px;
+  color: rgb(0, 0, 0);
+  width: 100px;
+  font-size: small;
+  font-style: normal;
+  position: relative;
+  top: -2px;
+  background: linear-gradient(
+    180deg,
+    rgb(202, 191, 95),
+    rgb(179, 149, 84) 100%
+  );
+  border: 2px solid rgb(70, 68, 31);
+}
+.remove-measure {
+  background: linear-gradient(
+    180deg,
+    rgb(95, 163, 202),
+    rgb(84, 117, 179) 100%
+  );
+  border: 2px solid rgb(31, 55, 70);
 }
 .sequencer {
   background-color: rgb(72, 76, 82);
