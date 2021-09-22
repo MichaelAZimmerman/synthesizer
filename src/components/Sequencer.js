@@ -181,9 +181,9 @@ export default function Sequencer() {
           p5.noFill();
           p5.circle(j * 21 - 3, 33, 5);
         }
-        p5.noFill();
+        // p5.noFill();
 
-        p5.circle(j * 21 - 3, 5, 5);
+        // p5.circle(j * 21 - 3, 5, 5);
         // shows the active beat hits
         p5.fill(74, 212, 109, opacityTwo);
         p5.stroke(74, 212, 109, 0);
@@ -302,7 +302,7 @@ export default function Sequencer() {
         p5.stroke(74, 212, 109, opacity);
         // p5.circle(j * 21 - 3, 10, 5);
       }
-      console.log(beat);
+
       // p5.fill(74, 212, 109, opacityThree);
       // p5.stroke(74, 212, 109, opacityThree);
       // p5.circle(beat * 21 - 4, 10, 10);
