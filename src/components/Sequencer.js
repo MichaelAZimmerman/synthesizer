@@ -4,6 +4,7 @@ import Drum from "./Sequences/Drum";
 import DrumTwo from "./Sequences/DrumTwo";
 import { Modal, Button } from "react-bootstrap";
 import KeySelector from "./Sequences/KeySelector";
+import KeySelectorOctUp from "./Sequences/KeySelectorOctUp";
 import KeySelectorLead from "./Sequences/KeySelectorLead";
 import Keys from "./Sequences/Keys";
 import KeysTwo from "./Sequences/KeysTwo";
@@ -314,6 +315,7 @@ export default function Sequencer() {
 
   // Tone.Context.lookAhead = 0.2;
   // Tone.Context.latencyHint = "playback";
+  const [octUpBass, setOctUpBass] = useState(false);
   const [measureTwo, setMeasureTwo] = useState(false);
   const [run, setRun] = useState(false);
   const [show, setShow] = useState(false);
@@ -687,7 +689,7 @@ export default function Sequencer() {
           />
         </div>
       </div>
-      <div>Bass Drum</div>
+      <div className="seq-header">Bass Drum</div>
       <Drum notes={notes} setNotes={setNotes} />
       {measureTwo && (
         <div className="measure-two">
@@ -695,26 +697,56 @@ export default function Sequencer() {
         </div>
       )}
       {/* <br /> */}
-      <div>Snare</div>
+      <div className="seq-header">Snare</div>
       <Drum notes={snareNotes} setNotes={setSnareNotes} />
       {measureTwo && (
         <div className="measure-two">
           <DrumTwo notes={snareNotes} setNotes={setSnareNotes} />
         </div>
       )}
-      <div>Hi-Hat</div>
+      <div className="seq-header">Hi-Hat</div>
       <Drum notes={hihatNotes} setNotes={setHihatNotes} />
       {measureTwo && (
         <div className="measure-two">
           <DrumTwo notes={hihatNotes} setNotes={setHihatNotes} />
         </div>
       )}
-      <div>Bass Synth</div>
-      <KeySelector
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-        synth={bassRef.current}
-      />
+      <div className="seq-header">Bass Synth</div>
+      {!octUpBass && (
+        <>
+          <div
+            className="octave"
+            onClick={() => {
+              setOctUpBass(true);
+            }}
+          >
+            + Octave
+          </div>
+          <KeySelector
+            activeNote={activeNote}
+            setActiveNote={setActiveNote}
+            synth={bassRef.current}
+          />
+        </>
+      )}
+      {octUpBass && (
+        <>
+          <div
+            className="octave-down"
+            onClick={() => {
+              setOctUpBass(false);
+            }}
+          >
+            - Octave
+          </div>
+          <KeySelectorOctUp
+            activeNote={activeNote}
+            setActiveNote={setActiveNote}
+            synth={bassRef.current}
+          />
+        </>
+      )}
+
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
       {measureTwo && (
         <div className="measure-two">
@@ -725,7 +757,8 @@ export default function Sequencer() {
           />
         </div>
       )}
-      <div>Lead Synth</div>
+      <div className="seq-header">Lead Synth</div>
+
       <KeySelectorLead
         activeNote={activeNoteLead}
         setActiveNote={setActiveNoteLead}
