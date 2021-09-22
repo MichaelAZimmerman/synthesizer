@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useRef, useState, useContext, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 import { LocationContext } from "../context";
 import * as Tone from "tone";
@@ -15,12 +15,25 @@ const Location = () => {
   const { oscTwoPitch, setOscTwoPitch } = useContext(LocationContext);
   const { oscThreePitch, setOscThreePitch } = useContext(LocationContext);
   const { oscFourPitch, setOscFourPitch } = useContext(LocationContext);
-  const tremolo = new Tone.Tremolo(droneTrem, 0.5).toDestination();
-  const comp = new Tone.Compressor(-30, 3);
-  const drone = new Tone.PolySynth(Tone.FMSynth).chain(tremolo, comp);
-  const meter = new Tone.Meter();
-  const analyser = new Tone.Analyser("waveform", 512);
-  Tone.Destination.connect(analyser);
+  const tremRef = useRef(null);
+  const compRef = useRef(null);
+  const droneRef = useRef(null);
+  const meterRef = useRef(null);
+  const analyserRef = useRef(null);
+  const dest = Tone.Destination;
+
+  useEffect(() => {
+    tremRef.current = new Tone.Tremolo(droneTrem, 0.5).toDestination().start();
+    compRef.current = new Tone.Compressor(-30, 3);
+    droneRef.current = new Tone.PolySynth(Tone.FMSynth).chain(
+      tremRef.current,
+      compRef.current
+    );
+    meterRef.current = new Tone.Meter();
+    analyserRef.current = new Tone.Analyser("waveform", 512);
+    dest.chain(analyserRef.current, meterRef.current);
+  }, []);
+
   const searchRef = useRef(null);
   const { callAPI: locationCall } = useFetch("GET");
   const [error, setError] = useState(null);
@@ -35,6 +48,7 @@ const Location = () => {
     p5.background(34, 97, 74, 255);
     p5.stroke(74, 212, 109, 255);
     p5.strokeWeight(1);
+    // p5.noFill();
     p5.fill(0, 0, 0, 150);
     p5.rect(-174, -75, 348, 150);
     p5.fill(74, 212, 109, 255);
@@ -66,8 +80,20 @@ const Location = () => {
       p5.endShape();
       p5.fill(34, 97, 74, 200);
       p5.rect(-174, -199, 348, 87);
-      const values = analyser.getValue();
+      const values = analyserRef.current.getValue();
+      const test = p5.map(meterRef.current.getValue(), -50, 0, 0, -50, true);
+      const testTwo = p5.map(meterRef.current.getValue(), -50, 0, 0, 255, true);
+      // p5.strokeWeight(0);
+      p5.fill(74, 212, 109, testTwo / 2);
 
+      // p5.rect(-120 + -0.5 * test, -0.5 * test, test, test);
+      // p5.circle(0, 0, test * 3);
+      p5.circle(0, 0, test * 2);
+      p5.fill(74, 212, 109, testTwo);
+      p5.circle(0, 0, test);
+
+      p5.fill(34, 97, 74, 100);
+      // p5.strokeWeight(1);
       // p5.fill(74, 212, 109, 125);
 
       // p5.circle(175, 20, -100 * 0.1 * scale);
@@ -87,8 +113,9 @@ const Location = () => {
     // end line
     // draw rotating sphere
     p5.ambientLight(100, 100, 100);
-    p5.pointLight(255, 255, 255, px, py, 70);
+    p5.pointLight(255, 255, 255, px, py, 75);
     p5.shininess(20);
+    p5.rotateX(15);
     p5.rotateY(p5.millis() / 3000);
     p5.sphere(50, 12, 12);
     // draw rotating globe scan line
@@ -113,7 +140,7 @@ const Location = () => {
         <button
           className="search-btn"
           onClick={async (e) => {
-            drone.triggerRelease([
+            droneRef.current.triggerRelease([
               oscOnePitch,
               oscTwoPitch,
               oscThreePitch,
@@ -155,14 +182,13 @@ const Location = () => {
           <button
             className="drone-play"
             onClick={() => {
-              tremolo.start();
-              drone.triggerRelease([
+              droneRef.current.triggerRelease([
                 oscOnePitch,
                 oscTwoPitch,
                 oscThreePitch,
                 oscFourPitch,
               ]);
-              drone.triggerAttack([
+              droneRef.current.triggerAttack([
                 oscOnePitch,
                 oscTwoPitch,
                 oscThreePitch,
@@ -177,7 +203,7 @@ const Location = () => {
           <button
             className="drone-stop"
             onClick={() => {
-              drone.triggerRelease([
+              droneRef.current.triggerRelease([
                 oscOnePitch,
                 oscTwoPitch,
                 oscThreePitch,
