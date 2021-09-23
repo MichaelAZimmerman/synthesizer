@@ -815,13 +815,13 @@ export default function Sequencer() {
         <button
           className="start"
           onClick={async () => {
-            await Tone.start();
-            hihatPart.start();
-            synthPart.start();
-            snarePart.start();
-            bassPart.start();
-            leadPart.start();
-            transport.start();
+            await Tone.start("+0.1");
+            hihatPart.start("+0.1");
+            synthPart.start("+0.1");
+            snarePart.start("+0.1");
+            bassPart.start("+0.1");
+            leadPart.start("+0.1");
+            transport.start("+0.1");
             setPlay(true);
           }}
         >

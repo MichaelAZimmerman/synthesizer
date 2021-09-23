@@ -2,9 +2,8 @@ import React, { useRef, useEffect } from "react";
 import * as Tone from "tone";
 function KeySelector({ activeNote, setActiveNote }) {
   const synthRef = useRef(null);
-  const distRef = useRef(null);
+
   useEffect(() => {
-    distRef.current = new Tone.Distortion(1).toDestination();
     synthRef.current = new Tone.Synth({
       envelope: {
         attack: 0.001,
@@ -13,7 +12,7 @@ function KeySelector({ activeNote, setActiveNote }) {
         release: 0.13,
       },
       oscillator: { type: "triangle" },
-    }).connect(distRef.current);
+    }).toDestination();
   }, []);
   return (
     <div>
