@@ -17,7 +17,7 @@ function KeySelectorLeadOctDown({ activeNote, setActiveNote }) {
   return (
     <div>
       <div className="seq-note-container">
-        <div className="seq-note-halfspace"></div>
+        <div className="seq-note-halfspace octave-title">Octave 3</div>
         <button
           className={
             activeNote === "C#3" ? "seq-note-blk-active" : "seq-note-blk"
