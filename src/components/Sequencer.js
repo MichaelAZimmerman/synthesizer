@@ -722,7 +722,7 @@ export default function Sequencer() {
               setOctUpBass(true);
             }}
           >
-            + Octave
+            + OCTAVE
           </div>
           <KeySelector
             activeNote={activeNote}
@@ -739,7 +739,7 @@ export default function Sequencer() {
               setOctUpBass(false);
             }}
           >
-            - Octave
+            - OCTAVE
           </div>
           <KeySelectorOctUp
             activeNote={activeNote}
@@ -768,7 +768,7 @@ export default function Sequencer() {
               setOctDownLead(true);
             }}
           >
-            + Octave
+            + OCTAVE
           </div>
           <KeySelectorLeadOctDown
             activeNote={activeNoteLead}
@@ -785,7 +785,7 @@ export default function Sequencer() {
               setOctDownLead(false);
             }}
           >
-            - Octave
+            - OCTAVE
           </div>
           <KeySelectorLead
             activeNote={activeNoteLead}
