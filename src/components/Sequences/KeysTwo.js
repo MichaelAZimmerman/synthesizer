@@ -41,14 +41,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(16, 1, null);
             setNotes(newArr);
             setSeqOneActiveA(false);
           }}
-        ></div>
+        >
+          {notes[16]}
+        </div>
       )}
       {!seqTwoActiveA ? (
         <div
@@ -62,14 +64,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(17, 1, null);
             setNotes(newArr);
             setSeqTwoActiveA(false);
           }}
-        ></div>
+        >
+          {notes[17]}
+        </div>
       )}
       {!seqThreeActiveA ? (
         <div
@@ -83,14 +87,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(18, 1, null);
             setNotes(newArr);
             setSeqThreeActiveA(false);
           }}
-        ></div>
+        >
+          {notes[18]}
+        </div>
       )}
       {!seqFourActiveA ? (
         <div
@@ -104,14 +110,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(19, 1, null);
             setNotes(newArr);
             setSeqFourActiveA(false);
           }}
-        ></div>
+        >
+          {notes[19]}
+        </div>
       )}
       {!seqFiveActiveA ? (
         <div
@@ -125,14 +133,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(20, 1, null);
             setNotes(newArr);
             setSeqFiveActiveA(false);
           }}
-        ></div>
+        >
+          {notes[20]}
+        </div>
       )}
       {!seqSixActiveA ? (
         <div
@@ -146,14 +156,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(21, 1, null);
             setNotes(newArr);
             setSeqSixActiveA(false);
           }}
-        ></div>
+        >
+          {notes[21]}
+        </div>
       )}
       {!seqSevenActiveA ? (
         <div
@@ -167,14 +179,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(22, 1, null);
             setNotes(newArr);
             setSeqSevenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[22]}
+        </div>
       )}
       {!seqEightActiveA ? (
         <div
@@ -188,14 +202,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(23, 1, null);
             setNotes(newArr);
             setSeqEightActiveA(false);
           }}
-        ></div>
+        >
+          {notes[23]}
+        </div>
       )}
       {/* halfway there */}
       {!seqNineActiveA ? (
@@ -210,14 +226,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(24, 1, null);
             setNotes(newArr);
             setSeqNineActiveA(false);
           }}
-        ></div>
+        >
+          {notes[24]}
+        </div>
       )}
       {!seqTenActiveA ? (
         <div
@@ -231,14 +249,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(25, 1, null);
             setNotes(newArr);
             setSeqTenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[25]}
+        </div>
       )}
       {!seqElevenActiveA ? (
         <div
@@ -252,14 +272,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(26, 1, null);
             setNotes(newArr);
             setSeqElevenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[26]}
+        </div>
       )}
       {!seqTwelveActiveA ? (
         <div
@@ -273,14 +295,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(27, 1, null);
             setNotes(newArr);
             setSeqTwelveActiveA(false);
           }}
-        ></div>
+        >
+          {notes[27]}
+        </div>
       )}
       {!seqThirteenActiveA ? (
         <div
@@ -294,14 +318,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(28, 1, null);
             setNotes(newArr);
             setSeqThirteenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[28]}
+        </div>
       )}
       {!seqFourteenActiveA ? (
         <div
@@ -315,14 +341,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(29, 1, null);
             setNotes(newArr);
             setSeqFourteenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[29]}
+        </div>
       )}
       {!seqFifteenActiveA ? (
         <div
@@ -336,14 +364,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(30, 1, null);
             setNotes(newArr);
             setSeqFifteenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[30]}
+        </div>
       )}
       {!seqSixteenActiveA ? (
         <div
@@ -357,14 +387,16 @@ function KeysTwo({ notes, setNotes, activeNote }) {
         ></div>
       ) : (
         <div
-          className="seq-note-on"
+          className="seq-note-on-keys"
           onClick={() => {
             let newArr = [...notes];
             newArr.splice(31, 1, null);
             setNotes(newArr);
             setSeqSixteenActiveA(false);
           }}
-        ></div>
+        >
+          {notes[31]}
+        </div>
       )}
     </div>
   );

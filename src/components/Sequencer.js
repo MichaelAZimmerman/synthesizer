@@ -751,7 +751,7 @@ export default function Sequencer() {
 
       <Keys notes={bassNotes} setNotes={setBassNotes} activeNote={activeNote} />
       {measureTwo && (
-        <div className="measure-two">
+        <div className="measure-two-keys">
           <KeysTwo
             notes={bassNotes}
             setNotes={setBassNotes}
@@ -801,7 +801,7 @@ export default function Sequencer() {
         activeNote={activeNoteLead}
       />
       {measureTwo && (
-        <div className="measure-two">
+        <div className="measure-two-keys">
           <KeysTwo
             notes={leadNotes}
             setNotes={setLeadNotes}

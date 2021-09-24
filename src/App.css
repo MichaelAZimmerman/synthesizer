@@ -462,6 +462,7 @@ button {
   border: 1px dashed rgb(50, 62, 71);
   border-radius: 5px;
 }
+.seq-note-on-keys,
 .seq-note-on,
 .seq-note-off {
   display: inline-block;
@@ -472,7 +473,9 @@ button {
   border-radius: 3px;
   background: linear-gradient(180deg, rgb(68, 134, 85), rgb(34, 97, 74) 100%);
   border: 2px solid rgb(25, 54, 44);
+  color: rgb(20, 88, 49);
 }
+.seq-note-on-keys,
 .seq-note-on {
   background: linear-gradient(
     180deg,
@@ -480,6 +483,17 @@ button {
     rgb(69, 211, 116) 100%
   );
   border: 2px solid rgb(20, 105, 41);
+}
+.seq-note-on-keys {
+  position: relative;
+  top: -9px;
+  font-size: 7px;
+  font-weight: bold;
+  padding-left: 0.5px;
+  padding-top: 2px;
+}
+.sequence {
+  height: 22px;
 }
 .effect-on,
 .effect-off {
@@ -547,6 +561,7 @@ button {
   background-color: rgb(72, 76, 82);
   padding-top: 10px;
   width: 375px;
+
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -561,10 +576,17 @@ button {
 .modal-header {
   font-weight: bold;
 }
+.measure-two-keys,
 .measure-two {
   position: relative;
   top: -6px;
   height: 14px;
+}
+.measure-two-keys {
+  position: relative;
+  top: 0px;
+  height: 16px;
+  margin-bottom: 5px;
 }
 .octave-down,
 .octave {
