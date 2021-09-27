@@ -26,19 +26,82 @@ export default function Sequencer() {
   };
 
   const draw = (p5) => {
-    const opacity = p5.map(meter.getValue(), -150, 0, 50, 255, true);
-    const opacityTwo = p5.map(meter.getValue(), -100, 0, 0, 255, true);
-    const scale = p5.map(meterKick.getValue(), -30, 0, 0, 40, true);
-    const scaleTwo = p5.map(meterSnare.getValue(), -40, 0, 0, 40, true);
-    const scaleThree = p5.map(meterHats.getValue(), -40, -10, 0, 40, true);
-    const scaleFour = p5.map(meterBass.getValue(), -30, -10, 0, 40, true);
-    const scaleFive = p5.map(meterLead.getValue(), -30, 0, 0, 40, true);
-    const values = analyser.getValue();
-    const width = p5.map(meterKick.getValue(), -30, 0, 1, 50, true);
-    const widthTwo = p5.map(meterSnare.getValue(), -40, 0, 1, 50, true);
-    const widthThree = p5.map(meterHats.getValue(), -40, -10, 1, 50, true);
-    const widthFour = p5.map(meterBass.getValue(), -30, -10, 1, 50, true);
-    const widthFive = p5.map(meterLead.getValue(), -30, 0, 1, 50, true);
+    const opacity = p5.map(meterRef.current.getValue(), -150, 0, 50, 255, true);
+    const opacityTwo = p5.map(
+      meterRef.current.getValue(),
+      -100,
+      0,
+      0,
+      255,
+      true
+    );
+    const scale = p5.map(meterKickRef.current.getValue(), -30, 0, 0, 40, true);
+    const scaleTwo = p5.map(
+      meterSnareRef.current.getValue(),
+      -40,
+      0,
+      0,
+      40,
+      true
+    );
+    const scaleThree = p5.map(
+      meterHatsRef.current.getValue(),
+      -40,
+      -10,
+      0,
+      40,
+      true
+    );
+    const scaleFour = p5.map(
+      meterBassRef.current.getValue(),
+      -30,
+      -10,
+      0,
+      40,
+      true
+    );
+    const scaleFive = p5.map(
+      meterLeadRef.current.getValue(),
+      -30,
+      0,
+      0,
+      40,
+      true
+    );
+    const values = analyserRef.current.getValue();
+    const width = p5.map(meterKickRef.current.getValue(), -30, 0, 1, 50, true);
+    const widthTwo = p5.map(
+      meterSnareRef.current.getValue(),
+      -40,
+      0,
+      1,
+      50,
+      true
+    );
+    const widthThree = p5.map(
+      meterHatsRef.current.getValue(),
+      -40,
+      -10,
+      1,
+      50,
+      true
+    );
+    const widthFour = p5.map(
+      meterBassRef.current.getValue(),
+      -30,
+      -10,
+      1,
+      50,
+      true
+    );
+    const widthFive = p5.map(
+      meterLeadRef.current.getValue(),
+      -30,
+      0,
+      1,
+      50,
+      true
+    );
 
     p5.background(34, 97, 74, 255);
 
@@ -335,16 +398,25 @@ export default function Sequencer() {
   const bassRef = useRef(null);
   const leadRef = useRef(null);
   const distRef = useRef(null);
-  const meter = new Tone.Meter();
-  const meterKick = new Tone.Meter();
-  const meterSnare = new Tone.Meter();
-  const meterHats = new Tone.Meter();
-  const meterBass = new Tone.Meter();
-  const meterLead = new Tone.Meter();
-  const analyser = new Tone.Analyser("waveform", 512);
+
+  const meterRef = useRef(null);
+  const meterKickRef = useRef(null);
+  const meterSnareRef = useRef(null);
+  const meterHatsRef = useRef(null);
+  const meterBassRef = useRef(null);
+  const analyserRef = useRef(null);
+  const meterLeadRef = useRef(null);
+
   // const dist = new Distortion(1).toDestination();
 
   useEffect(() => {
+    meterRef.current = new Tone.Meter();
+    meterKickRef.current = new Tone.Meter();
+    meterSnareRef.current = new Tone.Meter();
+    meterHatsRef.current = new Tone.Meter();
+    meterBassRef.current = new Tone.Meter();
+    meterLeadRef.current = new Tone.Meter();
+    analyserRef.current = new Tone.Analyser("waveform", 512);
     distRef.current = new Tone.Distortion(1).toDestination();
     kickRef.current = new Tone.MembraneSynth().toDestination();
 
@@ -415,12 +487,12 @@ export default function Sequencer() {
     };
   }, []);
   if (run) {
-    Tone.Destination.chain(analyser, meter);
-    kickRef.current.connect(meterKick);
-    snareRef.current.connect(meterSnare);
-    hihatRef.current.connect(meterHats);
-    bassRef.current.connect(meterBass);
-    leadRef.current.connect(meterLead);
+    Tone.Destination.chain(analyserRef.current, meterRef.current);
+    kickRef.current.connect(meterKickRef.current);
+    snareRef.current.connect(meterSnareRef.current);
+    hihatRef.current.connect(meterHatsRef.current);
+    bassRef.current.connect(meterBassRef.current);
+    leadRef.current.connect(meterLeadRef.current);
   }
   const measure = [
     null,
